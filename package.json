@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "lint": "standard"
+    "lint": "standard --fix && ts-standard --fix"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",
@@ -27,6 +27,7 @@
     "prettier": "2.8.8",
     "prettier-plugin-astro": "0.9.0",
     "prettier-plugin-tailwindcss": "0.3.0",
-    "standard": "^17.1.0"
+    "standard": "^17.1.0",
+    "ts-standard": "^12.0.2"
   }
 }
