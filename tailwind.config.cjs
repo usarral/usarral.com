@@ -5,6 +5,9 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      colors: {
+        bluegray: '#20252c'
+      },
       fontFamily: {
         sans: ['var(--font-open-sans)', ...defaultTheme.fontFamily.sans]
       }
