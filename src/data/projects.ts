@@ -1,27 +1,29 @@
-export type Project = {
-  title: string;
-  techs: string[];
-  link: string;
-  isComingSoon?: boolean;
-};
+export interface Project {
+  title: string
+  techs: string[]
+  link: string
+  isComingSoon?: boolean
+}
 
 const projects: Project[] = [
   {
-    title: "Dictionary App",
-    techs: ["ReactJS (NextJS)", "react-query", "zod"],
-    link: "https://github.com/MaeWolff/dictionary-app",
+    title: 'La Receta',
+    techs: ['Laravel', 'VueJS', 'TailwindCSS'],
+    link: '#',
+    isComingSoon: true
   },
   {
-    title: "Portfolio / Lina BLIDI",
-    techs: ["ReactJS (NextJS)", "TypeScript"],
-    link: "https://www.linablidi.fr/",
+    title: 'PerformSquad',
+    techs: ['Express', 'TypeScript'],
+    link: '#',
+    isComingSoon: true
   },
   {
-    title: "Portfolio / Template",
-    techs: ["Astro"],
-    link: "/",
-    isComingSoon: true,
-  },
-];
+    title: 'Blog Usarral',
+    techs: ['Astro'],
+    link: '/posts',
+    isComingSoon: false
+  }
+]
 
-export default projects;
+export default projects
