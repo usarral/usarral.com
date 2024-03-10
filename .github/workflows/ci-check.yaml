@@ -12,6 +12,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.14.1
-          cache: "npm"
+          cache: "pnpm"
       - run: npm install
       - run: npm run check
