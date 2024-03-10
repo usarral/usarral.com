@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "standard"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",
@@ -25,6 +26,7 @@
     "eslint-plugin-astro": "0.27.1",
     "prettier": "2.8.8",
     "prettier-plugin-astro": "0.9.0",
-    "prettier-plugin-tailwindcss": "0.3.0"
+    "prettier-plugin-tailwindcss": "0.3.0",
+    "standard": "^17.1.0"
   }
 }
