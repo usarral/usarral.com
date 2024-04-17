@@ -7,8 +7,8 @@ export interface Project {
 
 const projects: Project[] = [
   {
-    title: 'La Receta',
-    techs: ['Laravel', 'VueJS', 'TailwindCSS'],
+    title: 'Aszendix',
+    techs: ['Express', 'Typescript', 'Angular'],
     link: '#',
     isComingSoon: true
   },
