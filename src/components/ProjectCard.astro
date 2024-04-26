@@ -2,8 +2,11 @@
 import type { Project } from "@/data/projects";
 
 type Props = Project;
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
-const { title, techs, link, isComingSoon } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { title, techs, link, linkText, isComingSoon } = Astro.props;
 
 const formatTechs = (values: string[]) =>
   values.toString().replaceAll(",", " • ");
@@ -18,7 +21,9 @@ const formatTechs = (values: string[]) =>
           <p>{formatTechs(techs)}</p>
         </div>
 
-        <p class="w-fit rounded-md bg-neutral-900 px-4 py-1">Soon</p>
+        <p class="w-fit rounded-md bg-neutral-900 px-4 py-1">
+          {t("projectCard.soon")}
+        </p>
       </div>
     )
   }
@@ -35,27 +40,29 @@ const formatTechs = (values: string[]) =>
           <p class="text-neutral-100">{title}</p>
           <p>{formatTechs(techs)}</p>
         </div>
-
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          class="transition-all duration-300 group-hover:translate-x-1"
-        >
-          <path
-            d="M5.25 12.75L12.75 5.25"
-            stroke="#999999"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M5.25 5.25H12.75V12.75"
-            stroke="#999999"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        <p class="w-fit rounded-md bg-neutral-900 px-4 py-1 flex flex-row">
+          {linkText}
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            class="transition-all duration-300 group-hover:translate-x-1"
+          >
+            <path
+              d="M5.25 12.75L12.75 5.25"
+              stroke="#999999"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M5.25 5.25H12.75V12.75"
+              stroke="#999999"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </p>
       </a>
     )
   }

@@ -2,23 +2,15 @@
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import formatDate from "@/utils/formatDate";
-import {
-  getLangFromUrl,
-  useTranslations,
-  useTranslatedPath,
-} from "@/i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 const allPosts = await getCollection("posts");
 const posts = allPosts
   .filter((post) => {
-    return post.data.isPublish === true && post.data.lang === lang;
+    return post.data.isPublish === true && post.data.lang === "es";
   })
   .sort(function (first, second) {
     return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
   });
-const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout title="Posts | Usarral">
@@ -30,7 +22,7 @@ const translatePath = useTranslatedPath(lang);
         posts.map((post) => (
           <a
             class="group flex flex-col gap-2 border-t border-neutral-700 py-4 transition-all hover:text-neutral-100"
-            href={translatePath(`/${post.slug}`)}
+            href={`/posts/${post.slug}`}
           >
             <div class="flex w-full items-center justify-between">
               <h2 class="text-lg">{post.data.title}</h2>

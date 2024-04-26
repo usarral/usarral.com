@@ -28,9 +28,8 @@ const { Content } = await post.render();
   <main class="post mx-auto flex w-full max-w-prose flex-col gap-4">
     <header role="presentation">
       <h1 class="text-2xl text-neutral-100">
-        {post.data.title}
+        {post.data.title} - {formatDate(post.data.publishedAt)}
       </h1>
-      <span class="text-md">{formatDate(post.data.publishedAt)}</span>
       <p class="italic">{post.data.description}</p>
     </header>
     <Content />

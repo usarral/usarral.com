@@ -1,26 +1,42 @@
 ---
 import removeTrailingSlash from "@/utils/removeTrailingSlash";
 import presentation from "@/data/presentation";
-
+import { Image } from "astro:assets";
+import SearchIcon from "@/components/icons/SearchIcon.svg";
 const pathname = removeTrailingSlash(Astro.url.pathname);
+import {
+  getLangFromUrl,
+  useTranslations,
+  useTranslatedPath,
+} from "@/i18n/utils";
+import LanguagePicker from "./LanguagePicker.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <header
-  class="z-40 flex w-full flex-col gap-2 align-middle md:flex-row md:justify-between"
+  class="z-40 flex w-full flex-col gap-2 items-center align-middle md:flex-row md:justify-between"
 >
-  <a href={`mailto:${presentation.mail}`} class="hover:text-neutral-100"
-    >{presentation.mail}</a
+  <a href={translatePath("/")} class="hover:text-neutral-100"
+    >{t("page.title")}</a
   >
   <div
-    class="mx-4 flex flex-row rounded-full border-[1px] border-neutral-100 px-2"
+    class="mx-4 flex flex-row rounded-full border-[1px] align-middle items-center border-neutral-700 px-2"
   >
-    <input type="search" class="bg-transparent" placeholder="Search post" />
+    <Image src={SearchIcon} alt="Search icon" class="h-4 w-4" />
+    <input
+      type="search"
+      class="bg-transparent px-2 active:outline-none"
+      placeholder={t("nav.search")}
+    />
   </div>
   <nav role="navigation">
     <ul role="list" class="flex flex-row gap-2">
       <li>
         <a
-          href="/"
+          href={translatePath("/")}
           class:list={{
             ["hover:text-neutral-100"]: true,
             ["text-neutral-100"]: pathname === "/",
@@ -30,7 +46,7 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
       <li>/</li>
       <li>
         <a
-          href="/posts"
+          href={translatePath("/posts")}
           class:list={{
             ["hover:text-neutral-100"]: true,
             ["text-neutral-100"]: pathname === "/posts",
@@ -38,5 +54,6 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
         >
       </li>
     </ul>
+    <LanguagePicker />
   </nav>
 </header>

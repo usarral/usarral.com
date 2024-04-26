@@ -7,7 +7,8 @@ const postsCollection = defineCollection({
     publishedAt: z.date(),
     description: z.string(),
     isPublish: z.boolean(),
-    isDraft: z.boolean().default(false)
+    isDraft: z.boolean().default(false),
+    lang: z.string().optional()
   })
 })
 
