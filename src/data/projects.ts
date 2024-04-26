@@ -23,6 +23,12 @@ const projects: Project[] = [
     techs: ['Astro'],
     link: '/posts',
     isComingSoon: false
+  },
+  {
+    title: 'RafaelPalmero.com',
+    techs: ['NextJS', 'TailwindCSS'],
+    link: 'https://rafaelpalmero.com',
+    isComingSoon: false
   }
 ]
 
