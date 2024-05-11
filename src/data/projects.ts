@@ -13,6 +13,12 @@ const projects: Project[] = [
     isComingSoon: true
   },
   {
+    title: 'GDM La Merced',
+    techs: ['Astro', 'Typescript'],
+    link: 'https://gdmlamerced.com',
+    isComingSoon: false
+  },
+  {
     title: 'PerformSquad',
     techs: ['Express', 'TypeScript'],
     link: '#',
