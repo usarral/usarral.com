@@ -6,23 +6,19 @@ export interface Project {
 }
 
 const projects: Project[] = [
-  {
-    title: 'Aszendix',
-    techs: ['Express', 'Typescript', 'Angular'],
-    link: '#',
-    isComingSoon: true
-  },
+  
   {
     title: 'GDM La Merced',
     techs: ['Astro', 'Typescript'],
     link: 'https://gdmlamerced.com',
     isComingSoon: false
   },
+  
   {
-    title: 'PerformSquad',
-    techs: ['Express', 'TypeScript'],
-    link: '#',
-    isComingSoon: true
+    title: 'RafaelPalmero.com',
+    techs: ['NextJS', 'TailwindCSS'],
+    link: 'https://rafaelpalmero.com',
+    isComingSoon: false
   },
   {
     title: 'Blog Usarral',
@@ -31,11 +27,17 @@ const projects: Project[] = [
     isComingSoon: false
   },
   {
-    title: 'RafaelPalmero.com',
-    techs: ['NextJS', 'TailwindCSS'],
-    link: 'https://rafaelpalmero.com',
-    isComingSoon: false
-  }
+    title: 'Aszendix',
+    techs: ['Express', 'Typescript', 'Angular'],
+    link: '#',
+    isComingSoon: true
+  },
+  {
+    title: 'PerformSquad',
+    techs: ['Express', 'TypeScript'],
+    link: '#',
+    isComingSoon: true
+  },
 ]
 
 export default projects
