@@ -1,6 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "extends": ["config:recommended"],
+  "assignees": ["usarral"],
+  "automergeType": "pr",
+  "prCreation": "immediate",
+  "ignorePaths": ["**/node_modules/**", "**/__fixtures__/**"],
+  "dockerfile": {
+    "semanticCommitType": "build"
+  },
+  "packageRules": [
+    {
+      "description": "Automerge updates",
+      "matchUpdateTypes": ["major", "minor", "patch", "rollback"],
+      "automerge": true
+    }
   ]
 }
