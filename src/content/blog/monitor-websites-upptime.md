@@ -2,6 +2,7 @@
 title: "Monitor Your Websites for Free with Upptime"
 description: "Learn how to monitor your websites for free using Upptime, an open-source tool powered by GitHub Actions. Discover step-by-step instructions to set up Upptime, customize notifications, and create a status page to track website uptime efficiently without any paid subscriptions."
 pubDate: 2024-12-30
+heroImage: "https://usarral.com/blog/monitor-your-websites-for-free-with-upptime.og"
 ---
 
 **Introduction:**
