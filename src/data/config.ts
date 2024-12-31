@@ -57,15 +57,6 @@ export const PROJECTS: Project[] = [
     isComingSoon: false,
     postDate: "2024-08-01",
   },
-
-  {
-    title: "RafaelPalmero.com",
-    image: "rafaelpalmero.com.webp",
-    techs: ["NextJS", "TailwindCSS"],
-    description: "Chef personal blog where he post recipes, tips, and more",
-    link: "https://rafaelpalmero.com",
-    isComingSoon: false,
-  },
   {
     title: "Blog | Usarral",
     image: "usarral.png",
@@ -130,7 +121,7 @@ export const WORK_EXPERIENCE = [
     subtitle: "July 2023 - Present at Minsait (Indra), [Remote, Spain]",
     description: `
 Initially, I worked with Java 7, Java Servlets, and JSP, deploying applications on Tomcat 7 and 9, where I maintained and developed new features for a government client's customer culture project.`,
-    description2: `Currently, I am working with Java 8, Spring Boot, and Angular 14(TypeScript) deploying with Jenkins, Openshift and Docker, developing microservices for a government client's agriculture project.`,
+    description2: `Currently, I am working with Java 8, Spring Boot, and Angular 14 (TypeScript) deploying with Jenkins, Openshift and Docker, developing microservices for a government client's agriculture project.`,
     description3: `On both projects I have worked with technologies like Git, Jira, Confluence, Oracle Database, and more.`,
   },
   {
