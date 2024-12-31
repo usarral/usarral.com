@@ -35,9 +35,9 @@ export const MENU_ITEMS: MenuItem[] = [
     id: "blog",
   },
   {
-    Page: "CV",
-    Link: "/cv",
-    id: "cv",
+    Page: "Resume",
+    Link: "/resume",
+    id: "resume",
   },
   //{
   //  Page: "Contact",
