@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: 4.0.5
-        version: 4.0.5(astro@5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))
+        version: 4.0.5(astro@5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))
       '@astrojs/rss':
         specifier: 4.0.11
         version: 4.0.11
@@ -19,10 +19,10 @@ importers:
         version: 3.2.1
       '@astrojs/tailwind':
         specifier: 5.1.4
-        version: 5.1.4(astro@5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)
+        version: 5.1.4(astro@5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)
       '@astrojs/vercel':
         specifier: ^8.0.0
-        version: 8.0.2(astro@5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)
+        version: 8.0.2(astro@5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)
       '@vercel/analytics':
         specifier: ^1.4.1
         version: 1.4.1
@@ -30,8 +30,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       astro:
-        specifier: 5.1.5
-        version: 5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+        specifier: 5.1.6
+        version: 5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       daisyui:
         specifier: 4.12.23
         version: 4.12.23(postcss@8.4.49)
@@ -960,15 +960,6 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@rollup/pluginutils@5.1.3':
-    resolution: {integrity: sha512-Pnsb6f32CD2W3uCaLZIzDmeFyQ2b8UWMFI7xtwUezpcGBDVDW6y9XgAWIlARiGAo6eNF5FK5aQTr0LFyNyqq5A==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
     engines: {node: '>=14.0.0'}
@@ -1366,8 +1357,8 @@ packages:
     resolution: {integrity: sha512-8hJaCuqxObShWl2wEsnASqh/DbQ2O+S66m0Q3ctJlzBPEQ4pfGwwama3FCjZO3GDLQsjvn1T0v93Vxyu/+5fGw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  astro@5.1.5:
-    resolution: {integrity: sha512-Q9TE4aNlczxVoPDoXR3UcjLezL+70z0KbTRXovE4ybpx0mgNL1jsmSWtF3UFXB5+GTf9JK7om5fbIaaMReKcUg==}
+  astro@5.1.6:
+    resolution: {integrity: sha512-LpTazCIW6syxFePi65gg2ptqqC2kR+PDRym3V23hEQj5yCf+T0t5v9qtp3fW0/+6G+JvP0EprCfCRTt7h/hexg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -1537,10 +1528,6 @@ packages:
 
   confbox@0.1.8:
     resolution: {integrity: sha512-RMtmw0iFkeR4YV+fUOSucriAQNb9g8zFR52MWCtl+cCZOFRNL6zeB395vPzFhEjjn4fMxXudmELnl/KF/WrK6w==}
-
-  consola@3.2.3:
-    resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}
-    engines: {node: ^14.18.0 || >=16.10.0}
 
   consola@3.3.3:
     resolution: {integrity: sha512-Qil5KwghMzlqd51UXM0b6fyaGHtOC22scxrwrz4A2882LyUMwQjnvaedN1HAeXzphspQ6CpHkzMAWxBTUruDLg==}
@@ -3514,12 +3501,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.0.5(astro@5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))':
+  '@astrojs/mdx@4.0.5(astro@5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.0.1
       '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
       acorn: 8.14.0
-      astro: 5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.3
@@ -3548,9 +3535,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/tailwind@5.1.4(astro@5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)':
+  '@astrojs/tailwind@5.1.4(astro@5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)':
     dependencies:
-      astro: 5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       autoprefixer: 10.4.20(postcss@8.4.49)
       postcss: 8.4.49
       postcss-load-config: 4.0.2(postcss@8.4.49)
@@ -3570,13 +3557,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@8.0.2(astro@5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)':
+  '@astrojs/vercel@8.0.2(astro@5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)':
     dependencies:
       '@astrojs/internal-helpers': 0.4.2
       '@vercel/analytics': 1.4.1
       '@vercel/edge': 1.2.1
       '@vercel/nft': 0.29.0(rollup@4.28.0)
-      astro: 5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       esbuild: 0.24.2
       fast-glob: 3.3.3
     transitivePeerDependencies:
@@ -4228,14 +4215,6 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@rollup/pluginutils@5.1.3(rollup@4.28.0)':
-    dependencies:
-      '@types/estree': 1.0.6
-      estree-walker: 2.0.2
-      picomatch: 4.0.2
-    optionalDependencies:
-      rollup: 4.28.0
-
   '@rollup/pluginutils@5.1.4(rollup@4.28.0)':
     dependencies:
       '@types/estree': 1.0.6
@@ -4614,14 +4593,14 @@ snapshots:
       - supports-color
       - typescript
 
-  astro@5.1.5(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0):
+  astro@5.1.6(@types/node@22.10.6)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.2
       '@astrojs/markdown-remark': 6.0.1
       '@astrojs/telemetry': 3.2.0
       '@oslojs/encoding': 1.1.0
-      '@rollup/pluginutils': 5.1.3(rollup@4.28.0)
+      '@rollup/pluginutils': 5.1.4(rollup@4.28.0)
       '@types/cookie': 0.6.0
       acorn: 8.14.0
       aria-query: 5.3.2
@@ -4641,7 +4620,7 @@ snapshots:
       es-module-lexer: 1.5.4
       esbuild: 0.21.5
       estree-walker: 3.0.3
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       flattie: 1.1.1
       github-slugger: 2.0.0
       html-escaper: 3.0.3
@@ -4820,7 +4799,7 @@ snapshots:
 
   citty@0.1.6:
     dependencies:
-      consola: 3.2.3
+      consola: 3.3.3
 
   cli-boxes@3.0.0: {}
 
@@ -4870,8 +4849,6 @@ snapshots:
   concat-map@0.0.1: {}
 
   confbox@0.1.8: {}
-
-  consola@3.2.3: {}
 
   consola@3.3.3: {}
 
@@ -5731,7 +5708,7 @@ snapshots:
       '@parcel/watcher-wasm': 2.5.0
       citty: 0.1.6
       clipboardy: 4.0.0
-      consola: 3.2.3
+      consola: 3.3.3
       crossws: 0.3.1
       defu: 6.1.4
       get-port-please: 3.1.2
@@ -7112,7 +7089,7 @@ snapshots:
   untun@0.1.3:
     dependencies:
       citty: 0.1.6
-      consola: 3.2.3
+      consola: 3.3.3
       pathe: 1.1.2
 
   update-browserslist-db@1.1.0(browserslist@4.24.0):
