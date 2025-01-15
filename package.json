@@ -14,14 +14,14 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/mdx": "4.0.5",
+    "@astrojs/mdx": "4.0.6",
     "@astrojs/rss": "4.0.11",
     "@astrojs/sitemap": "3.2.1",
     "@astrojs/tailwind": "5.1.4",
     "@astrojs/vercel": "^8.0.0",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
-    "astro": "5.1.6",
+    "astro": "5.1.7",
     "daisyui": "4.12.23",
     "dayjs": "1.11.13",
     "satori": "^0.12.0",
