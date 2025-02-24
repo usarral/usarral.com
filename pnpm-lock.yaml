@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: 4.0.8
-        version: 4.0.8(astro@5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))
+        version: 4.0.8(astro@5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))
       '@astrojs/rss':
         specifier: 4.0.11
         version: 4.0.11
@@ -19,10 +19,10 @@ importers:
         version: 3.2.1
       '@astrojs/tailwind':
         specifier: 6.0.0
-        version: 6.0.0(astro@5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)
+        version: 6.0.0(astro@5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)
       '@astrojs/vercel':
         specifier: ^8.0.0
-        version: 8.0.7(astro@5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)
+        version: 8.0.8(astro@5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)
       '@vercel/analytics':
         specifier: ^1.4.1
         version: 1.5.0
@@ -30,8 +30,8 @@ importers:
         specifier: ^1.1.0
         version: 1.2.0
       astro:
-        specifier: 5.3.0
-        version: 5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+        specifier: 5.3.1
+        version: 5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       daisyui:
         specifier: 4.12.23
         version: 4.12.23(postcss@8.4.49)
@@ -126,8 +126,8 @@ packages:
     resolution: {integrity: sha512-wxhSKRfKugLwLlr4OFfcqovk+LIFtKwLyGPqMsv+9/ibqqnW3Gv7tBhtKEb0gAyUAC4G9BTVQeQahqnQAhd6IQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
 
-  '@astrojs/vercel@8.0.7':
-    resolution: {integrity: sha512-2DPqPGZ/Et4afpJt8CAoIql2S649rzEmLBNJPHUGBysP0JklMaZ05HhQVKr+qEhZSm3NrVccxpkiIG/eLW3nPg==}
+  '@astrojs/vercel@8.0.8':
+    resolution: {integrity: sha512-NQs2HSPbjRyHeUu74VuxP52Ephw61t7jPxYLK7cGxrscqBoBf4wV+dQGUkg0cvJnWCH+6JBR34oUAuivHAgm7Q==}
     peerDependencies:
       astro: ^5.0.0
 
@@ -893,8 +893,8 @@ packages:
   '@vercel/edge@1.2.1':
     resolution: {integrity: sha512-1++yncEyIAi68D3UEOlytYb1IUcIulMWdoSzX2h9LuSeeyR7JtaIgR8DcTQ6+DmYOQn+5MCh6LY+UmK6QBByNA==}
 
-  '@vercel/nft@0.29.1':
-    resolution: {integrity: sha512-6239JJM1V9b3OjvZIjbe+47/hGxMr44FEzlbTErrqzebCaoKAHK+yvahn3gdNacybDUbTxVF8Zuh0vqaeM8aKQ==}
+  '@vercel/nft@0.29.2':
+    resolution: {integrity: sha512-A/Si4mrTkQqJ6EXJKv5EYCDQ3NL6nJXxG8VGXePsaiQigsomHYQC9xSpX8qGk7AEZk4b1ssbYIqJ0ISQQ7bfcA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1014,8 +1014,8 @@ packages:
     resolution: {integrity: sha512-8hJaCuqxObShWl2wEsnASqh/DbQ2O+S66m0Q3ctJlzBPEQ4pfGwwama3FCjZO3GDLQsjvn1T0v93Vxyu/+5fGw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  astro@5.3.0:
-    resolution: {integrity: sha512-e88l/Yk/6enR/ZDddLbqtM+oblBFk5mneNSmNesyVYGL/6Dj4UA67GPAZOk79VxT5dbLlclZSyyw/wlxN1aj3A==}
+  astro@5.3.1:
+    resolution: {integrity: sha512-dfcuWKkGsYI6XH6zhSK4tHGFXRgEbPZZwZQ/VmGtKBnDfFW+3faq6k+ETKlKDeRB4LwDGtaeoH+US4HYC5w1SA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -1505,6 +1505,14 @@ packages:
   fastq@1.19.0:
     resolution: {integrity: sha512-7SFSRCNjBQIZH/xZR3iy5iQYR8aGBE0h3VG6/cwlbrpdciNYBMotQav8c1XI3HjHH+NikUpP53nPdlZSdWmFzA==}
 
+  fdir@6.4.3:
+    resolution: {integrity: sha512-PMXmW2y1hDDfTSRc9gaXIuCCRpuoz3Kaz8cUelp3smouvfT632ozg2vrT6lJsHKKOF59YLbOGfAWGUcKEfRMQw==}
+    peerDependencies:
+      picomatch: ^3 || ^4
+    peerDependenciesMeta:
+      picomatch:
+        optional: true
+
   fflate@0.7.4:
     resolution: {integrity: sha512-5u2V/CDW15QM1XbbgS+0DfPxVB+jUKhWEKuuFuHncbk3tEEqzmoXL+2KyOFuKGqOnmdIy0/davWF1CkuwtibCw==}
 
@@ -1556,9 +1564,6 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
-  fs.realpath@1.0.0:
-    resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
-
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -1594,10 +1599,6 @@ packages:
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
-
-  glob@7.2.3:
-    resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -1708,13 +1709,6 @@ packages:
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
-
-  inflight@1.0.6:
-    resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
-    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-
-  inherits@2.0.4:
-    resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
 
   ini@4.1.1:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
@@ -2199,9 +2193,6 @@ packages:
   ohash@1.1.4:
     resolution: {integrity: sha512-FlDryZAahJmEF3VR3w1KogSEdWX3WhA5GPakFx4J81kEAiHyLMpdLLElS8n8dfNadMgAne/MywcvmogzscVt4g==}
 
-  once@1.4.0:
-    resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
-
   oniguruma-to-es@2.2.0:
     resolution: {integrity: sha512-EEsso27ri0sf+t4uRFEj5C5gvXQj0d0w1Y2qq06b+hDLBnvzO1rWTwEW4C7ytan6nhg4WPwE26eLoiPhHUbvKg==}
 
@@ -2282,10 +2273,6 @@ packages:
   path-exists@5.0.0:
     resolution: {integrity: sha512-RjhtfwJOxzcFmNOi6ltcbcu4Iu+FL3zEj83dk4kAS+fVpTxXLO1b38RvJgT/0QwvV/L3aY9TAnyv0EOqW4GoMQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
-  path-is-absolute@1.0.1:
-    resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
-    engines: {node: '>=0.10.0'}
 
   path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
@@ -2549,11 +2536,6 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  semver@7.7.0:
-    resolution: {integrity: sha512-DrfFnPzblFmNrIZzg5RzHegbiRWg7KMR7btwi2yjHwx06zsUbO5g613sVwEV7FTwmzJu+Io0lJe2GJ3LxqpvBQ==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
     engines: {node: '>=10'}
@@ -2706,6 +2688,10 @@ packages:
 
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
+
+  tinyglobby@0.2.12:
+    resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
+    engines: {node: '>=12.0.0'}
 
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
@@ -2993,9 +2979,6 @@ packages:
     resolution: {integrity: sha512-G8ura3S+3Z2G+mkgNRq8dqaFZAuxfsxpBB8OCTGRTCtp+l/v9nbFNmCUP1BZMts3G1142MsZfn6eeUKrr4PD1Q==}
     engines: {node: '>=18'}
 
-  wrappy@1.0.2:
-    resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
-
   xxhash-wasm@1.1.0:
     resolution: {integrity: sha512-147y/6YNh+tlp6nd/2pWq38i9h6mz/EuQ6njIrmW8D1BS5nCqs0P6DG+m6zTGnNz5I+uhZ0SHxBs9BsPrwcKDA==}
 
@@ -3092,12 +3075,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.0.8(astro@5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))':
+  '@astrojs/mdx@4.0.8(astro@5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.1.0
       '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
       acorn: 8.14.0
-      astro: 5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       es-module-lexer: 1.6.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.4
@@ -3126,9 +3109,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/tailwind@6.0.0(astro@5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)':
+  '@astrojs/tailwind@6.0.0(astro@5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)':
     dependencies:
-      astro: 5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       autoprefixer: 10.4.20(postcss@8.5.1)
       postcss: 8.5.1
       postcss-load-config: 4.0.2(postcss@8.5.1)
@@ -3148,16 +3131,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@8.0.7(astro@5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)':
+  '@astrojs/vercel@8.0.8(astro@5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.28.0)':
     dependencies:
       '@astrojs/internal-helpers': 0.5.1
       '@vercel/analytics': 1.5.0
       '@vercel/edge': 1.2.1
-      '@vercel/nft': 0.29.1(rollup@4.28.0)
+      '@vercel/nft': 0.29.2(rollup@4.28.0)
       '@vercel/routing-utils': 5.0.4
-      astro: 5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0)
       esbuild: 0.24.2
-      fast-glob: 3.3.3
+      tinyglobby: 0.2.12
     transitivePeerDependencies:
       - '@remix-run/react'
       - '@sveltejs/kit'
@@ -3908,7 +3891,7 @@ snapshots:
 
   '@vercel/edge@1.2.1': {}
 
-  '@vercel/nft@0.29.1(rollup@4.28.0)':
+  '@vercel/nft@0.29.2(rollup@4.28.0)':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.0
       '@rollup/pluginutils': 5.1.4(rollup@4.28.0)
@@ -3917,7 +3900,7 @@ snapshots:
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
-      glob: 7.2.3
+      glob: 10.4.5
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
       picomatch: 4.0.2
@@ -4022,12 +4005,12 @@ snapshots:
       espree: 10.3.0
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.7.0
+      semver: 7.7.1
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  astro@5.3.0(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0):
+  astro@5.3.1(@types/node@22.13.5)(jiti@2.4.1)(rollup@4.28.0)(typescript@5.5.4)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.5.1
@@ -4054,7 +4037,6 @@ snapshots:
       es-module-lexer: 1.6.0
       esbuild: 0.24.2
       estree-walker: 3.0.3
-      fast-glob: 3.3.3
       flattie: 1.1.1
       github-slugger: 2.0.0
       html-escaper: 3.0.3
@@ -4063,17 +4045,18 @@ snapshots:
       kleur: 4.1.5
       magic-string: 0.30.17
       magicast: 0.3.5
-      micromatch: 4.0.8
       mrmime: 2.0.0
       neotraverse: 0.6.18
       p-limit: 6.2.0
       p-queue: 8.1.0
+      picomatch: 4.0.2
       preferred-pm: 4.1.1
       prompts: 2.4.2
       rehype: 13.0.2
       semver: 7.7.1
       shiki: 1.29.2
       tinyexec: 0.3.2
+      tinyglobby: 0.2.12
       tsconfck: 3.1.4(typescript@5.5.4)
       ultrahtml: 1.5.3
       unist-util-visit: 5.0.0
@@ -4474,7 +4457,7 @@ snapshots:
   eslint-compat-utils@0.6.0(eslint@9.21.0(jiti@2.4.1)):
     dependencies:
       eslint: 9.21.0(jiti@2.4.1)
-      semver: 7.7.0
+      semver: 7.7.1
 
   eslint-plugin-astro@1.3.1(eslint@9.21.0(jiti@2.4.1))(typescript@5.5.4):
     dependencies:
@@ -4639,6 +4622,10 @@ snapshots:
     dependencies:
       reusify: 1.0.4
 
+  fdir@6.4.3(picomatch@4.0.2):
+    optionalDependencies:
+      picomatch: 4.0.2
+
   fflate@0.7.4: {}
 
   file-entry-cache@8.0.0:
@@ -4690,8 +4677,6 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  fs.realpath@1.0.0: {}
-
   fsevents@2.3.3:
     optional: true
 
@@ -4725,15 +4710,6 @@ snapshots:
       minipass: 7.1.2
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
-
-  glob@7.2.3:
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 3.1.2
-      once: 1.4.0
-      path-is-absolute: 1.0.1
 
   global-directory@4.0.1:
     dependencies:
@@ -4923,13 +4899,6 @@ snapshots:
   import-meta-resolve@4.1.0: {}
 
   imurmurhash@0.1.4: {}
-
-  inflight@1.0.6:
-    dependencies:
-      once: 1.4.0
-      wrappy: 1.0.2
-
-  inherits@2.0.4: {}
 
   ini@4.1.1: {}
 
@@ -5616,10 +5585,6 @@ snapshots:
 
   ohash@1.1.4: {}
 
-  once@1.4.0:
-    dependencies:
-      wrappy: 1.0.2
-
   oniguruma-to-es@2.2.0:
     dependencies:
       emoji-regex-xs: 1.0.0
@@ -5719,8 +5684,6 @@ snapshots:
   path-exists@4.0.0: {}
 
   path-exists@5.0.0: {}
-
-  path-is-absolute@1.0.1: {}
 
   path-key@3.1.1: {}
 
@@ -6069,8 +6032,6 @@ snapshots:
 
   semver@7.6.3: {}
 
-  semver@7.7.0: {}
-
   semver@7.7.1: {}
 
   sharp@0.33.5:
@@ -6273,6 +6234,11 @@ snapshots:
   tiny-inflate@1.0.3: {}
 
   tinyexec@0.3.2: {}
+
+  tinyglobby@0.2.12:
+    dependencies:
+      fdir: 6.4.3(picomatch@4.0.2)
+      picomatch: 4.0.2
 
   to-regex-range@5.0.1:
     dependencies:
@@ -6492,8 +6458,6 @@ snapshots:
       ansi-styles: 6.2.1
       string-width: 7.2.0
       strip-ansi: 7.1.0
-
-  wrappy@1.0.2: {}
 
   xxhash-wasm@1.1.0: {}
 
