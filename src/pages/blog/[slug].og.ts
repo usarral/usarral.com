@@ -17,21 +17,78 @@ export async function GET({ params }: APIContext) {
 const entry = postEntries.find(
   (entry) => createSlug(entry.data.title, entry.slug) === slug
 );
+const pubDateRaw = entry?.data.pubDate;
+
+const pubDate = entry?.data.pubDate
+  ? new Date(entry.data.pubDate).toLocaleDateString("es-ES", {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+    })
+  : "";
+
 
   const title = entry?.data.title ?? SITE_TITLE_SHORT;
+  const cleanTitle = removeEmojis(title);
+
 
   const fontFilePath = `${process.cwd()}/public/fonts/inter.ttf`;
   const fontFile = readFileSync(fontFilePath);
 
-  const markup = html(`<div
-    style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: rgb(45,26,84); font-size: 32px; font-weight: 600;"
-  >
-    <div
-      style="font-size: 70px; margin-top: 38px; display: flex; flex-direction: column; color: white;"
-    >
-      ${title}
+  const markup = html(`
+    <div style="
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #1E1B2E, #2E1F55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter';
+      color: white;
+    ">
+      <div style="
+        background: rgba(255, 255, 255, 0.05);
+        padding: 60px 80px;
+        border-radius: 32px;
+        max-width: 1000px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      ">
+        <h1 style="
+          font-size: 64px;
+          font-weight: 800;
+          line-height: 1.2;
+          margin: 0;
+          word-break: break-word;
+          white-space: pre-wrap;
+        ">
+          ${cleanTitle}
+        </h1>
+        <div style="
+        margin-top: 48px;
+        font-size: 24px;
+        font-weight: 500;
+        opacity: 0.85;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        ">
+          ${SITE_TITLE_SHORT} - ${pubDate}
+        </div>
+      </div>
     </div>
-  </div>`);
+  `);
+  
+  
   const svg = await satori(markup, {
     width: 1200,
     height: 630,
@@ -54,3 +111,8 @@ const entry = postEntries.find(
     },
   });
 };
+function removeEmojis(text: string) {
+  return text.replace(/[^\p{L}\p{N}\p{P}\p{Zs}]/gu, '');
+
+}
+
