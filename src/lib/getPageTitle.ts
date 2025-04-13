@@ -9,6 +9,11 @@ export function getPageTitle(slug: string, entryTitle?: string): string {
     return entryTitle;
   }
 
+  // Si el slug es "index", devolver solo el título corto del sitio
+  if (slug.toLowerCase() === "index") {
+    return SITE_TITLE_SHORT;
+  }
+
   // Si no hay título de entrada, usa el nombre de la página como fallback
   const fallbackTitle = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   return `${fallbackTitle} - ${SITE_TITLE_SHORT}`;

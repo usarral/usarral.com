@@ -1,17 +1,20 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
+import "../styles/global.css";
 
 export interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	ogType?: string;
+    title: string;
+    description: string;
+    image?: string;
+    ogType?: string;
 }
 
-const { title, description, image = '', ogType = 'website' } = Astro.props;
-import { SITE_TITLE, TWITTER_AUTHOR } from '../data/config';
+const { title, description, image = "", ogType = "website" } = Astro.props;
+import { SITE_TITLE, TWITTER_AUTHOR } from "../data/config";
+
+const ogUrl =
+    Astro.url === Astro.site ? `${Astro.site}index.og` : `${Astro.url}.og`;
 ---
 
 <!-- Global Metadata -->
@@ -29,7 +32,7 @@ import { SITE_TITLE, TWITTER_AUTHOR } from '../data/config';
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={Astro.url + '.og'}>
+<meta property="og:image" content={ogUrl} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -37,8 +40,7 @@ import { SITE_TITLE, TWITTER_AUTHOR } from '../data/config';
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={Astro.url + '.og'}>
-
+<meta property="twitter:image" content={ogUrl} />
 
 <!-- RSS Auto Discovery -->
 <link
@@ -47,6 +49,3 @@ import { SITE_TITLE, TWITTER_AUTHOR } from '../data/config';
     title={SITE_TITLE}
     href={new URL("rss.xml", Astro.site)}
 />
-
-
-
