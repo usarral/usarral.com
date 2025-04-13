@@ -4,7 +4,7 @@ description: "This article provides an updated guide on how I set up my VPS usin
 pubDate: 2025-4-13
 toc: true
 topic: devops
-draft: true
+draft: false
 tags:
   - DevOps
   - VPS
