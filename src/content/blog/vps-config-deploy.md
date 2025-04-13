@@ -463,21 +463,23 @@ A recommended practice is to keep all your `compose.yml` files (and other deploy
 * **Facilitates Environment Management:** You can organize your configuration repository with directories or branches to represent different environments (development, staging, production), allowing for environment-specific configurations.
 
 **Example Structure of a Configuration Repository:**
+```
 deploy-config/
-├── docker-compose/
-│   ├── myweb
-│   │   ├── compose.yml
-│   ├── traefik
-|   │   ├── config
-|   │   │   ├── traefik.yml
-|   │   ├── certs
-│   │   ├── compose.yml
-|   |   ├── .env (optional)
-│   ├── watchtower
-│   │   ├── compose.yml
-│   |   ├── .env (optional)
-│   ├── ...
-└── README.md
+|-- docker-compose/
+|   |-- myweb
+|   |   |-- compose.yml
+|   |-- traefik
+|   |   |-- config
+|   |   |   |-- traefik.yml
+|   |   |-- certs
+|   |   |-- compose.yml
+|   |   |-- .env (optional)
+|   |-- watchtower
+|   |   |-- compose.yml
+|   |   |-- .env (optional)
+|   |-- ...
+|-- README.md
+```
 In this scenario, the GitHub Actions pipeline that builds and publishes your Docker image would not be directly involved in the deployment. Instead, you would have a separate process (manual or automated via another CI/CD system or even scripts on your VPS) that would:
 
 1.  Access the configuration repository (`deploy-config`).
