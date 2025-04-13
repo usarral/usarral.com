@@ -453,49 +453,37 @@ With this setup, you have a container running and exposed externally. Every time
 
 It's important to note that the `compose.yml` files that define how your services will be deployed **do not necessarily have to reside within the same repository as the source code for each Docker image**. While the previous example created a specific `compose.yml` for the `myweb` image, there are more centralized and efficient strategies for managing these configuration files.
 
-**Single Repository for Deployment Configuration:**
+### Example Repository for Versioning Deployment Configurations
 
-A recommended practice is to keep all your `compose.yml` files (and other deployment-related configurations in a **single, dedicated repository**. This offers several advantages:
+To simplify the process of managing and versioning deployment configurations, you can use a public template repository like [vps-config-deploy-post](https://github.com/usarral/vps-config-deploy-post). This repository serves as a starting point for organizing your `compose.yml` files and other deployment-related configurations.
 
-* **Centralized Management:** Simplifies the administration and tracking of all deployment configurations in one place.
-* **Unified Versioning:** Allows you to version all deployment configurations consistently using Git. This is crucial for tracking changes, performing rollbacks, and maintaining consistency across your environments.
-* **Separation of Concerns:** Clearly separates the management of application code (in the image repositories) from the management of the deployment infrastructure (in the configuration repository).
-* **Facilitates Environment Management:** You can organize your configuration repository with directories or branches to represent different environments (development, staging, production), allowing for environment-specific configurations.
+The repository is structured to provide a clear separation of concerns and includes directories for different services and environments. You can clone or fork it to adapt it to your specific needs.
 
-**Example Structure of a Configuration Repository:**
+**Repository Highlights:**
+- **Centralized Management:** All deployment configurations are stored in one place.
+- **Public Template:** Any user can use it as a base for their own deployment setup.
+- **Version Control:** Track changes, perform rollbacks, and maintain consistency across environments.
+
+**Example Structure of the Repository:**
 ```
-deploy-config/
+vps-config-deploy-post/
 |-- docker-compose/
-|   |-- myweb
+|   |-- myweb/
 |   |   |-- compose.yml
-|   |-- traefik
-|   |   |-- config
+|   |-- traefik/
+|   |   |-- config/
 |   |   |   |-- traefik.yml
-|   |   |-- certs
+|   |   |-- certs/
 |   |   |-- compose.yml
 |   |   |-- .env (optional)
-|   |-- watchtower
+|   |-- watchtower/
 |   |   |-- compose.yml
 |   |   |-- .env (optional)
-|   |-- ...
 |-- README.md
 ```
-In this scenario, the GitHub Actions pipeline that builds and publishes your Docker image would not be directly involved in the deployment. Instead, you would have a separate process (manual or automated via another CI/CD system or even scripts on your VPS) that would:
 
-1.  Access the configuration repository (`deploy-config`).
-2.  Select the appropriate `compose.yml` file for the desired service and environment.
-3.  Use `docker compose up -d -f <path_to_compose.yml>` on your VPS to deploy or update the service using the image already published in your container registry.
+By using this template, you can quickly set up a robust and organized deployment configuration repository. It also allows you to separate application code from deployment infrastructure, making your setup more maintainable and scalable.
 
-**Additional Benefits of Versioning:**
-
-By versioning your `compose.yml` files, you gain a complete history of the changes made to your deployment configuration. This allows you to:
-
-* **Audit changes:** Know who, when, and why a service's configuration was modified.
-* **Perform rollbacks:** In case of issues after a configuration update, you can easily revert to a previous version.
-* **Maintain consistency:** Ensure that the deployment configuration across different environments is consistent (or intentionally different).
-
-In summary, while the example focuses on having a `compose.yml` for a specific service, consider the option of **centralizing and versioning your deployment configuration files in a dedicated repository** for more robust and organized management of your Docker infrastructure.
- 
 ## Conclusion
 
 In this guide, we have seen how to configure a VPS from scratch, secure it, and prepare it for automatic deployments using Docker, Traefik, and GitHub Actions. With these steps, you can manage your applications efficiently and securely.
