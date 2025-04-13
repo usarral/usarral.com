@@ -1,7 +1,7 @@
 ---
 title: "🛠️ Securize and Deploy your VPS using Docker"
 description: "This article provides an updated guide on how I set up my VPS using Docker, including the necessary steps and requirements to secure and deploy your VPS efficiently."
-pubDate: 2025-4-13
+pubDate: 2025-4-14
 toc: true
 topic: devops
 draft: false
