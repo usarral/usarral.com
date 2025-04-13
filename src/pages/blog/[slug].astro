@@ -12,11 +12,12 @@ interface Props {
 const { slug } = Astro.params;
 const postEntries = await getCollection("blog");
 const entry = postEntries.find(
-  (entry) => createSlug(entry.data.title, entry.slug) === slug
+  (entry) => createSlug(entry.data.title, entry.slug) === slug,
 );
 
+// Redirigir a 404 si no se encuentra el artículo
 if (!entry) {
-  throw new Error(`Post not found for slug: ${slug}`);
+  return Astro.redirect("/404");
 }
 
 const post: BlogSchema = entry.data;
