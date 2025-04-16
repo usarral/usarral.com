@@ -33,8 +33,8 @@ importers:
         specifier: 5.7.0
         version: 5.7.0(@types/node@22.14.1)(jiti@2.4.1)(rollup@4.34.8)(typescript@5.5.4)(yaml@2.5.0)
       daisyui:
-        specifier: 5.0.20
-        version: 5.0.20
+        specifier: 5.0.22
+        version: 5.0.22
       dayjs:
         specifier: 1.11.13
         version: 1.11.13
@@ -1374,8 +1374,8 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  daisyui@5.0.20:
-    resolution: {integrity: sha512-dR9WSFsWG5bHuwTnlcuh/MZFROaddxB+BFxB06EgDy7gU5M7eY/RsY1g/DwCMwgnqS7dEsjxNd/x+WgC3N+TDQ==}
+  daisyui@5.0.22:
+    resolution: {integrity: sha512-tcqbCp0nzCmIzR4GfLtPcaNEhDCKO+yw4W3REF3Aw1rNwk0/8fa2fvbnVDq5tUqglnKTesAlmlc2Ze45ZIomMg==}
 
   dargs@8.1.0:
     resolution: {integrity: sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==}
@@ -4478,7 +4478,7 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  daisyui@5.0.20: {}
+  daisyui@5.0.22: {}
 
   dargs@8.1.0: {}
 
