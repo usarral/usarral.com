@@ -36,8 +36,8 @@ importers:
         specifier: 5.0.54
         version: 5.0.54
       dayjs:
-        specifier: 1.11.14
-        version: 1.11.14
+        specifier: 1.11.15
+        version: 1.11.15
       satori:
         specifier: ^0.16.0
         version: 0.16.2
@@ -1435,8 +1435,8 @@ packages:
     resolution: {integrity: sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==}
     engines: {node: '>=12'}
 
-  dayjs@1.11.14:
-    resolution: {integrity: sha512-E8fIdSxUlyqSA8XYGnNa3IkIzxtEmFjI+JU/6ic0P1zmSqyL6HyG5jHnpPjRguDNiaHLpfvHKWFiohNsJLqcJQ==}
+  dayjs@1.11.15:
+    resolution: {integrity: sha512-MC+DfnSWiM9APs7fpiurHGCoeIx0Gdl6QZBy+5lu8MbYKN5FZEXqOgrundfibdfhGZ15o9hzmZ2xJjZnbvgKXQ==}
 
   debug@4.4.1:
     resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
@@ -4590,7 +4590,7 @@ snapshots:
 
   dargs@8.1.0: {}
 
-  dayjs@1.11.14: {}
+  dayjs@1.11.15: {}
 
   debug@4.4.1:
     dependencies:
