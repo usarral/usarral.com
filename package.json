@@ -24,7 +24,7 @@
     "astro": "5.13.4",
     "daisyui": "5.0.54",
     "dayjs": "1.11.14",
-    "satori": "^0.16.0",
+    "satori": "^0.18.0",
     "satori-html": "^0.3.2",
     "sharp": "0.34.3",
     "tailwindcss": "3.4.17"
