@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: 4.3.4
-        version: 4.3.4(astro@5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))
+        version: 4.3.4(astro@5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))
       '@astrojs/rss':
         specifier: 4.0.12
         version: 4.0.12
@@ -19,10 +19,10 @@ importers:
         version: 3.5.1
       '@astrojs/tailwind':
         specifier: 6.0.2
-        version: 6.0.2(astro@5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)
+        version: 6.0.2(astro@5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)
       '@astrojs/vercel':
         specifier: ^8.0.0
-        version: 8.2.6(astro@5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.40.1)
+        version: 8.2.7(astro@5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.40.1)
       '@vercel/analytics':
         specifier: ^1.4.1
         version: 1.5.0
@@ -30,8 +30,8 @@ importers:
         specifier: ^1.1.0
         version: 1.2.0
       astro:
-        specifier: 5.13.4
-        version: 5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
+        specifier: 5.13.5
+        version: 5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
       daisyui:
         specifier: 5.0.54
         version: 5.0.54
@@ -126,8 +126,8 @@ packages:
     resolution: {integrity: sha512-UFBgfeldP06qu6khs/yY+q1cDAaArM2/7AEIqQ9Cuvf7B1hNLq0xDrZkct+QoIGyjq56y8IaE2I3CTvG99mlhQ==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0}
 
-  '@astrojs/vercel@8.2.6':
-    resolution: {integrity: sha512-ctGEoAtyWvFtUNuVECwXwDHMv6lxw1m1qcUL6ZNACFL7GIDzHhD/ipAkZsl2G4QUeVD1ig0Xo8AtFdDl34/gNg==}
+  '@astrojs/vercel@8.2.7':
+    resolution: {integrity: sha512-QeozkGU/0qch8MZlKJDKt+Dp8IUKA/E4MxnecVz1J0eVaXB6ao/HYcW7Tcr8LpWYU77Twhc60SgHIjrE3j2nYg==}
     peerDependencies:
       astro: ^5.0.0
 
@@ -907,8 +907,8 @@ packages:
   '@types/mdx@2.0.6':
     resolution: {integrity: sha512-sVcwEG10aFU2KcM7cIA0M410UPv/DesOPyG8zMVk0QUDexHA3lYmGucpEpZ2dtWWhi2ip3CG+5g/iH0PwoW4Fw==}
 
-  '@types/ms@0.7.31':
-    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
+  '@types/ms@2.1.0':
+    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
@@ -1041,8 +1041,8 @@ packages:
       vue-router:
         optional: true
 
-  '@vercel/functions@2.2.11':
-    resolution: {integrity: sha512-NhbMW01IyepdcaQiYUt9XXodtq5SFr2gNiL7lmX/2cgjP7cKy6V+RYXKT15EbizqZ9o3j9gqdYScxd1tvY211w==}
+  '@vercel/functions@2.2.13':
+    resolution: {integrity: sha512-14ArBSIIcOBx9nrEgaJb4Bw+en1gl6eSoJWh8qjifLl5G3E4dRXCFOT8HP+w66vb9Wqyd1lAQBrmRhRwOj9X9A==}
     engines: {node: '>= 18'}
     peerDependencies:
       '@aws-sdk/credential-provider-web-identity': '*'
@@ -1055,8 +1055,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/oidc@2.0.0':
-    resolution: {integrity: sha512-U0hncpXof7gC9xtmSrjz6vrDqdwJXi8z/zSc9FyS80AoXKfCZtpkBz9gtL3x30Agmpxpwe35P1W2dP9Epa/RGA==}
+  '@vercel/oidc@2.0.2':
+    resolution: {integrity: sha512-59PBFx3T+k5hLTEWa3ggiMpGRz1OVvl9eN8SUai+A43IsqiOuAe7qPBf+cray/Fj6mkgnxm/D7IAtjc8zSHi7g==}
     engines: {node: '>= 18'}
 
   '@vercel/routing-utils@5.1.1':
@@ -1172,8 +1172,8 @@ packages:
     resolution: {integrity: sha512-8hJaCuqxObShWl2wEsnASqh/DbQ2O+S66m0Q3ctJlzBPEQ4pfGwwama3FCjZO3GDLQsjvn1T0v93Vxyu/+5fGw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  astro@5.13.4:
-    resolution: {integrity: sha512-Mgq5GYy3EHtastGXqdnh1UPuN++8NmJSluAspA5hu33O7YRs/em/L03cUfRXtc60l5yx5BfYJsjF2MFMlcWlzw==}
+  astro@5.13.5:
+    resolution: {integrity: sha512-XmBzkl13XU97+n/QiOM5uXQdAVe0yKt5gO+Wlgc8dHRwHR499qhMQ5sMFckLJweUINLzcNGjP3F5nG4wV8a2XA==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3214,12 +3214,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.3.4(astro@5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))':
+  '@astrojs/mdx@4.3.4(astro@5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.6
       '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
       acorn: 8.15.0
-      astro: 5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
       es-module-lexer: 1.6.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -3248,9 +3248,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.25.76
 
-  '@astrojs/tailwind@6.0.2(astro@5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)':
+  '@astrojs/tailwind@6.0.2(astro@5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(tailwindcss@3.4.17)':
     dependencies:
-      astro: 5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
       autoprefixer: 10.4.21(postcss@8.5.3)
       postcss: 8.5.3
       postcss-load-config: 4.0.2(postcss@8.5.3)
@@ -3270,14 +3270,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@8.2.6(astro@5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.40.1)':
+  '@astrojs/vercel@8.2.7(astro@5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0))(rollup@4.40.1)':
     dependencies:
       '@astrojs/internal-helpers': 0.7.2
       '@vercel/analytics': 1.5.0
-      '@vercel/functions': 2.2.11
+      '@vercel/functions': 2.2.13
       '@vercel/nft': 0.29.4(rollup@4.40.1)
       '@vercel/routing-utils': 5.1.1
-      astro: 5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
+      astro: 5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0)
       esbuild: 0.25.9
       tinyglobby: 0.2.14
     transitivePeerDependencies:
@@ -3956,7 +3956,7 @@ snapshots:
 
   '@types/debug@4.1.8':
     dependencies:
-      '@types/ms': 0.7.31
+      '@types/ms': 2.1.0
 
   '@types/estree-jsx@1.0.0':
     dependencies:
@@ -3982,7 +3982,7 @@ snapshots:
 
   '@types/mdx@2.0.6': {}
 
-  '@types/ms@0.7.31': {}
+  '@types/ms@2.1.0': {}
 
   '@types/nlcst@2.0.3':
     dependencies:
@@ -4128,9 +4128,9 @@ snapshots:
 
   '@vercel/analytics@1.5.0': {}
 
-  '@vercel/functions@2.2.11':
+  '@vercel/functions@2.2.13':
     dependencies:
-      '@vercel/oidc': 2.0.0
+      '@vercel/oidc': 2.0.2
 
   '@vercel/nft@0.29.4(rollup@4.40.1)':
     dependencies:
@@ -4151,7 +4151,10 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/oidc@2.0.0': {}
+  '@vercel/oidc@2.0.2':
+    dependencies:
+      '@types/ms': 2.1.0
+      ms: 2.1.3
 
   '@vercel/routing-utils@5.1.1':
     dependencies:
@@ -4249,7 +4252,7 @@ snapshots:
       - supports-color
       - typescript
 
-  astro@5.13.4(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0):
+  astro@5.13.5(@types/node@22.18.0)(jiti@2.4.1)(rollup@4.40.1)(typescript@5.5.4)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.12.2
       '@astrojs/internal-helpers': 0.7.2

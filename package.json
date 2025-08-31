@@ -21,7 +21,7 @@
     "@astrojs/vercel": "^8.0.0",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
-    "astro": "5.13.4",
+    "astro": "5.13.5",
     "daisyui": "5.0.54",
     "dayjs": "1.11.14",
     "satori": "^0.16.0",
