@@ -23,7 +23,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "astro": "5.15.3",
     "daisyui": "5.3.10",
-    "dayjs": "1.11.18",
+    "dayjs": "1.11.19",
     "satori": "^0.18.0",
     "satori-html": "^0.3.2",
     "sharp": "0.34.4",
