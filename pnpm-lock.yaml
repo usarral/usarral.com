@@ -22,10 +22,10 @@ importers:
         version: 6.0.2(astro@5.16.3(@types/node@24.10.1)(@vercel/functions@2.2.13)(db0@0.3.4)(ioredis@5.8.2)(jiti@2.6.1)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(yaml@2.8.2))(tailwindcss@3.4.18)
       '@astrojs/vercel':
         specifier: ^9.0.0
-        version: 9.0.2(astro@5.16.3(@types/node@24.10.1)(@vercel/functions@2.2.13)(db0@0.3.4)(ioredis@5.8.2)(jiti@2.6.1)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(yaml@2.8.2))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vercel/functions@2.2.13)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(rollup@4.53.3)(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))
+        version: 9.0.2(astro@5.16.3(@types/node@24.10.1)(@vercel/functions@2.2.13)(db0@0.3.4)(ioredis@5.8.2)(jiti@2.6.1)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(yaml@2.8.2))(rollup@4.53.3)(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))
       '@vercel/analytics':
         specifier: ^1.4.1
-        version: 1.6.0(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vercel/functions@2.2.13)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))
+        version: 1.6.1(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))
       '@vercel/speed-insights':
         specifier: ^1.1.0
         version: 1.3.0(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vercel/functions@2.2.13)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))
@@ -760,8 +760,8 @@ packages:
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
 
-  '@napi-rs/wasm-runtime@1.0.7':
-    resolution: {integrity: sha512-SeDnOO0Tk7Okiq6DbXmmBODgOAb9dp9gjlphokTUxmt8U3liIP1ZsozBahH69j/RJv+Rfs6IwUKHTgQYJ/HBAw==}
+  '@napi-rs/wasm-runtime@1.1.0':
+    resolution: {integrity: sha512-Fq6DJW+Bb5jaWE69/qOE0D1TUN9+6uWhCeZpdnSBk14pjLcCWR7Q8n49PTSPHazM37JqrsdpEthXy2xn6jWWiA==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1706,13 +1706,12 @@ packages:
     peerDependencies:
       vue: '>=3.5.18'
 
-  '@vercel/analytics@1.6.0':
-    resolution: {integrity: sha512-gl+OlllwEa2RGVbrmV2PIzxgGLtsq1sh4uBg0qcfkBAEJyZ2zu7E3GWvwFYiXOwxiZ6TWbzWp55rNLcDW5lEqw==}
+  '@vercel/analytics@1.6.1':
+    resolution: {integrity: sha512-oH9He/bEM+6oKlv3chWuOOcp8Y6fo6/PSro8hEkgCW3pu9/OiCXiUpRUogDh3Fs3LH2sosDrx8CxeOLBEE+afg==}
     peerDependencies:
       '@remix-run/react': ^2
       '@sveltejs/kit': ^1 || ^2
       next: '>= 13'
-      nuxt: '>= 3'
       react: ^18 || ^19 || ^19.0.0-rc
       svelte: '>= 4'
       vue: ^3
@@ -2583,8 +2582,8 @@ packages:
   electron-to-chromium@1.5.123:
     resolution: {integrity: sha512-refir3NlutEZqlKaBLK0tzlVLe5P2wDKS7UQt/3SpibizgsRAPOsqQC3ffw1nlv3ze5gjRQZYHoPymgVZkplFA==}
 
-  electron-to-chromium@1.5.262:
-    resolution: {integrity: sha512-NlAsMteRHek05jRUxUR0a5jpjYq9ykk6+kO0yRaMi5moe7u0fVIOeQ3Y30A8dIiWFBNUoQGi1ljb1i5VtS9WQQ==}
+  electron-to-chromium@1.5.263:
+    resolution: {integrity: sha512-DrqJ11Knd+lo+dv+lltvfMDLU27g14LMdH2b0O3Pio4uk0x+z7OR+JrmyacTPN2M8w3BrZ7/RTwG3R9B7irPlg==}
 
   emoji-regex-xs@2.0.1:
     resolution: {integrity: sha512-1QFuh8l7LqUcKe24LsPUNzjrzJQ7pgRwp1QMcZ5MX6mFplk2zQ08NVCM84++1cveaUUYtcCYHmeFEuNg16sU4g==}
@@ -4758,8 +4757,8 @@ packages:
     resolution: {integrity: sha512-yOGpmOAL7CkKe/91I5O3gPICmJNLJ1G4zFYVAsRHg7M64biSnPtRj0WNQt++bRkjYOqjWXrhnUw1utzmVErAdg==}
     engines: {node: '>=16'}
 
-  type-fest@5.2.0:
-    resolution: {integrity: sha512-xxCJm+Bckc6kQBknN7i9fnP/xobQRsRQxR01CztFkp/h++yfVxUUcmMgfR2HttJx/dpWjS9ubVuyspJv24Q9DA==}
+  type-fest@5.3.0:
+    resolution: {integrity: sha512-d9CwU93nN0IA1QL+GSNDdwLAu1Ew5ZjTwupvedwg3WdfoH6pIDvYQ2hV0Uc2nKBLPq7NB5apCx57MLS5qlmO5g==}
     engines: {node: '>=20'}
 
   type-level-regexp@0.1.17:
@@ -5389,10 +5388,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@9.0.2(astro@5.16.3(@types/node@24.10.1)(@vercel/functions@2.2.13)(db0@0.3.4)(ioredis@5.8.2)(jiti@2.6.1)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(yaml@2.8.2))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vercel/functions@2.2.13)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(rollup@4.53.3)(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))':
+  '@astrojs/vercel@9.0.2(astro@5.16.3(@types/node@24.10.1)(@vercel/functions@2.2.13)(db0@0.3.4)(ioredis@5.8.2)(jiti@2.6.1)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(yaml@2.8.2))(rollup@4.53.3)(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))':
     dependencies:
       '@astrojs/internal-helpers': 0.7.5
-      '@vercel/analytics': 1.6.0(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vercel/functions@2.2.13)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))
+      '@vercel/analytics': 1.6.1(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))
       '@vercel/functions': 2.2.13
       '@vercel/nft': 0.30.4(rollup@4.53.3)
       '@vercel/routing-utils': 5.3.0
@@ -5405,7 +5404,6 @@ snapshots:
       - '@sveltejs/kit'
       - encoding
       - next
-      - nuxt
       - react
       - rollup
       - supports-color
@@ -6075,7 +6073,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@napi-rs/wasm-runtime@1.0.7':
+  '@napi-rs/wasm-runtime@1.1.0':
     dependencies:
       '@emnapi/core': 1.7.1
       '@emnapi/runtime': 1.7.1
@@ -6424,7 +6422,7 @@ snapshots:
 
   '@oxc-minify/binding-wasm32-wasi@0.96.0':
     dependencies:
-      '@napi-rs/wasm-runtime': 1.0.7
+      '@napi-rs/wasm-runtime': 1.1.0
     optional: true
 
   '@oxc-minify/binding-win32-arm64-msvc@0.96.0':
@@ -6471,7 +6469,7 @@ snapshots:
 
   '@oxc-parser/binding-wasm32-wasi@0.96.0':
     dependencies:
-      '@napi-rs/wasm-runtime': 1.0.7
+      '@napi-rs/wasm-runtime': 1.1.0
     optional: true
 
   '@oxc-parser/binding-win32-arm64-msvc@0.96.0':
@@ -6520,7 +6518,7 @@ snapshots:
 
   '@oxc-transform/binding-wasm32-wasi@0.96.0':
     dependencies:
-      '@napi-rs/wasm-runtime': 1.0.7
+      '@napi-rs/wasm-runtime': 1.1.0
     optional: true
 
   '@oxc-transform/binding-win32-arm64-msvc@0.96.0':
@@ -7055,9 +7053,7 @@ snapshots:
       unhead: 2.0.19
       vue: 3.5.25(typescript@5.5.4)
 
-  '@vercel/analytics@1.6.0(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vercel/functions@2.2.13)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))':
-    dependencies:
-      nuxt: 4.2.1(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vercel/functions@2.2.13)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.5.4)(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2)
+  '@vercel/analytics@1.6.1(vue-router@4.6.3(vue@3.5.25(typescript@5.5.4)))(vue@3.5.25(typescript@5.5.4))':
     optionalDependencies:
       vue: 3.5.25(typescript@5.5.4)
       vue-router: 4.6.3(vue@3.5.25(typescript@5.5.4))
@@ -7587,7 +7583,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.8.32
       caniuse-lite: 1.0.30001757
-      electron-to-chromium: 1.5.262
+      electron-to-chromium: 1.5.263
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
 
@@ -7995,7 +7991,7 @@ snapshots:
 
   dot-prop@10.1.0:
     dependencies:
-      type-fest: 5.2.0
+      type-fest: 5.3.0
 
   dot-prop@5.3.0:
     dependencies:
@@ -8015,7 +8011,7 @@ snapshots:
 
   electron-to-chromium@1.5.123: {}
 
-  electron-to-chromium@1.5.262: {}
+  electron-to-chromium@1.5.263: {}
 
   emoji-regex-xs@2.0.1: {}
 
@@ -10925,7 +10921,7 @@ snapshots:
 
   type-fest@4.26.1: {}
 
-  type-fest@5.2.0:
+  type-fest@5.3.0:
     dependencies:
       tagged-tag: 1.0.0
 
