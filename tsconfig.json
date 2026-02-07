@@ -7,5 +7,12 @@
 		}
 	},
 	"include": [".astro/types.d.ts", "**/*"],
-	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist"]
+	"exclude": [
+		"node_modules",
+		"**/node_modules/*",
+		".vscode",
+		"dist",
+		"src/pages/_notes_disabled",
+		"src/components/note"
+	]
 }
