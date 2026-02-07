@@ -5,6 +5,7 @@
   Astro Cactus
 </h1>
 
+
 Astro Cactus is a simple opinionated starter built with [Astro](https://astro.build). Use it to create an easy-to-use blog or website.
 
 ## Table Of Contents
@@ -15,16 +16,17 @@ Astro Cactus is a simple opinionated starter built with [Astro](https://astro.bu
 4. [Preview](#preview)
 5. [Commands](#commands)
 6. [Configure](#configure)
-7. [Updating](#updating)
-8. [Adding posts, notes, and tags](#adding-posts-notes-and-tags)
+7. [Git Hooks & Commit Conventions](#git-hooks--commit-conventions)
+8. [Updating](#updating)
+9. [Adding posts, notes, and tags](#adding-posts-notes-and-tags)
    - [Post Frontmatter](#post-frontmatter)
    - [Note Frontmatter](#note-frontmatter)
    - [Tag Frontmatter](#tag-frontmatter)
    - [Frontmatter Snippets](#frontmatter-snippets)
-9. [Pagefind search](#pagefind-search)
-10. [Analytics](#analytics)
-11. [Deploy](#deploy)
-12. [Acknowledgment](#acknowledgment)
+10. [Pagefind search](#pagefind-search)
+11. [Analytics](#analytics)
+12. [Deploy](#deploy)
+13. [Acknowledgment](#acknowledgment)
 
 ## Key Features
 
@@ -82,6 +84,8 @@ Replace pnpm with your choice of npm / yarn
 | `pnpm postbuild` | Pagefind script to build the static search of your blog posts  |
 | `pnpm preview`   | Preview your build locally, before deploying                   |
 | `pnpm sync`      | Generate types based on your config in `src/content/config.ts` |
+| `pnpm check`     | Run Astro check and Biome linter                               |
+| `pnpm lint`      | Run Biome linter with auto-fix                                 |
 
 ## Configure
 
@@ -103,6 +107,44 @@ Replace pnpm with your choice of npm / yarn
   - You can also create your own og images and skip satori generating it for you by adding an ogImage property in the frontmatter with a link to the asset, an example can be found in `src/content/post/social-image.md`. More info on frontmatter can be found [below](#post-frontmatter)
 - Optional:
   - Fonts: This theme sets the body element to the font family `font-mono`, in `src/layouts/Base.astro` on the `<body>`. You can change fonts by removing the variant `font-mono`, after which TailwindCSS will default to the `font-sans` [font family stack](https://tailwindcss.com/docs/font-family).
+
+## Git Hooks & Commit Conventions
+
+This project uses [Husky](https://typicode.github.io/husky/) for Git hooks and [Commitlint](https://commitlint.js.org/) to enforce [Conventional Commits](https://www.conventionalcommits.org/) specification.
+
+### Automated Checks
+
+**Pre-commit Hook:**
+- Runs TypeScript/Astro type checking (`pnpm astro check`)
+- Runs Biome linter with auto-fix (`pnpm exec biome check --write .`)
+
+**Commit Message Hook:**
+- Validates commit message format using Commitlint
+- Ensures all commits follow the Conventional Commits specification
+
+### Commit Message Format
+
+```
+<type>(<scope>): <subject>
+```
+
+**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+
+**Examples:**
+```bash
+feat(blog): add dark mode toggle
+fix(auth): resolve token expiration issue
+docs(readme): update installation instructions
+```
+
+For detailed guidelines and more examples, see [docs/COMMIT_CONVENTIONS.md](./docs/COMMIT_CONVENTIONS.md).
+
+### Bypassing Hooks
+
+If absolutely necessary (not recommended):
+```bash
+git commit --no-verify -m "your message"
+```
 
 ## Updating
 
