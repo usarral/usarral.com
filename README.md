@@ -5,6 +5,7 @@
   Astro Cactus
 </h1>
 
+
 Astro Cactus is a simple opinionated starter built with [Astro](https://astro.build). Use it to create an easy-to-use blog or website.
 
 ## Table Of Contents
