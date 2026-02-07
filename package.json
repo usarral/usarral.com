@@ -12,7 +12,8 @@
 		"preview": "astro preview",
 		"check": "astro check && biome check",
 		"lint": "biome check --write",
-		"format": "prettier -w . --cache"
+		"format": "prettier -w . --cache",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@astrojs/markdown-remark": "^6.3.10",
@@ -43,6 +44,8 @@
 	"devDependencies": {
 		"@astrojs/check": "^0.9.6",
 		"@biomejs/biome": "^2.3.14",
+		"@commitlint/cli": "^20.4.1",
+		"@commitlint/config-conventional": "^20.4.1",
 		"@iconify-json/mdi": "^1.2.3",
 		"@pagefind/default-ui": "^1.4.0",
 		"@resvg/resvg-js": "^2.6.2",
@@ -50,6 +53,7 @@
 		"@types/hast": "^3.0.4",
 		"@types/mdast": "^4.0.4",
 		"autoprefixer": "^10.4.24",
+		"husky": "^9.1.7",
 		"pagefind": "^1.4.0",
 		"prettier": "^3.8.1",
 		"prettier-plugin-astro": "0.14.1",
