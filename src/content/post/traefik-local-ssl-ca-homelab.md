@@ -1,6 +1,7 @@
 ---
 title: "HomeLab SSL with Traefik v3 and Local CA"
 description: "Learn how to eliminate browser security warnings in your HomeLab by setting up a custom Certificate Authority and configuring Traefik v3 with a wildcard certificate."
+pinned: true
 publishDate: 2026-02-07
 tags: ["homelab", "traefik", "ssl", "security", "docker", "devops"]
 draft: false
