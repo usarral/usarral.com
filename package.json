@@ -13,7 +13,10 @@
 		"check": "astro check && biome check",
 		"lint": "biome check --write",
 		"format": "prettier -w . --cache",
-		"prepare": "husky"
+		"prepare": "husky",
+		"test:unit": "vitest run",
+		"test:e2e": "playwright test",
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"@astrojs/markdown-remark": "^7.1.0",
@@ -48,6 +51,7 @@
 		"@commitlint/config-conventional": "^20.4.1",
 		"@iconify-json/mdi": "^1.2.3",
 		"@pagefind/default-ui": "^1.4.0",
+		"@playwright/test": "^1.59.1",
 		"@resvg/resvg-js": "^2.6.2",
 		"@tailwindcss/typography": "^0.5.19",
 		"@types/hast": "^3.0.4",
@@ -60,10 +64,17 @@
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"reading-time": "^1.5.0",
 		"tailwindcss": "4.1.18",
-		"typescript": "^5.9.3"
+		"testcontainers": "^11.14.0",
+		"typescript": "^5.9.3",
+		"vitest": "^4.1.4"
 	},
 	"pnpm": {
-		"onlyBuiltDependencies": ["@biomejs/biome", "@tailwindcss/oxide", "esbuild", "sharp"],
+		"onlyBuiltDependencies": [
+			"@biomejs/biome",
+			"@tailwindcss/oxide",
+			"esbuild",
+			"sharp"
+		],
 		"overrides": {
 			"sharp": "^0.34.5"
 		}
