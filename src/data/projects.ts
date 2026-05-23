@@ -11,7 +11,7 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		name: "Catalonia's e-vineyard registry",
+		name: "e-RVC · Catalonia's vineyard registry",
 		description:
 			"Microservices platform behind the e-RVC, the public registry where grape growers, wineries and regulatory councils manage plantings, harvests and wine-growing potential in Catalonia. 22 microservices in Java 8 and Spring Boot with an Angular 14 frontend. Direct client work for requirements gathering, functional analysis and critical incident resolution. Deployed on Docker, Jenkins and OpenShift.",
 		tech: [
@@ -44,6 +44,7 @@ export const projects: Project[] = [
 		description:
 			"Feature development and bug fixing in SAP ABAP4 for large hotel chains, including frontend work in SAP UI5 and integration with workflows based on Node.js 18 and Angular.",
 		tech: ["SAP ABAP4", "SAP UI5", "Node.js 18", "Angular"],
+		links: [{ label: "tmsforhotels.com", href: "https://www.tmsforhotels.com/tmshotels" }],
 		role: "SAP ABAP4 Developer · Minsait (Indra)",
 	},
 	{
