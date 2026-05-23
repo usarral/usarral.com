@@ -102,8 +102,7 @@ export const projects: Project[] = [
 	{
 		name: "butler-ci-cli",
 		summary: "Terminal tooling to drive Jenkins pipelines from the command line.",
-		description:
-			"Terminal tooling to automate Jenkins pipelines straight from the command line.",
+		description: "Terminal tooling to automate Jenkins pipelines straight from the command line.",
 		tech: ["Node.js", "TypeScript", "Jenkins"],
 		links: [{ label: "GitHub", href: "https://github.com/usarral/butler-ci-cli" }],
 	},
