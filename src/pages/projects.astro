@@ -12,12 +12,72 @@ const meta = {
 
 <PageLayout meta={meta}>
 	<h1 class="title mb-4">Projects</h1>
-	<p class="mb-12 text-sm">
+	<p class="mb-6 text-sm">
 		A selection of professional and personal projects I've worked on — ranging from microservice
 		architectures and SAP, to live IoT, Discord bots and tooling to automate my day to day.
+		Click on any technology pill to filter.
 	</p>
 
-	<div class="grid gap-4 sm:grid-cols-2">
+	<div
+		class="border-accent-2/20 mb-6 flex items-center gap-2 rounded border border-dashed px-3 py-2 text-xs"
+		hidden
+		id="project-filter-banner"
+	>
+		<span>Filtering by</span>
+		<span class="text-accent-2 font-semibold" id="project-filter-label"></span>
+		<span class="text-gray-600 dark:text-gray-400" id="project-filter-count"></span>
+		<button class="cactus-link ml-auto" id="project-filter-clear" type="button">
+			Clear filter
+		</button>
+	</div>
+
+	<div class="grid gap-4 sm:grid-cols-2" id="projects-grid">
 		{projects.map((project) => <ProjectCard project={project} />)}
 	</div>
 </PageLayout>
+
+<script>
+	const banner = document.getElementById("project-filter-banner");
+	const label = document.getElementById("project-filter-label");
+	const count = document.getElementById("project-filter-count");
+	const clearBtn = document.getElementById("project-filter-clear");
+	const grid = document.getElementById("projects-grid");
+
+	if (banner && label && count && clearBtn && grid) {
+		let activeFilter: string | null = null;
+		const articles = Array.from(grid.querySelectorAll<HTMLElement>("article"));
+		const pills = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tech]"));
+
+		const applyFilter = (tech: string | null) => {
+			activeFilter = tech;
+			let visible = 0;
+
+			for (const article of articles) {
+				const matches =
+					!tech ||
+					article.querySelector(`[data-tech="${CSS.escape(tech)}"]`) !== null;
+				article.hidden = !matches;
+				if (matches) visible += 1;
+			}
+
+			for (const pill of pills) {
+				pill.setAttribute("aria-pressed", String(pill.dataset.tech === tech));
+			}
+
+			banner.hidden = !tech;
+			if (tech) {
+				label.textContent = tech;
+				count.textContent = `· ${visible} of ${articles.length} projects`;
+			}
+		};
+
+		for (const pill of pills) {
+			pill.addEventListener("click", () => {
+				const tech = pill.dataset.tech ?? null;
+				applyFilter(activeFilter === tech ? null : tech);
+			});
+		}
+
+		clearBtn.addEventListener("click", () => applyFilter(null));
+	}
+</script>
