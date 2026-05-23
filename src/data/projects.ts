@@ -16,10 +16,10 @@ export const projects: Project[] = [
 		description:
 			"Microservices platform behind the e-RVC, the Generalitat de Catalunya's public registry where grape growers, wineries and regulatory councils manage plantings, harvests and wine-growing potential. 22 microservices in Java 8 and Spring Boot with an Angular 14 frontend. Direct client work for requirements gathering, functional analysis and critical incident resolution. Deployed on Docker, Jenkins and OpenShift.",
 		tech: [
-			"Java 8",
+			"Java",
 			"Spring Boot",
-			"Angular 14",
-			"Node.js 18",
+			"Angular",
+			"Node.js",
 			"Docker",
 			"Jenkins",
 			"OpenShift",
@@ -33,7 +33,7 @@ export const projects: Project[] = [
 		summary: "Legacy Java apps powering Catalan proficiency exams, translation and resources.",
 		description:
 			"Evolution and maintenance of the legacy applications run by the Generalitat de Catalunya's language administration — VxL (Voluntariat per la Llengua, the program that pairs Catalan learners with fluent speakers), GestCerCat (Catalan proficiency exam management), LLC (Catalan language resources portal), RTIJ (sworn translators and interpreters registry) and the in-house Apertium-based machine translators for Occitan/Aranese and the rest of the supported language pairs — built on Java 7, Servlets and JSP, deployed on Tomcat 7/9.",
-		tech: ["Java 7", "Servlets", "JSP", "Tomcat", "Jenkins", "Apertium"],
+		tech: ["Java", "Servlets", "JSP", "Tomcat", "Jenkins", "Apertium"],
 		links: [
 			{ label: "VxL", href: "https://www.vxl.cat" },
 			{ label: "LLC", href: "https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html" },
@@ -44,7 +44,7 @@ export const projects: Project[] = [
 		summary: "ABAP4 and UI5 customisations for the ERP of large hotel chains.",
 		description:
 			"Feature development and bug fixing in SAP ABAP4 for large hotel chains, including frontend work in SAP UI5 and integration with workflows based on Node.js 18 and Angular.",
-		tech: ["SAP ABAP4", "SAP UI5", "Node.js 18", "Angular"],
+		tech: ["SAP ABAP4", "SAP UI5", "Node.js", "Angular"],
 		links: [{ label: "tmsforhotels.com", href: "https://www.tmsforhotels.com/tmshotels" }],
 	},
 	{
