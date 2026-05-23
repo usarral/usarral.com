@@ -1,13 +1,21 @@
 ---
+import { ui } from "@/i18n/ui";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	description: "Oops! It looks like this page is lost in space!",
-	title: "Oops! You found a missing page!",
+	description: ui.en["404.description"],
+	title: ui.en["404.metaTitle"],
 };
 ---
 
-<PageLayout meta={meta}>
-	<h1 class="title mb-12">404 | Oops something went wrong</h1>
-	<p class="mb-8">Please use the navigation to find your way back</p>
+<PageLayout meta={meta} locale="en">
+	<h1 class="title mb-12">{ui.en["404.title"]}</h1>
+	<p class="mb-8">{ui.en["404.message"]}</p>
+	<hr class="my-8 border-dashed" />
+	<h2 class="title mb-4 text-xl">{ui.es["404.title"]}</h2>
+	<p class="mb-8">{ui.es["404.message"]}</p>
+	<div class="flex flex-wrap gap-4">
+		<a class="cactus-link" href="/en/">{ui.en["404.home"]}</a>
+		<a class="cactus-link" href="/es/">{ui.es["404.home"]}</a>
+	</div>
 </PageLayout>

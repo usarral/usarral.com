@@ -1,3 +1,17 @@
+---
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { getLocaleFromUrl, useTranslations } from "@/i18n/utils";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale } = Astro.props;
+const resolved = locale ?? getLocaleFromUrl(Astro.url);
+void defaultLocale;
+const t = useTranslations(resolved);
+---
+
 <a class="sr-only focus:not-sr-only focus:fixed focus:start-1 focus:top-1.5" href="#main"
-	>skip to content
+	>{t("nav.skipToContent")}
 </a>

@@ -1,11 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
 
-/**
-	Uses https://www.astroicon.dev/getting-started/
-	Find icons via guide: https://www.astroicon.dev/guides/customization/#open-source-icon-sets
-	Only installed pack is: @iconify-json/mdi
-*/
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
+
 const socialLinks: {
 	friendlyName: string;
 	isWebmention?: boolean;
@@ -21,7 +25,7 @@ const socialLinks: {
 ---
 
 <div class="flex flex-wrap items-end gap-x-2">
-	<p>Find me on</p>
+	<p>{t("home.findMeOn")}</p>
 	<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
 		{
 			socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
