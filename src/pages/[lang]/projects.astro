@@ -1,37 +1,50 @@
 ---
+import type { GetStaticPaths } from "astro";
 import ProjectCard from "@/components/projects/ProjectCard.astro";
-import { projects } from "@/data/projects";
+import { getLocalizedProjects } from "@/data/projects";
+import { isLocale, type Locale, locales } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
 import PageLayout from "@/layouts/Base.astro";
 
+export const getStaticPaths = (() => {
+	return locales.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) throw new Error(`Invalid locale: ${lang}`);
+const locale: Locale = lang;
+const t = useTranslations(locale);
+const projects = getLocalizedProjects(locale);
+
 const meta = {
-	description:
-		"A selection of the projects I've worked on: from microservice architectures to live IoT, Discord bots and tools I use day to day.",
-	title: "Projects",
+	description: t("projects.pageDescription"),
+	title: t("projects.title"),
 };
 ---
 
-<PageLayout meta={meta}>
-	<h1 class="title mb-4">Projects</h1>
-	<p class="mb-6 text-sm">
-		A selection of professional and personal projects I've worked on — ranging from microservice
-		architectures and SAP, to live IoT, Discord bots and tooling to automate my day to day.
-		Click on any technology pill to filter.
-	</p>
+<PageLayout meta={meta} locale={locale}>
+	<h1 class="title mb-4">{t("projects.title")}</h1>
+	<p class="mb-6 text-sm">{t("projects.intro")}</p>
 
 	<div
 		class="border-accent-2/20 mb-6 flex items-center gap-2 rounded border border-dashed px-3 py-2 text-xs"
 		hidden
 		id="project-filter-banner"
 	>
-		<span>Filtering by</span>
+		<span>{t("projects.filterBy")}</span>
 		<span class="text-accent-2 font-semibold" id="project-filter-label"></span>
 		<span class="text-gray-600 dark:text-gray-400" id="project-filter-count"></span>
 		<button class="cactus-link ml-auto" id="project-filter-clear" type="button">
-			Clear filter
+			{t("projects.clearFilter")}
 		</button>
 	</div>
 
-	<div class="grid gap-4 sm:grid-cols-2" id="projects-grid">
+	<div
+		class="grid gap-4 sm:grid-cols-2"
+		id="projects-grid"
+		data-of={t("projects.ofProjects")}
+		data-projects={t("projects.projects")}
+	>
 		{projects.map((project) => <ProjectCard project={project} />)}
 	</div>
 </PageLayout>
@@ -44,6 +57,8 @@ const meta = {
 	const grid = document.getElementById("projects-grid");
 
 	if (banner && label && count && clearBtn && grid) {
+		const ofWord = grid.dataset.of ?? "of";
+		const projectsWord = grid.dataset.projects ?? "projects";
 		let activeFilter: string | null = null;
 		const articles = Array.from(grid.querySelectorAll<HTMLElement>("article"));
 		const pills = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tech]"));
@@ -53,9 +68,7 @@ const meta = {
 			let visible = 0;
 
 			for (const article of articles) {
-				const matches =
-					!tech ||
-					article.querySelector(`[data-tech="${CSS.escape(tech)}"]`) !== null;
+				const matches = !tech || article.querySelector(`[data-tech="${CSS.escape(tech)}"]`) !== null;
 				article.hidden = !matches;
 				if (matches) visible += 1;
 			}
@@ -67,7 +80,7 @@ const meta = {
 			banner.hidden = !tech;
 			if (tech) {
 				label.textContent = tech;
-				count.textContent = `· ${visible} of ${articles.length} projects`;
+				count.textContent = `· ${visible} ${ofWord} ${articles.length} ${projectsWord}`;
 			}
 		};
 

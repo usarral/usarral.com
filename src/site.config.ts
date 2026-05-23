@@ -1,55 +1,43 @@
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
+import type { Locale } from "@/i18n/config";
 import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
 	author: "usarral",
-	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
 	date: {
-		locale: "en-US",
 		options: {
 			day: "numeric",
 			month: "short",
 			year: "numeric",
 		},
 	},
-	// Used as the default description meta property and webmanifest description
 	description:
 		"I'm a software developer based in Spain, with experience in web development. I'm passionate about technology and I love to learn new things. I'm always looking for new challenges and opportunities to grow as a professional. I work with technologies like Spring Boot, Angular, TypeScript, NestJS, PHP, and more.",
-	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
 	lang: "en-US",
-	// Meta property, found in src/components/BaseHead.astro L:42
 	ogLocale: "en_US",
-	/*
-		- Used to construct the meta title property found in src/components/BaseHead.astro L:11
-		- The webmanifest name found in astro.config.ts L:42
-		- The link value found in src/components/layout/Header.astro L:35
-		- In the footer found in src/components/layout/Footer.astro L:12
-	*/
 	title: "Usarral",
-	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
 	url: "https://usarral.com",
 };
 
-// Used to generate links in both the Header & Footer.
-export const menuLinks: { path: string; title: string }[] = [
-	{
-		path: "/",
-		title: "Home",
-	},
-	//{
-	//	path: "/about/",
-	//	title: "About",
-	//},
-	{
-		path: "/projects/",
-		title: "Projects",
-	},
-	{
-		path: "/posts/",
-		title: "Blog",
-	},
+export type MenuTitleKey = "nav.home" | "nav.projects" | "nav.blog" | "nav.about";
+
+export interface MenuLink {
+	path: string;
+	titleKey: MenuTitleKey;
+}
+
+const baseMenu: MenuLink[] = [
+	{ path: "/", titleKey: "nav.home" },
+	{ path: "/projects/", titleKey: "nav.projects" },
+	{ path: "/posts/", titleKey: "nav.blog" },
 ];
+
+export function getLocalizedMenuLinks(locale: Locale): MenuLink[] {
+	return baseMenu.map(({ path, titleKey }) => ({
+		path: path === "/" ? `/${locale}/` : `/${locale}${path}`,
+		titleKey,
+	}));
+}
 
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {

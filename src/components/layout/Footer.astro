@@ -1,6 +1,15 @@
 ---
-import { menuLinks, siteConfig } from "@/site.config";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
+import { getLocalizedMenuLinks, siteConfig } from "@/site.config";
 
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
+const links = getLocalizedMenuLinks(locale);
 const year = new Date().getFullYear();
 ---
 
@@ -15,11 +24,11 @@ const year = new Date().getFullYear();
 		aria-labelledby="footer_links"
 		class="flex gap-x-2 sm:gap-x-0 sm:divide-x sm:divide-gray-500"
 	>
-		<p id="footer_links" class="sr-only">More on this site</p>
+		<p id="footer_links" class="sr-only">{t("nav.mainMenu")}</p>
 		{
-			menuLinks.map((link) => (
+			links.map((link) => (
 				<a class="hover:text-global-text px-4 py-2 hover:underline sm:py-0" href={link.path}>
-					{link.title}
+					{t(link.titleKey)}
 				</a>
 			))
 		}

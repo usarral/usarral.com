@@ -2,7 +2,8 @@
 title: ¿Cómo las Fake News y los Textos Generados Afectan a las IA?
 description: Este artículo explora el impacto de las noticias falsas y los textos generados por IA en el entrenamiento y rendimiento de las inteligencias artificiales. Discute los desafíos éticos de la calidad de datos, la importancia de la transparencia y retroalimentación, y los dilemas de la censura en el proceso de entrenamiento de IA.
 publishDate: 2024-02-02
-draft: true
+draft: false
+lang: es
 tags:
   - ai
   - ethics

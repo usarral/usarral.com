@@ -1,0 +1,133 @@
+---
+import { type Locale, locales } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<lang-toggle class="ms-2 sm:ms-3" data-current={locale}>
+	<button
+		aria-haspopup="menu"
+		aria-expanded="false"
+		class="hover:text-accent relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-md p-2 font-semibold uppercase"
+		type="button"
+		title={t("lang.switch")}
+	>
+		<span class="sr-only">{t("lang.switch")}</span>
+		<span aria-hidden="true">{locale}</span>
+	</button>
+	<ul
+		role="menu"
+		class="border-accent-2/30 bg-global-bg absolute end-0 z-50 mt-1 hidden min-w-28 flex-col rounded-md border shadow-lg"
+		hidden
+	>
+		{
+			locales.map((l) => (
+				<li role="none">
+					<button
+						type="button"
+						role="menuitemradio"
+						aria-checked={l === locale}
+						data-locale={l}
+						class="hover:bg-accent/10 aria-checked:text-accent w-full cursor-pointer px-3 py-2 text-start text-sm font-semibold uppercase"
+					>
+						{l}
+					</button>
+				</li>
+			))
+		}
+	</ul>
+</lang-toggle>
+
+<script>
+	import { defaultLocale, isLocale, locales } from "@/i18n/config";
+	import { switchLocaleInPath } from "@/i18n/utils";
+
+	const COOKIE_NAME = "lang";
+	const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+	function setLangCookie(lang: string) {
+		const isSecure = window.location.protocol === "https:";
+		document.cookie = `${COOKIE_NAME}=${lang}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax${
+			isSecure ? "; secure" : ""
+		}`;
+	}
+
+	class LangToggle extends HTMLElement {
+		#button: HTMLButtonElement | null;
+		#menu: HTMLUListElement | null;
+		#current: string;
+		#onDocClick: (e: MouseEvent) => void;
+
+		constructor() {
+			super();
+			this.#button = this.querySelector("button");
+			this.#menu = this.querySelector("ul");
+			this.#current = this.dataset.current ?? defaultLocale;
+			this.#onDocClick = (e: MouseEvent) => {
+				if (!this.contains(e.target as Node)) this.close();
+			};
+		}
+
+		connectedCallback() {
+			this.#button?.addEventListener("click", (e) => {
+				e.stopPropagation();
+				this.toggle();
+			});
+			this.querySelectorAll<HTMLButtonElement>("button[data-locale]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const target = btn.dataset.locale;
+					if (!isLocale(target)) return;
+					setLangCookie(target);
+					if (target === this.#current) {
+						this.close();
+						return;
+					}
+					const nextPath = switchLocaleInPath(window.location.pathname, target);
+					window.location.assign(nextPath);
+				});
+			});
+			void locales;
+		}
+
+		disconnectedCallback() {
+			document.removeEventListener("click", this.#onDocClick);
+		}
+
+		toggle() {
+			if (!this.#menu) return;
+			this.#menu.hidden ? this.open() : this.close();
+		}
+
+		open() {
+			if (!this.#menu || !this.#button) return;
+			this.#menu.hidden = false;
+			this.#menu.classList.remove("hidden");
+			this.#menu.classList.add("flex");
+			this.#button.setAttribute("aria-expanded", "true");
+			document.addEventListener("click", this.#onDocClick);
+		}
+
+		close() {
+			if (!this.#menu || !this.#button) return;
+			this.#menu.hidden = true;
+			this.#menu.classList.add("hidden");
+			this.#menu.classList.remove("flex");
+			this.#button.setAttribute("aria-expanded", "false");
+			document.removeEventListener("click", this.#onDocClick);
+		}
+	}
+
+	customElements.define("lang-toggle", LangToggle);
+</script>
+
+<style>
+	lang-toggle {
+		position: relative;
+	}
+</style>

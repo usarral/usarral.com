@@ -4,14 +4,18 @@ import { type CollectionEntry, render } from "astro:content";
 import Masthead from "@/components/blog/Masthead.astro";
 import TOC from "@/components/blog/TOC.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
 
 import BaseLayout from "./Base.astro";
 
 interface Props {
 	post: CollectionEntry<"post">;
+	locale?: Locale;
 }
 
-const { post } = Astro.props;
+const { post, locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 const { ogImage, title, description, updatedDate, publishDate } = post.data;
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
@@ -26,9 +30,12 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 		ogImage: socialImage,
 		title,
 	}}
+	locale={locale}
 >
 	<article class="grow break-words" data-pagefind-body>
-		<div id="blog-hero" class="mb-12"><Masthead content={post} readingTime={readingTime} /></div>
+		<div id="blog-hero" class="mb-12">
+			<Masthead content={post} readingTime={readingTime} locale={locale} />
+		</div>
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
 			{!!headings.length && <TOC headings={headings} />}
 			<div
@@ -44,7 +51,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 		data-show="false"
 		id="to-top-btn"
 	>
-		<span class="sr-only">Back to top</span>
+		<span class="sr-only">{t("posts.backToTop")}</span>
 		<svg
 			aria-hidden="true"
 			class="h-6 w-6"
@@ -66,7 +73,6 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 
 	function callback(entries: IntersectionObserverEntry[]) {
 		entries.forEach((entry) => {
-			// only show the scroll to top button when the heading is out of view
 			scrollBtn.dataset.show = (!entry.isIntersecting).toString();
 		});
 	}
