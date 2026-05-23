@@ -14,15 +14,7 @@ const { project } = Astro.props;
 >
 	<header class="flex flex-col gap-1">
 		<h3 class="text-accent-2 text-base font-semibold">{project.name}</h3>
-		{
-			(project.role || project.period) && (
-				<p class="text-xs text-gray-600 dark:text-gray-400">
-					{project.role}
-					{project.role && project.period ? " · " : ""}
-					{project.period}
-				</p>
-			)
-		}
+		{project.role && <p class="text-xs text-gray-600 dark:text-gray-400">{project.role}</p>}
 	</header>
 
 	<p class="text-sm leading-relaxed">{project.description}</p>
