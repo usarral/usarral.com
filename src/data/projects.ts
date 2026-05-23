@@ -52,7 +52,11 @@ export const projects: Project[] = [
 		description:
 			"Web applications and platforms for an events and shows production company, including IoT-based control systems for stage illusion effects using Arduino, WebSockets and Node.js.",
 		tech: ["Node.js", "WebSockets", "Arduino", "IoT"],
-		links: [{ label: "theboxoftheboss.com", href: "https://theboxoftheboss.com" }],
+		links: [
+			{ label: "theboxoftheboss.com", href: "https://theboxoftheboss.com" },
+			{ label: "plandefuga.es", href: "https://plandefuga.es" },
+			{ label: "pedrotercero.com", href: "https://pedrotercero.com" },
+		],
 		role: "Freelance Web Developer",
 	},
 	{
