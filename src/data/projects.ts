@@ -7,7 +7,6 @@ export interface Project {
 		href: string;
 	}[];
 	role?: string;
-	period?: string;
 }
 
 export const projects: Project[] = [
@@ -26,9 +25,8 @@ export const projects: Project[] = [
 			"Git",
 			"Jira",
 		],
-		links: [{ label: "ervc.agricultura.gencat.com", href: "https://ervc.agricultura.gencat.com" }],
+		links: [{ label: "ervc.agricultura.gencat.cat", href: "https://ervc.agricultura.gencat.cat" }],
 		role: "Fullstack Java Developer · Minsait (Indra)",
-		period: "07/2023 — Present",
 	},
 	{
 		name: "AM16 Cultura",
@@ -36,7 +34,6 @@ export const projects: Project[] = [
 			"Evolution and maintenance of legacy applications for the culture sector, based on Java 7, Servlets and JSP, deployed on Tomcat 7/9.",
 		tech: ["Java 7", "Servlets", "JSP", "Tomcat", "Jenkins"],
 		role: "Fullstack Java Developer · Minsait (Indra)",
-		period: "07/2023 — Present",
 	},
 	{
 		name: "SAP ABAP4 · Hotel chains",
@@ -44,7 +41,6 @@ export const projects: Project[] = [
 			"Feature development and bug fixing in SAP ABAP4 for large hotel chains, including frontend work in SAP UI5 and integration with workflows based on Node.js 18 and Angular.",
 		tech: ["SAP ABAP4", "SAP UI5", "Node.js 18", "Angular"],
 		role: "SAP ABAP4 Developer · Minsait (Indra)",
-		period: "04/2023 — 06/2023",
 	},
 	{
 		name: "Various projects at The Box of the Boss",
@@ -53,7 +49,6 @@ export const projects: Project[] = [
 		tech: ["Node.js", "WebSockets", "Arduino", "IoT"],
 		links: [{ label: "theboxoftheboss.com", href: "https://theboxoftheboss.com" }],
 		role: "Freelance Web Developer",
-		period: "09/2018 — Present",
 	},
 	{
 		name: "GDM La Merced",
@@ -62,7 +57,6 @@ export const projects: Project[] = [
 		tech: ["Node.js", "Web"],
 		links: [{ label: "gdmlamerced.com", href: "https://gdmlamerced.com" }],
 		role: "Freelance Web Developer",
-		period: "09/2018 — Present",
 	},
 	{
 		name: "usarral.com",
