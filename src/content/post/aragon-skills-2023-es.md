@@ -2,7 +2,7 @@
 title: Mi experiencia en el AragonSkills 2023
 description: Lee sobre mi experiencia en AragonSkills 2023, una competición de tres días en la que participé en la categoría de Desarrollo Web. Descubre cómo se organizó el evento, qué desafíos enfrentamos y las valiosas lecciones que aprendí de esta competición.
 publishDate: 2023-03-27
-draft: true
+draft: false
 lang: es
 tags:
   - competition
