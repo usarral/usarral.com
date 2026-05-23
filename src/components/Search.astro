@@ -1,7 +1,16 @@
 ---
 // Heavy inspiration taken from Astro Starlight -> https://github.com/withastro/starlight/blob/main/packages/starlight/components/Search.astro
 
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
 import "@/styles/blocks/search.css";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <site-search class="ms-auto" id="search">
@@ -27,23 +36,23 @@ import "@/styles/blocks/search.css";
 			<path d="M0 0h24v24H0z" stroke="none"></path>
 			<path d="M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0M21 21l-6-6"></path>
 		</svg>
-		<span class="sr-only">Open Search</span>
+		<span class="sr-only">{t("search.open")}</span>
 	</button>
 	<dialog
-		aria-label="search"
+		aria-label={t("search.label")}
 		class="bg-global-bg h-full max-h-full w-full max-w-full border border-zinc-400 shadow-sm backdrop:backdrop-blur-sm open:flex sm:mx-auto sm:mt-16 sm:mb-auto sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md"
 	>
 		<div class="dialog-frame flex grow flex-col gap-4 p-6 pt-12 sm:pt-6">
 			<button
 				class="ms-auto cursor-pointer rounded-md bg-zinc-200 p-2 font-semibold dark:bg-zinc-700"
-				data-close-modal>Close</button
+				data-close-modal>{t("search.close")}</button
 			>
 			{
 				import.meta.env.DEV ? (
 					<div class="mx-auto text-center">
 						<p>
-							Search is only available in production builds. <br />
-							Try building and previewing the site to test it out locally.
+							{t("search.devOnly")} <br />
+							{t("search.devOnly2")}
 						</p>
 					</div>
 				) : (
