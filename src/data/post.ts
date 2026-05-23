@@ -1,10 +1,17 @@
 import { type CollectionEntry, getCollection } from "astro:content";
+import type { Locale } from "@/i18n/config";
 
 /** filter out draft posts based on the environment */
 export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
 	return await getCollection("post", ({ data }) => {
 		return import.meta.env.PROD ? !data.draft : true;
 	});
+}
+
+/** posts filtered by language */
+export async function getPostsByLocale(locale: Locale): Promise<CollectionEntry<"post">[]> {
+	const all = await getAllPosts();
+	return all.filter((post) => post.data.lang === locale);
 }
 
 /** Get tag metadata by tag name */
