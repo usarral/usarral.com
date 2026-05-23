@@ -65,11 +65,16 @@ const techColors: Record<string, { bg: string; text: string }> = {
 				{project.tech.map((t) => {
 					const color = techColors[t] ?? { bg: "#6B7280", text: "#fff" };
 					return (
-						<li
-							class="tech-pill border-accent-2/20 rounded border px-1.5 py-0.5 text-[11px] font-medium transition-all duration-150"
-							style={`--pill-bg: ${color.bg}; --pill-text: ${color.text};`}
-						>
-							{t}
+						<li>
+							<button
+								aria-pressed="false"
+								class="tech-pill border-accent-2/20 cursor-pointer rounded border px-1.5 py-0.5 text-[11px] font-medium transition-all duration-150"
+								data-tech={t}
+								style={`--pill-bg: ${color.bg}; --pill-text: ${color.text};`}
+								type="button"
+							>
+								{t}
+							</button>
 						</li>
 					);
 				})}
@@ -116,7 +121,8 @@ const techColors: Record<string, { bg: string; text: string }> = {
 </article>
 
 <style>
-	.tech-pill:hover {
+	.tech-pill:hover,
+	.tech-pill[aria-pressed="true"] {
 		background-color: var(--pill-bg);
 		color: var(--pill-text);
 		border-color: var(--pill-bg);
