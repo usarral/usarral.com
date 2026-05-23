@@ -5,6 +5,7 @@ pinned: true
 publishDate: 2026-02-07
 tags: ["homelab", "traefik", "ssl", "security", "docker", "devops", "español"]
 draft: false
+lang: es
 ---
 
 # SSL en HomeLab Hecho Fácil: Guía de Traefik v3 y CA Local

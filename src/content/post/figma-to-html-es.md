@@ -2,7 +2,7 @@
 title: Crea tu página web sin escribir código gratis
 description: Aprende cómo crear y publicar una página web sin escribir código usando Figma, Builder.io y Vercel. Descubre herramientas que te permiten diseñar y desplegar sitios web profesionales sin conocimientos de programación.
 publishDate: 2023-02-08
-draft: true
+draft: false
 lang: es
 tags:
   - figma
