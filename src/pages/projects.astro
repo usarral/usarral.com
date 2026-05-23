@@ -1,0 +1,42 @@
+---
+import ProjectCard from "@/components/projects/ProjectCard.astro";
+import { categoryMeta, categoryOrder, projects } from "@/data/projects";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description:
+		"Una selección de los proyectos en los que he trabajado: experiencia profesional, freelance y proyectos personales.",
+	title: "Projects",
+};
+
+const grouped = categoryOrder.map((category) => ({
+	category,
+	meta: categoryMeta[category],
+	items: projects.filter((p) => p.category === category),
+}));
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-4">Projects</h1>
+	<p class="mb-12 text-sm">
+		Una selección de proyectos profesionales y personales en los que he trabajado: desde
+		arquitecturas de microservicios y SAP, hasta IoT en directo, bots de Discord y herramientas
+		para automatizar mi día a día.
+	</p>
+
+	{
+		grouped.map(({ category, meta: cat, items }) => (
+			<section class="mb-12 last:mb-0" id={category}>
+				<header class="mb-4">
+					<h2 class="text-accent-2 mb-1 text-lg font-semibold">{cat.title}</h2>
+					<p class="text-xs text-gray-600 dark:text-gray-400">{cat.description}</p>
+				</header>
+				<div class="grid gap-4 sm:grid-cols-2">
+					{items.map((project) => (
+						<ProjectCard project={project} />
+					))}
+				</div>
+			</section>
+		))
+	}
+</PageLayout>

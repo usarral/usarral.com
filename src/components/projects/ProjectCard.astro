@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Project } from "@/data/projects";
+
+interface Props {
+	project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article
+	class="border-accent-2/15 hover:border-accent/60 group flex flex-col gap-3 rounded-md border border-dashed p-4 transition-colors"
+>
+	<header class="flex flex-col gap-1">
+		<h3 class="text-accent-2 text-base font-semibold">{project.name}</h3>
+		{
+			(project.role || project.period) && (
+				<p class="text-xs text-gray-600 dark:text-gray-400">
+					{project.role}
+					{project.role && project.period ? " · " : ""}
+					{project.period}
+				</p>
+			)
+		}
+	</header>
+
+	<p class="text-sm leading-relaxed">{project.description}</p>
+
+	{
+		project.tech.length > 0 && (
+			<ul class="flex flex-wrap gap-1.5" role="list">
+				{project.tech.map((t) => (
+					<li class="border-accent-2/20 rounded border px-1.5 py-0.5 text-[11px] font-medium">
+						{t}
+					</li>
+				))}
+			</ul>
+		)
+	}
+
+	{
+		project.links && project.links.length > 0 && (
+			<ul class="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-1" role="list">
+				{project.links.map((link) => (
+					<li>
+						<a
+							class="cactus-link inline-flex items-center gap-1 text-xs"
+							href={link.href}
+							rel="noreferrer"
+							target="_blank"
+						>
+							<Icon
+								aria-hidden="true"
+								class="h-3.5 w-3.5"
+								focusable="false"
+								name="mdi:open-in-new"
+							/>
+							{link.label}
+						</a>
+					</li>
+				))}
+			</ul>
+		)
+	}
+</article>
