@@ -79,7 +79,7 @@ export const ui = {
 	},
 	es: {
 		"site.description":
-			"Soy un desarrollador de software afincado en España, con experiencia en desarrollo web. Me apasiona la tecnología y me encanta aprender cosas nuevas. Siempre estoy buscando nuevos retos y oportunidades para crecer como profesional. Trabajo con tecnologías como Spring Boot, Angular, TypeScript, NestJS, PHP y más.",
+			"Soy un desarrollador de software, con experiencia en desarrollo web. Me apasiona la tecnología y me encanta aprender cosas nuevas. Siempre estoy buscando nuevos retos y oportunidades para crecer como profesional. Trabajo con tecnologías como Spring Boot, Angular, TypeScript, NestJS, PHP y más.",
 
 		"nav.home": "Inicio",
 		"nav.projects": "Proyectos",
@@ -101,7 +101,7 @@ export const ui = {
 
 		"home.title": "Hola, soy Carlos",
 		"home.bio":
-			"Soy un desarrollador de software afincado en España, con experiencia en desarrollo web. Me apasiona la tecnología y me encanta aprender cosas nuevas. Siempre estoy buscando nuevos retos y oportunidades para crecer como profesional. Trabajo con tecnologías como Spring Boot, Angular, TypeScript, NestJS, PHP y más.",
+			"Soy un desarrollador de software, con experiencia en desarrollo web. Me apasiona la tecnología y me encanta aprender cosas nuevas. Siempre estoy buscando nuevos retos y oportunidades para crecer como profesional. Trabajo con tecnologías como Spring Boot, Angular, TypeScript, NestJS, PHP y más.",
 		"home.pageTitle": "Inicio",
 		"home.pinnedPosts": "Posts destacados",
 		"home.posts": "Posts",
