@@ -31,8 +31,8 @@ export const projects: Project[] = [
 	{
 		name: "Catalan language services platform",
 		description:
-			"Evolution and maintenance of the legacy applications run by the Catalan language administration — VxL (Voluntariat per la Llengua, the program that pairs Catalan learners with fluent speakers), GestCerCat (Catalan proficiency exam management), LLC (Catalan language resources portal) and RTIJ (sworn translators and interpreters registry) — built on Java 7, Servlets and JSP, deployed on Tomcat 7/9.",
-		tech: ["Java 7", "Servlets", "JSP", "Tomcat", "Jenkins"],
+			"Evolution and maintenance of the legacy applications run by the Catalan language administration — VxL (Voluntariat per la Llengua, the program that pairs Catalan learners with fluent speakers), GestCerCat (Catalan proficiency exam management), LLC (Catalan language resources portal), RTIJ (sworn translators and interpreters registry) and the in-house Apertium-based machine translators for Occitan/Aranese and the rest of the supported language pairs — built on Java 7, Servlets and JSP, deployed on Tomcat 7/9.",
+		tech: ["Java 7", "Servlets", "JSP", "Tomcat", "Jenkins", "Apertium"],
 		links: [
 			{ label: "VxL", href: "https://www.vxl.cat" },
 			{ label: "LLC", href: "https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html" },
