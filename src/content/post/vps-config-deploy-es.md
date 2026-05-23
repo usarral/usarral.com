@@ -11,6 +11,7 @@ tags:
   - tutorial
   - español
 pinned: true
+lang: es
 ---
 
 En esta guía, exploraremos paso a paso cómo configurar un servidor Ubuntu desde cero, garantizando su seguridad y preparando un entorno eficiente para despliegues automatizados utilizando Docker, Traefik y GitHub Actions.
