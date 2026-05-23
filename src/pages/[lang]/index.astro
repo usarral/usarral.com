@@ -1,0 +1,64 @@
+---
+import { type CollectionEntry } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import SocialList from "@/components/SocialList.astro";
+import { getPostsByLocale } from "@/data/post";
+import { isLocale, type Locale, locales } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+export const getStaticPaths = (() => {
+	return locales.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) throw new Error(`Invalid locale: ${lang}`);
+const locale: Locale = lang;
+const t = useTranslations(locale);
+
+const MAX_POSTS = 10;
+const allPosts = await getPostsByLocale(locale);
+const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
+const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
+
+const MAX_PINNED_POSTS = 3;
+const pinnedPosts = allPostsByDate.filter((p) => p.data.pinned).slice(0, MAX_PINNED_POSTS);
+---
+
+<PageLayout meta={{ title: t("home.pageTitle") }} locale={locale}>
+	<section>
+		<h1 class="title mb-12">{t("home.title")}</h1>
+		<p class="mb-4">{t("home.bio")}</p>
+		<SocialList locale={locale} />
+	</section>
+	{
+		pinnedPosts.length > 0 && (
+			<section class="mt-16">
+				<h2 class="title mb-6 text-xl">{t("home.pinnedPosts")}</h2>
+				<ul class="space-y-4" role="list">
+					{pinnedPosts.map((p) => (
+						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+							<PostPreview post={p} locale={locale} />
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
+	<section class="mt-16">
+		<h2 class="title text-accent mb-6 text-xl">
+			<a href={`/${locale}/posts/`}>{t("home.posts")}</a>
+		</h2>
+		<ul class="space-y-4" role="list">
+			{
+				latestPosts.map((p) => (
+					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+						<PostPreview post={p} locale={locale} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</PageLayout>

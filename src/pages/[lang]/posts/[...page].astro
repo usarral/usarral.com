@@ -4,7 +4,9 @@ import type { GetStaticPaths, Page } from "astro";
 import { Icon } from "astro-icon/components";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import Pagination from "@/components/Paginator.astro";
-import { getAllPosts, getUniqueTags, groupPostsByYear } from "@/data/post";
+import { getPostsByLocale, getUniqueTags, groupPostsByYear } from "@/data/post";
+import { isLocale, type Locale, locales } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
@@ -12,39 +14,49 @@ export const getStaticPaths = (async ({ paginate }) => {
 	const MAX_POSTS_PER_PAGE = 10;
 	const MAX_TAGS = 7;
 	const MAX_PINNED_POSTS = 3;
-	const allPosts = await getAllPosts();
-	const allPostsByDate = allPosts.sort(collectionDateSort);
-	const uniqueTags = getUniqueTags(allPosts).slice(0, MAX_TAGS);
-	const pinnedPosts = allPostsByDate.filter((p) => p.data.pinned).slice(0, MAX_PINNED_POSTS);
-	return paginate(allPostsByDate, {
-		pageSize: MAX_POSTS_PER_PAGE,
-		props: { uniqueTags, pinnedPosts },
-	});
+
+	const results = await Promise.all(
+		locales.map(async (lang) => {
+			const allPosts = await getPostsByLocale(lang);
+			const allPostsByDate = allPosts.sort(collectionDateSort);
+			const uniqueTags = getUniqueTags(allPosts).slice(0, MAX_TAGS);
+			const pinnedPosts = allPostsByDate.filter((p) => p.data.pinned).slice(0, MAX_PINNED_POSTS);
+			return paginate(allPostsByDate, {
+				params: { lang },
+				pageSize: MAX_POSTS_PER_PAGE,
+				props: { uniqueTags, pinnedPosts, locale: lang },
+			});
+		}),
+	);
+	return results.flat();
 }) satisfies GetStaticPaths;
 
 interface Props {
 	page: Page<CollectionEntry<"post">>;
 	uniqueTags: string[];
 	pinnedPosts: CollectionEntry<"post">[];
+	locale: Locale;
 }
 
-const { page, uniqueTags, pinnedPosts } = Astro.props;
+const { page, uniqueTags, pinnedPosts, locale } = Astro.props;
+if (!isLocale(locale)) throw new Error(`Invalid locale: ${locale}`);
+const t = useTranslations(locale);
 
 const meta = {
-	description: "Read my collection of posts and the things that interest me",
-	title: "Posts",
+	description: t("posts.pageDescription"),
+	title: t("posts.title"),
 };
 
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			text: "← Previous Page",
+			text: t("posts.prevPage"),
 			url: page.url.prev,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			text: "Next Page →",
+			text: t("posts.nextPage"),
 			url: page.url.next,
 		},
 	}),
@@ -54,11 +66,11 @@ const groupedByYear = groupPostsByYear(page.data);
 const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 ---
 
-<PageLayout meta={meta}>
+<PageLayout meta={meta} locale={locale}>
 	<div class="mb-12 flex items-center gap-3">
-		<h1 class="title">Posts</h1>
-		<a class="text-accent" href="/rss.xml" target="_blank">
-			<span class="sr-only">RSS feed</span>
+		<h1 class="title">{t("posts.title")}</h1>
+		<a class="text-accent" href={`/${locale}/rss.xml`} target="_blank">
+			<span class="sr-only">{t("posts.rssFeed")}</span>
 			<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name="mdi:rss" />
 		</a>
 	</div>
@@ -67,11 +79,11 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 			{
 				pinnedPosts.length > 0 && (
 					<section class="mb-16">
-						<h2 class="title mb-6 text-xl">Pinned Posts</h2>
+						<h2 class="title mb-6 text-xl">{t("posts.pinned")}</h2>
 						<ul class="space-y-4" role="list">
 							{pinnedPosts.map((p) => (
 								<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-									<PostPreview post={p} />
+									<PostPreview post={p} locale={locale} />
 								</li>
 							))}
 						</ul>
@@ -82,13 +94,13 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 				descYearKeys.map((yearKey) => (
 					<section class="mb-16">
 						<h2 id={`year-${yearKey}`} class="title text-lg">
-							<span class="sr-only">Posts in</span>
+							<span class="sr-only">{t("posts.postsIn")}</span>
 							{yearKey}
 						</h2>
 						<ul class="mt-5 space-y-4 text-start">
 							{groupedByYear[yearKey]?.map((p) => (
 								<li class="grid gap-1 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
-									<PostPreview post={p} />
+									<PostPreview post={p} locale={locale} />
 								</li>
 							))}
 						</ul>
@@ -101,7 +113,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 			!!uniqueTags.length && (
 				<aside>
 					<h2 class="title mb-4 flex items-center gap-2 text-lg">
-						Tags
+						{t("posts.tags")}
 						<svg
 							aria-hidden="true"
 							class="h-6 w-6"
@@ -122,18 +134,18 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 					<ul class="flex flex-wrap gap-2">
 						{uniqueTags.map((tag) => (
 							<li>
-								<a class="cactus-link flex items-center justify-center" href={`/tags/${tag}/`}>
+								<a class="cactus-link flex items-center justify-center" href={`/${locale}/tags/${tag}/`}>
 									<span aria-hidden="true">#</span>
-									<span class="sr-only">View all posts with the tag</span>
+									<span class="sr-only">{t("tags.viewAllWithTag")}</span>
 									{tag}
 								</a>
 							</li>
 						))}
 					</ul>
 					<span class="mt-4 block sm:text-end">
-						<a class="hover:text-link" href="/tags/">
-							View all <span aria-hidden="true">→</span>
-							<span class="sr-only">blog tags</span>
+						<a class="hover:text-link" href={`/${locale}/tags/`}>
+							{t("posts.viewAll")} <span aria-hidden="true">→</span>
+							<span class="sr-only">{t("posts.viewAllTags")}</span>
 						</a>
 					</span>
 				</aside>

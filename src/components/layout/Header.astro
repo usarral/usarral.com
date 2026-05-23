@@ -1,16 +1,27 @@
 ---
+import LangToggle from "@/components/LangToggle.astro";
 import Search from "@/components/Search.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
-import { menuLinks } from "@/site.config";
-import { siteConfig } from "../../site.config";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
+import { getLocalizedMenuLinks, siteConfig } from "@/site.config";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
+const links = getLocalizedMenuLinks(locale);
+const homePath = `/${locale}/`;
 ---
 
 <header class="group relative mb-28 flex items-center sm:ps-18" id="main-header">
 	<div class="flex sm:flex-col">
 		<a
-			aria-current={Astro.url.pathname === "/" ? "page" : false}
+			aria-current={Astro.url.pathname === homePath ? "page" : false}
 			class="inline-flex items-center sm:relative sm:inline-block sm:grayscale sm:hover:filter-none"
-			href="/"
+			href={homePath}
 		>
 			<svg
 				aria-hidden="true"
@@ -35,25 +46,26 @@ import { siteConfig } from "../../site.config";
 			<span class="text-xl font-bold sm:text-2xl">{siteConfig.title}</span>
 		</a>
 		<nav
-			aria-label="Main menu"
+			aria-label={t("nav.mainMenu")}
 			class="bg-global-bg absolute -inset-x-4 top-12 hidden flex-col divide-y px-2 py-4 group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:-ms-4 sm:mt-1 sm:flex sm:flex-row sm:divide-x sm:divide-y-0 sm:bg-transparent sm:p-0"
 			id="navigation-menu"
 		>
 			{
-				menuLinks.map((link) => (
+				links.map((link) => (
 					<a
 						aria-current={Astro.url.pathname === link.path ? "page" : false}
 						class="text-accent px-2 py-4 font-semibold sm:px-4 sm:py-0 sm:underline-offset-2 sm:hover:underline"
 						href={link.path}
 					>
-						{link.title}
+						{t(link.titleKey)}
 					</a>
 				))
 			}
 		</nav>
 	</div>
-	<Search />
-	<ThemeToggle />
+	<Search locale={locale} />
+	<ThemeToggle locale={locale} />
+	<LangToggle locale={locale} />
 	<mobile-button>
 		<button
 			aria-expanded="false"
@@ -62,7 +74,7 @@ import { siteConfig } from "../../site.config";
 			id="toggle-navigation-menu"
 			type="button"
 		>
-			<span class="sr-only">Open main menu</span>
+			<span class="sr-only">{t("nav.openMenu")}</span>
 			<svg
 				aria-hidden="true"
 				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transition-all group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
