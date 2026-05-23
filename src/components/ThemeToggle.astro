@@ -1,6 +1,18 @@
+---
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
+---
+
 <theme-toggle class="ms-2 sm:ms-4">
 	<button class="hover:text-accent relative h-9 w-9 cursor-pointer rounded-md p-2" type="button">
-		<span class="sr-only">Dark Theme</span>
+		<span class="sr-only">{t("theme.toggle")}</span>
 		<svg
 			aria-hidden="true"
 			class="absolute start-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100 transition-all dark:scale-0 dark:opacity-0"

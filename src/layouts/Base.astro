@@ -4,32 +4,42 @@ import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
 import SkipLink from "@/components/SkipLink.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
-import { siteConfig } from "@/site.config";
+import type { Locale } from "@/i18n/config";
+import { ui } from "@/i18n/ui";
+import { getLocaleFromUrl } from "@/i18n/utils";
 import type { SiteMeta } from "@/types";
 
 interface Props {
 	meta: SiteMeta;
+	locale?: Locale;
 }
 
-const {
-	meta: { articleDate, description = siteConfig.description, ogImage, title },
-} = Astro.props;
+const { meta, locale: localeProp } = Astro.props;
+const locale = localeProp ?? getLocaleFromUrl(Astro.url);
+const description = meta.description ?? ui[locale]["site.description"];
+const htmlLang = locale === "es" ? "es-ES" : "en-US";
 ---
 
-<html class="scroll-smooth" lang={siteConfig.lang}>
+<html class="scroll-smooth" lang={htmlLang}>
 	<head>
-		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
+		<BaseHead
+			articleDate={meta.articleDate}
+			description={description}
+			ogImage={meta.ogImage}
+			title={meta.title}
+			locale={locale}
+		/>
 	</head>
 	<body
 		class="bg-global-bg text-global-text mx-auto flex min-h-screen max-w-3xl flex-col px-4 pt-16 font-mono text-sm font-normal antialiased sm:px-8"
 	>
 		<ThemeProvider />
 		<SkipLink />
-		<Header />
+		<Header locale={locale} />
 		<main id="main">
 			<slot />
 		</main>
-		<Footer />
+		<Footer locale={locale} />
 		<script is:inline type="speculationrules">
 			{
 				"prefetch": [
