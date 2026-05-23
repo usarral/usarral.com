@@ -11,9 +11,9 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		name: "AM16 Agricultura",
+		name: "Catalonia's e-vineyard registry",
 		description:
-			"Microservices architecture for a public agriculture administration: 22 microservices built with Java 8 and Spring Boot, frontend in Angular 14. Direct client work for requirements gathering, functional analysis and critical incident resolution. Deployment and maintenance on Docker, Jenkins and OpenShift.",
+			"Microservices platform behind the e-RVC, the public registry where grape growers, wineries and regulatory councils manage plantings, harvests and wine-growing potential in Catalonia. 22 microservices in Java 8 and Spring Boot with an Angular 14 frontend. Direct client work for requirements gathering, functional analysis and critical incident resolution. Deployed on Docker, Jenkins and OpenShift.",
 		tech: [
 			"Java 8",
 			"Spring Boot",
@@ -26,14 +26,18 @@ export const projects: Project[] = [
 			"Jira",
 		],
 		links: [{ label: "ervc.agricultura.gencat.cat", href: "https://ervc.agricultura.gencat.cat" }],
-		role: "Fullstack Java Developer · Minsait (Indra)",
+		role: "Generalitat de Catalunya · Minsait (Indra)",
 	},
 	{
-		name: "AM16 Cultura",
+		name: "Catalan language services platform",
 		description:
-			"Evolution and maintenance of legacy applications for the culture sector, based on Java 7, Servlets and JSP, deployed on Tomcat 7/9.",
+			"Evolution and maintenance of the legacy applications run by the Catalan language administration — VxL (Voluntariat per la Llengua, the program that pairs Catalan learners with fluent speakers), GestCerCat (Catalan proficiency exam management), LLC (Catalan language resources portal) and RTIJ (sworn translators and interpreters registry) — built on Java 7, Servlets and JSP, deployed on Tomcat 7/9.",
 		tech: ["Java 7", "Servlets", "JSP", "Tomcat", "Jenkins"],
-		role: "Fullstack Java Developer · Minsait (Indra)",
+		links: [
+			{ label: "VxL", href: "https://www.vxl.cat" },
+			{ label: "LLC", href: "https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html" },
+		],
+		role: "Generalitat de Catalunya · Minsait (Indra)",
 	},
 	{
 		name: "SAP ABAP4 · Hotel chains",
