@@ -2,7 +2,7 @@
 import { render } from "astro:content";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import { getAllPosts } from "@/data/post";
-import { type Locale, isLocale, locales } from "@/i18n/config";
+import { isLocale, type Locale, locales } from "@/i18n/config";
 import PostLayout from "@/layouts/BlogPost.astro";
 
 export const getStaticPaths = (async () => {
