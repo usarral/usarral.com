@@ -6,19 +6,30 @@ import { siteConfig } from "@/site.config";
 import type { SiteMeta } from "@/types";
 import "@/styles/global.css";
 
-type Props = SiteMeta & { locale?: Locale };
+type Props = SiteMeta & { locale?: Locale; alternateUrls?: Partial<Record<Locale, string>> };
 
-const { articleDate, description, ogImage, title, locale = defaultLocale } = Astro.props;
+const {
+	articleDate,
+	description,
+	ogImage,
+	title,
+	locale = defaultLocale,
+	alternateUrls,
+} = Astro.props;
 
 const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
 
-const alternates = getAlternateLocalePaths(Astro.url.pathname).map(({ locale: l, path }) => ({
-	locale: l,
-	href: new URL(path, Astro.site).href,
-}));
+const alternates = alternateUrls
+	? (Object.entries(alternateUrls) as [Locale, string][])
+			.filter(([, path]) => !!path)
+			.map(([l, path]) => ({ locale: l, href: new URL(path, Astro.site).href }))
+	: getAlternateLocalePaths(Astro.url.pathname).map(({ locale: l, path }) => ({
+			locale: l,
+			href: new URL(path, Astro.site).href,
+		}));
 void locales;
 ---
 

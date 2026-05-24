@@ -19,3 +19,17 @@ const meta = {
 		<a class="cactus-link" href="/es/">{ui.es["404.home"]}</a>
 	</div>
 </PageLayout>
+
+<script>
+	// Redirect to the locale-specific 404 based on URL prefix, cookie, or browser language
+	const lang = (() => {
+		const segment = window.location.pathname.split("/").filter(Boolean)[0];
+		if (segment === "es") return "es";
+		if (segment === "en") return "en";
+		const match = document.cookie.match(/(?:^|;\s*)lang=([^;]+)/);
+		if (match && (match[1] === "en" || match[1] === "es")) return match[1];
+		const nav = (navigator.languages?.[0] ?? navigator.language ?? "en").toLowerCase();
+		return nav.startsWith("es") ? "es" : "en";
+	})();
+	window.location.replace(`/${lang}/404`);
+</script>
