@@ -12,9 +12,10 @@ import type { SiteMeta } from "@/types";
 interface Props {
 	meta: SiteMeta;
 	locale?: Locale;
+	alternateUrls?: Partial<Record<Locale, string>>;
 }
 
-const { meta, locale: localeProp } = Astro.props;
+const { meta, locale: localeProp, alternateUrls } = Astro.props;
 const locale = localeProp ?? getLocaleFromUrl(Astro.url);
 const description = meta.description ?? ui[locale]["site.description"];
 const htmlLang = locale === "es" ? "es-ES" : "en-US";
@@ -28,6 +29,7 @@ const htmlLang = locale === "es" ? "es-ES" : "en-US";
 			ogImage={meta.ogImage}
 			title={meta.title}
 			locale={locale}
+			{...(alternateUrls && { alternateUrls })}
 		/>
 	</head>
 	<body

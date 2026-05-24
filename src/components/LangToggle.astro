@@ -88,7 +88,12 @@ const t = useTranslations(locale);
 						this.close();
 						return;
 					}
-					const nextPath = switchLocaleInPath(window.location.pathname, target);
+					const hreflangLink = document.querySelector<HTMLLinkElement>(
+						`link[rel="alternate"][hreflang="${target}"]`,
+					);
+					const nextPath = hreflangLink
+						? new URL(hreflangLink.href).pathname
+						: switchLocaleInPath(window.location.pathname, target);
 					window.location.assign(nextPath);
 				});
 			});

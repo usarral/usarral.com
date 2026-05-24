@@ -12,9 +12,10 @@ import BaseLayout from "./Base.astro";
 interface Props {
 	post: CollectionEntry<"post">;
 	locale?: Locale;
+	alternateUrls?: Partial<Record<Locale, string>>;
 }
 
-const { post, locale = defaultLocale } = Astro.props;
+const { post, locale = defaultLocale, alternateUrls } = Astro.props;
 const t = useTranslations(locale);
 const { ogImage, title, description, updatedDate, publishDate } = post.data;
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
@@ -31,13 +32,14 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 		title,
 	}}
 	locale={locale}
+	{...(alternateUrls && { alternateUrls })}
 >
 	<article class="grow break-words" data-pagefind-body>
 		<div id="blog-hero" class="mb-12">
 			<Masthead content={post} readingTime={readingTime} locale={locale} />
 		</div>
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-			{!!headings.length && <TOC headings={headings} />}
+			{!!headings.length && <TOC headings={headings} locale={locale} />}
 			<div
 				class="prose prose-sm prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-gray-600 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
 			>
