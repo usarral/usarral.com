@@ -2,25 +2,47 @@
 import { render } from "astro:content";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import { getAllPosts } from "@/data/post";
-import { isLocale } from "@/i18n/config";
+import { isLocale, type Locale, locales } from "@/i18n/config";
 import PostLayout from "@/layouts/BlogPost.astro";
 
 export const getStaticPaths = (async () => {
 	const blogEntries = await getAllPosts();
-	return blogEntries.map((post) => ({
-		params: { lang: post.data.lang, slug: post.id },
-		props: { post },
-	}));
+	return blogEntries.map((post) => {
+		const otherLocale: Locale = post.data.lang === "en" ? "es" : "en";
+		const translatedId =
+			post.data.lang === "en"
+				? `${post.id}-es`
+				: post.id.endsWith("-es")
+					? post.id.slice(0, -3)
+					: null;
+		const translatedPost = translatedId
+			? blogEntries.find((p) => p.id === translatedId && p.data.lang === otherLocale)
+			: undefined;
+		return {
+			params: { lang: post.data.lang, slug: post.id },
+			props: { post, translatedPost },
+		};
+	});
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { post } = Astro.props;
+const { post, translatedPost } = Astro.props;
 const { lang } = Astro.params;
 if (!isLocale(lang)) throw new Error(`Invalid locale: ${lang}`);
+
+const alternateUrls: Partial<Record<Locale, string>> = {
+	[lang]: `/${lang}/posts/${post.id}/`,
+};
+if (translatedPost) {
+	const otherLocale: Locale = lang === "en" ? "es" : "en";
+	alternateUrls[otherLocale] = `/${otherLocale}/posts/${translatedPost.id}/`;
+}
+void locales;
+
 const { Content } = await render(post);
 ---
 
-<PostLayout post={post} locale={lang}>
+<PostLayout post={post} locale={lang} alternateUrls={alternateUrls}>
 	<Content />
 </PostLayout>
