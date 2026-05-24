@@ -56,6 +56,8 @@ export const ui = {
 		"posts.backToTop": "Back to top",
 		"posts.viewMoreWithTag": "View more blogs with the tag ",
 
+		"toc.title": "Table of Contents",
+
 		"tags.title": "All Tags",
 		"tags.pageDescription": "A list of all the topics I've written about in my posts",
 		"tags.viewPostsWithTag": "View posts with the tag:",
@@ -131,6 +133,8 @@ export const ui = {
 		"posts.updated": "Actualizado:",
 		"posts.backToTop": "Volver arriba",
 		"posts.viewMoreWithTag": "Ver más posts con la etiqueta ",
+
+		"toc.title": "Tabla de contenidos",
 
 		"tags.title": "Todas las etiquetas",
 		"tags.pageDescription": "Una lista de todos los temas sobre los que he escrito en mis posts",
