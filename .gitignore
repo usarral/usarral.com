@@ -24,3 +24,6 @@ pnpm-debug.log*
 .cache
 .astro
 fuentes/
+
+.playwright-mcp/
+.data/
