@@ -9,7 +9,6 @@ tags:
   - devops
   - tutorial
   - open source
-  - español
 ---
 
 ## Introducción

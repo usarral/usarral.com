@@ -9,7 +9,6 @@ tags:
   - ethics
   - machine learning
   - opinion
-  - español
 ---
 
 ¿Alguna vez te has preguntado cómo las noticias falsas y los textos generados por máquinas afectan a esas Inteligencias Artificiales (IAs) que están detrás de la tecnología que vivimos hoy en día? Recientemente, tuve una charla interesante con un compañero en el trabajo sobre este tema y, la verdad, me dejó reflexionando.

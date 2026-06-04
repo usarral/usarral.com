@@ -9,7 +9,6 @@ tags:
   - traefik
   - security
   - tutorial
-  - español
 pinned: true
 lang: es
 ---
