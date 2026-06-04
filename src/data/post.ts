@@ -1,10 +1,11 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import type { Locale } from "@/i18n/config";
 
-/** filter out draft posts based on the environment */
+/** filter out draft posts and future-dated posts */
 export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
 	return await getCollection("post", ({ data }) => {
-		return import.meta.env.PROD ? !data.draft : true;
+		if (data.draft) return false;
+		return data.publishDate <= new Date();
 	});
 }
 
