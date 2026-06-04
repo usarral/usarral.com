@@ -8,7 +8,6 @@ tags:
   - competition
   - web development
   - personal
-  - español
 ---
 
 ## Introducción

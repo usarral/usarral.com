@@ -3,7 +3,7 @@ title: "SSL en HomeLab con Traefik v3 y CA Local"
 description: "Aprende cómo eliminar las advertencias de seguridad del navegador en tu HomeLab configurando una Entidad Certificadora personalizada y configurando Traefik v3 con un certificado wildcard."
 pinned: true
 publishDate: 2026-02-07
-tags: ["homelab", "traefik", "ssl", "security", "docker", "devops", "español"]
+tags: ["homelab", "traefik", "ssl", "security", "docker", "devops"]
 draft: false
 lang: es
 ---

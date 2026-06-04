@@ -1,15 +1,15 @@
 ---
 title: El fin de la barra libre en GitHub Copilot
 description: El 1 de junio de 2026, GitHub eliminó el modelo de tarifa plana y pasó a cobrar por tokens. Te explico qué ha cambiado, por qué tu presupuesto desaparece más rápido de lo que esperas y cómo optimizar tu flujo de trabajo para no quedarte sin créditos a mitad de mes.
-publishDate: 2026-06-06T09:00:00+02:00
+publishDate: 2026-06-05T08:55:00+02:00
 draft: false
+pinned: true
 lang: es
 tags:
   - github
   - ai
   - developer tools
   - opinion
-  - español
 ---
 
 El 1 de junio de 2026 no fue un lunes cualquiera. Fue el día en que GitHub apagó la "barra libre" de IA y encendió la caja registradora.

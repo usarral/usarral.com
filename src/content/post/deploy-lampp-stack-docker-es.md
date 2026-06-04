@@ -10,7 +10,6 @@ tags:
   - mysql
   - php
   - tutorial
-  - español
 ---
 
 ## Descripción

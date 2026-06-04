@@ -8,7 +8,6 @@ tags:
   - cms
   - tutorial
   - web development
-  - español
 ---
 
 ## Instalando Hugo en Linux

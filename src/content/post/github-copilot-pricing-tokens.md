@@ -1,8 +1,9 @@
 ---
 title: GitHub Copilot's Free Ride Is Over
 description: On June 1st, 2026, GitHub killed the flat-rate model and switched to pay-per-token billing. Here's what changed, why your budget vanishes faster than you expect, and how to optimize your workflow so you don't run out of credits mid-month.
-publishDate: 2026-06-06T09:00:00+02:00
+publishDate: 2026-06-05T08:55:00+02:00
 draft: false
+pinned: true
 tags:
   - github
   - ai

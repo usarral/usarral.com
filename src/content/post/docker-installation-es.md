@@ -8,7 +8,6 @@ tags:
   - server
   - tutorial
   - devops
-  - español
 ---
 
 ## Instalando Docker

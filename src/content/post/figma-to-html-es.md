@@ -10,7 +10,6 @@ tags:
   - web development
   - tutorial
   - design
-  - español
 ---
 
 ¿Estás buscando crear tu propia página web, pero no tienes experiencia en programación o no quieres gastar mucho dinero en un desarrollador? No te preocupes, hay herramientas que te permiten hacerlo fácilmente sin escribir una sola línea de código.
