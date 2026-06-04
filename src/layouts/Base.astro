@@ -1,4 +1,5 @@
 ---
+import Analytics from "@vercel/analytics/astro";
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
@@ -42,6 +43,7 @@ const htmlLang = locale === "es" ? "es-ES" : "en-US";
 			<slot />
 		</main>
 		<Footer locale={locale} />
+		<Analytics />
 		<script is:inline type="speculationrules">
 			{
 				"prefetch": [
