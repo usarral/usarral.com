@@ -1,0 +1,211 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Usarral" [ref=e5] [cursor=pointer]:
+        - /url: /en/
+        - img [ref=e6]
+        - text: Usarral
+      - navigation "Main menu" [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /en/
+        - link "Projects" [ref=e12] [cursor=pointer]:
+          - /url: /en/projects/
+        - link "Blog" [ref=e13] [cursor=pointer]:
+          - /url: /en/posts/
+    - button "Open Search" [ref=e15] [cursor=pointer]:
+      - img [ref=e16]
+      - generic [ref=e19]: Open Search
+    - switch "Dark Theme" [ref=e21] [cursor=pointer]:
+      - generic [ref=e22]: Dark Theme
+      - img [ref=e23]
+    - button "Switch language" [ref=e34] [cursor=pointer]:
+      - generic [ref=e35]: Switch language
+      - generic [ref=e36]: en
+  - main [ref=e37]:
+    - article [ref=e38]:
+      - generic [ref=e39]:
+        - heading "Docker Installation" [level=1] [ref=e40]
+        - paragraph [ref=e42]:
+          - time [ref=e43]: October 7, 2022
+          - text: / 3 min read
+        - generic [ref=e44]:
+          - img [ref=e45]
+          - generic [ref=e50]:
+            - link "# View more blogs with the tag docker" [ref=e51] [cursor=pointer]:
+              - /url: /en/tags/docker/
+              - text: "#"
+              - generic [ref=e52]: View more blogs with the tag
+              - text: docker
+            - text: ","
+          - generic [ref=e53]:
+            - link "# View more blogs with the tag server" [ref=e54] [cursor=pointer]:
+              - /url: /en/tags/server/
+              - text: "#"
+              - generic [ref=e55]: View more blogs with the tag
+              - text: server
+            - text: ","
+          - generic [ref=e56]:
+            - link "# View more blogs with the tag tutorial" [ref=e57] [cursor=pointer]:
+              - /url: /en/tags/tutorial/
+              - text: "#"
+              - generic [ref=e58]: View more blogs with the tag
+              - text: tutorial
+            - text: ","
+          - link "# View more blogs with the tag devops" [ref=e60] [cursor=pointer]:
+            - /url: /en/tags/devops/
+            - text: "#"
+            - generic [ref=e61]: View more blogs with the tag
+            - text: devops
+      - generic [ref=e62]:
+        - group [ref=e63]:
+          - generic "Table of Contents" [ref=e64] [cursor=pointer]
+          - navigation [ref=e65]:
+            - list [ref=e66]:
+              - listitem [ref=e67]:
+                - link "Installing Docker" [ref=e68] [cursor=pointer]:
+                  - /url: "#installing-docker"
+                  - text: "#Installing Docker"
+                - list [ref=e69]:
+                  - listitem [ref=e70]:
+                    - link "Linux Distros with APT Package Manager" [ref=e71] [cursor=pointer]:
+                      - /url: "#linux-distros-with-apt-package-manager"
+                      - text: "#Linux Distros with APT Package Manager"
+                  - listitem [ref=e72]:
+                    - link "Windows" [ref=e73] [cursor=pointer]:
+                      - /url: "#windows"
+                      - text: "#Windows"
+              - listitem [ref=e74]:
+                - link "Basic Docker Commands" [ref=e75] [cursor=pointer]:
+                  - /url: "#basic-docker-commands"
+                  - text: "#Basic Docker Commands"
+              - listitem [ref=e76]:
+                - link "Conclusion" [ref=e77] [cursor=pointer]:
+                  - /url: "#conclusion"
+                  - text: "#Conclusion"
+        - generic [ref=e78]:
+          - heading "# Installing Docker" [level=2] [ref=e79]:
+            - text: "#"
+            - link "Installing Docker" [ref=e80] [cursor=pointer]:
+              - /url: "#installing-docker"
+          - heading "# Linux Distros with APT Package Manager" [level=3] [ref=e81]:
+            - text: "#"
+            - link "Linux Distros with APT Package Manager" [ref=e82] [cursor=pointer]:
+              - /url: "#linux-distros-with-apt-package-manager"
+          - paragraph [ref=e83]: "To install Docker on Linux distros like Ubuntu or Debian that use the APT package manager, you can do so with the following commands:"
+          - figure "Terminal window" [ref=e85]:
+            - generic [ref=e88]: Terminal window
+            - code [ref=e90]:
+              - generic [ref=e92]: "# Remove previous versions:"
+              - generic [ref=e94]: sudo apt-get remove docker docker-engine docker.io containerd runc
+              - generic [ref=e98]: "# Add packages to install and add the Docker repository"
+              - generic [ref=e100]: sudo apt-get install ca-certificates curl gnupg-agent lsb-release
+              - generic [ref=e104]: "# Add the GPG key for the Docker repository"
+              - generic [ref=e106]: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+              - generic [ref=e110]: "# Add the repository to our sources.list file, which is where APT queries the repositories to download programs"
+              - generic [ref=e112]: echo \
+              - generic [ref=e114]:
+                - generic [ref=e115]: "\"deb [arch=$("
+                - text: dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+              - generic [ref=e117]:
+                - text: $(lsb_release -cs
+                - generic [ref=e119]: ) stable"
+                - text: "| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
+              - generic [ref=e123]: "# Update repositories to detect the Docker repository"
+              - generic [ref=e125]: sudo apt update
+              - generic [ref=e129]: "# Install Docker and its dependencies"
+              - generic [ref=e131]: sudo apt install docker-ce docker-ce-cli containerd.io
+            - button "Copy to clipboard" [ref=e133] [cursor=pointer]
+          - paragraph [ref=e135]: "Configuration to use Docker without sudo:"
+          - figure "Terminal window" [ref=e137]:
+            - generic [ref=e140]: Terminal window
+            - code [ref=e142]:
+              - generic [ref=e144]: "# Add the user to the Docker group"
+              - generic [ref=e146]:
+                - text: sudo usermod -a -G docker
+                - generic [ref=e147]: $USER
+              - generic [ref=e149]: "# To use it without needing to restart, run the following command to \"log in\" to the group in the current session"
+              - generic [ref=e151]: newgrp docker
+              - generic [ref=e153]: "# Grant permissions to the Docker daemon socket"
+              - generic [ref=e155]: sudo chmod 666 /var/run/docker.sock
+              - generic [ref=e159]: "# Docker should now work; if it still doesn't, we need to restart the system"
+              - generic [ref=e161]: reboot now
+            - button "Copy to clipboard" [ref=e163] [cursor=pointer]
+          - heading "# Windows" [level=3] [ref=e165]:
+            - text: "#"
+            - link "Windows" [ref=e166] [cursor=pointer]:
+              - /url: "#windows"
+          - paragraph [ref=e167]: "To install Docker on Windows:"
+          - list [ref=e168]:
+            - listitem [ref=e169]:
+              - text: Go to the
+              - link "Docker website" [ref=e170] [cursor=pointer]:
+                - /url: https://docker.com
+              - text: .
+            - listitem [ref=e171]: Click on the download button for Windows.
+            - listitem [ref=e172]: Once downloaded, follow the installer.
+            - listitem [ref=e173]:
+              - text: Before running Docker, you will also need to install the WSL2 Kernel, which you can download
+              - link "here" [ref=e174] [cursor=pointer]:
+                - /url: https://aka.ms/wsl2kernel
+              - text: .
+            - listitem [ref=e175]: Install this package, which will enable Docker virtualization.
+          - heading "# Basic Docker Commands" [level=2] [ref=e176]:
+            - text: "#"
+            - link "Basic Docker Commands" [ref=e177] [cursor=pointer]:
+              - /url: "#basic-docker-commands"
+          - figure "Terminal window" [ref=e179]:
+            - generic [ref=e182]: Terminal window
+            - code [ref=e184]:
+              - generic [ref=e186]: "# Create a Docker container:"
+              - generic [ref=e188]: docker run -ti --name web ubuntu:latest
+              - generic [ref=e192]: "# Create a container with an open port:"
+              - generic [ref=e194]: "# The format is LocalPort:ContainerPort"
+              - generic [ref=e196]: "# By connecting to localhost:8000 from our browser, we would connect"
+              - generic [ref=e198]: "# to port 80 of the container"
+              - generic [ref=e200]: docker run --name web2 -ti -p 8000:80 web:v1
+              - generic [ref=e204]: "# Create a container with a shared folder"
+              - generic [ref=e206]: "# The format is LocalFolder:FolderInContainer"
+              - generic [ref=e208]: docker run -ti --name web -ti -p 8000:80 -v C:\\Docker\\web:/var/www/html web:v1
+              - generic [ref=e212]: "# Create an image from a container:"
+              - generic [ref=e214]: "# If we are inside the container, exit"
+              - generic [ref=e216]: "# docker commit -m \"Commit\" containername repository:tag"
+              - generic [ref=e218]:
+                - text: docker commit -m
+                - generic [ref=e219]: "\"Image with Apache\""
+                - text: web web:v1
+              - generic [ref=e223]: "# View images in Docker:"
+              - generic [ref=e225]: docker images
+              - generic [ref=e229]: "# View containers"
+              - generic [ref=e231]: docker ps -a
+              - generic [ref=e235]: "# Remove a container"
+              - generic [ref=e237]: docker rm web
+              - generic [ref=e241]: "# Connect to an already running container"
+              - generic [ref=e243]: docker exec -ti web bash
+            - button "Copy to clipboard" [ref=e245] [cursor=pointer]
+          - heading "# Conclusion" [level=2] [ref=e247]:
+            - text: "#"
+            - link "Conclusion" [ref=e248] [cursor=pointer]:
+              - /url: "#conclusion"
+          - paragraph [ref=e249]: Docker is an essential tool for modern development and deployment workflows. With these installation steps and basic commands, you’re ready to start containerizing your applications and enjoying the benefits of consistent, isolated development environments.
+          - region "Comments" [ref=e250]:
+            - iframe [ref=e253]:
+              
+    - button "Back to top" [ref=e254] [cursor=pointer]:
+      - generic [ref=e255]: Back to top
+      - img [ref=e256]
+  - contentinfo [ref=e258]:
+    - generic [ref=e259]:
+      - text: © usarral 2026.
+      - generic [ref=e260]: 🚀 Usarral
+    - link "GitHub" [ref=e261] [cursor=pointer]:
+      - /url: https://github.com/usarral
+    - navigation "Main menu" [ref=e262]:
+      - paragraph [ref=e263]: Main menu
+      - link "Home" [ref=e264] [cursor=pointer]:
+        - /url: /en/
+      - link "Projects" [ref=e265] [cursor=pointer]:
+        - /url: /en/projects/
+      - link "Blog" [ref=e266] [cursor=pointer]:
+        - /url: /en/posts/
