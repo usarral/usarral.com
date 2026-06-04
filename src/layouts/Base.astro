@@ -23,6 +23,7 @@ const htmlLang = locale === "es" ? "es-ES" : "en-US";
 
 <html class="scroll-smooth" lang={htmlLang}>
 	<head>
+		<ThemeProvider />
 		<BaseHead
 			articleDate={meta.articleDate}
 			description={description}
@@ -35,7 +36,6 @@ const htmlLang = locale === "es" ? "es-ES" : "en-US";
 	<body
 		class="bg-global-bg text-global-text mx-auto flex min-h-screen max-w-3xl flex-col px-4 pt-16 font-mono text-sm font-normal antialiased sm:px-8"
 	>
-		<ThemeProvider />
 		<SkipLink />
 		<Header locale={locale} />
 		<main id="main">
