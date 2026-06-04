@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { siteConfig } from "@/site.config";
+
+interface Props {
+	post: CollectionEntry<"post">;
+	socialImageURL: string;
+}
+
+const { post, socialImageURL } = Astro.props;
+const { title, description, publishDate, updatedDate } = post.data;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: title,
+	description,
+	image: socialImageURL,
+	url: canonicalURL,
+	datePublished: publishDate.toISOString(),
+	...(updatedDate && { dateModified: updatedDate.toISOString() }),
+	author: {
+		"@type": "Person",
+		name: siteConfig.author,
+		url: siteConfig.url,
+	},
+	publisher: {
+		"@type": "Organization",
+		name: siteConfig.title,
+		url: siteConfig.url,
+	},
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
