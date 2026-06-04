@@ -1,0 +1,14 @@
+name: Webmention Refresh
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    name: Trigger Vercel redeploy to fetch new webmentions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deploy
+        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
