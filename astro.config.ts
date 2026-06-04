@@ -107,11 +107,9 @@ export default defineConfig({
 			exclude: ["@resvg/resvg-js"],
 		},
 		plugins: [tailwind(), rawFonts([".ttf", ".woff"])],
-    server: {
-      allowedHosts: [
-        "localhost",
-      ]
-    }
+		server: {
+			allowedHosts: ["localhost"],
+		},
 	},
 	env: {
 		schema: {
