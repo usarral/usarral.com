@@ -1,0 +1,50 @@
+---
+import type { Locale } from "@/i18n/config";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+const lang = locale === "es" ? "es" : "en";
+---
+
+<section aria-label="Comments" class="mt-12">
+	<div id="giscus-container" data-lang={lang}></div>
+</section>
+
+<script>
+	const container = document.getElementById("giscus-container") as HTMLElement;
+	const lang = container?.dataset.lang ?? "en";
+
+	function getTheme() {
+		return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+	}
+
+	const script = document.createElement("script");
+	script.src = "https://giscus.app/client.js";
+	script.dataset.repo = "usarral/usarral.com";
+	script.dataset.repoId = "R_kgDORKvpkQ";
+	script.dataset.category = "General";
+	script.dataset.categoryId = "DIC_kwDORKvpkc4C-h7-";
+	script.dataset.mapping = "pathname";
+	script.dataset.strict = "0";
+	script.dataset.reactionsEnabled = "1";
+	script.dataset.emitMetadata = "0";
+	script.dataset.inputPosition = "top";
+	script.dataset.theme = getTheme();
+	script.dataset.lang = lang;
+	script.dataset.loading = "lazy";
+	script.crossOrigin = "anonymous";
+	script.async = true;
+	container?.appendChild(script);
+
+	new MutationObserver(() => {
+		const iframe = document.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
+		if (!iframe?.contentWindow) return;
+		iframe.contentWindow.postMessage(
+			{ giscus: { setConfig: { theme: getTheme() } } },
+			"https://giscus.app",
+		);
+	}).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
