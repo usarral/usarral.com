@@ -9,7 +9,6 @@ tags:
   - web development
   - imap
   - project
-  - español
 ---
 
 ## Introducción

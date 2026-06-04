@@ -9,7 +9,6 @@ tags:
   - stable diffusion
   - tutorial
   - machine learning
-  - español
 ---
 
 ## ¿Qué es Stable Diffusion?
