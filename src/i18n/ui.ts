@@ -3,7 +3,7 @@ import type { Locale } from "./config";
 export const ui = {
 	en: {
 		"site.description":
-			"I'm a software developer based in Spain, with experience in web development. I'm passionate about technology and I love to learn new things. I'm always looking for new challenges and opportunities to grow as a professional. I work with technologies like Spring Boot, Angular, TypeScript, NestJS, PHP, and more.",
+			"Software developer based in Spain. Articles on web development, architecture, Angular, TypeScript, Spring Boot and NestJS.",
 
 		"nav.home": "Home",
 		"nav.projects": "Projects",
@@ -81,7 +81,7 @@ export const ui = {
 	},
 	es: {
 		"site.description":
-			"Soy un desarrollador de software, con experiencia en desarrollo web. Me apasiona la tecnología y me encanta aprender cosas nuevas. Siempre estoy buscando nuevos retos y oportunidades para crecer como profesional. Trabajo con tecnologías como Spring Boot, Angular, TypeScript, NestJS, PHP y más.",
+			"Desarrollador de software en España. Artículos sobre desarrollo web, arquitectura, Angular, TypeScript, Spring Boot y NestJS.",
 
 		"nav.home": "Inicio",
 		"nav.projects": "Proyectos",

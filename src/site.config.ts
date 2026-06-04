@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
 		},
 	},
 	description:
-		"I'm a software developer based in Spain, with experience in web development. I'm passionate about technology and I love to learn new things. I'm always looking for new challenges and opportunities to grow as a professional. I work with technologies like Spring Boot, Angular, TypeScript, NestJS, PHP, and more.",
+		"Software developer based in Spain. Articles on web development, architecture, Angular, TypeScript, Spring Boot and NestJS.",
 	lang: "en-US",
 	ogLocale: "en_US",
 	title: "Usarral",
