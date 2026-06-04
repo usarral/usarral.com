@@ -1,4 +1,5 @@
 ---
+import IdentityLinks from "@/components/IdentityLinks.astro";
 import { siteConfig } from "@/site.config";
 
 const title = siteConfig.title;
@@ -18,9 +19,7 @@ const description = siteConfig.description;
 		<link rel="canonical" href="/en/" />
 		<meta name="robots" content="noindex" />
 		<link href="/icon.svg" rel="icon" type="image/svg+xml" />
-		<link href="https://github.com/usarral" rel="me" />
-		<link href="https://webmention.io/usarral.com/webmention" rel="webmention" />
-		<link href="https://webmention.io/usarral.com/xmlrpc" rel="pingback" />
+		<IdentityLinks />
 		<script is:inline>
 			(() => {
 				try {
