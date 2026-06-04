@@ -1,0 +1,44 @@
+---
+import type { Locale } from "@/i18n/config";
+import { useTranslations } from "@/i18n/utils";
+
+interface Props {
+	postTitle: string;
+	locale: Locale;
+}
+
+const { postTitle, locale } = Astro.props;
+const t = useTranslations(locale);
+
+const homeUrl = new URL(`/${locale}/`, Astro.site).href;
+const postsUrl = new URL(`/${locale}/posts/`, Astro.site).href;
+const currentUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		{ "@type": "ListItem", position: 1, name: t("nav.home"), item: homeUrl },
+		{ "@type": "ListItem", position: 2, name: t("nav.blog"), item: postsUrl },
+		{ "@type": "ListItem", position: 3, name: postTitle, item: currentUrl },
+	],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<nav aria-label="Breadcrumb" class="mb-6 text-xs text-gray-500 dark:text-gray-400">
+	<ol class="flex flex-wrap items-center gap-1">
+		<li>
+			<a class="hover:text-accent transition-colors" href={homeUrl}>{t("nav.home")}</a>
+		</li>
+		<li aria-hidden="true">/</li>
+		<li>
+			<a class="hover:text-accent transition-colors" href={postsUrl}>{t("nav.blog")}</a>
+		</li>
+		<li aria-hidden="true">/</li>
+		<li class="text-global-text font-medium" aria-current="page">
+			{postTitle}
+		</li>
+	</ol>
+</nav>
