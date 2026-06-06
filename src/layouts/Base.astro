@@ -1,5 +1,6 @@
 ---
 import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
@@ -44,6 +45,7 @@ const htmlLang = locale === "es" ? "es-ES" : "en-US";
 		</main>
 		<Footer locale={locale} />
 		<Analytics />
+		<SpeedInsights />
 		<script is:inline type="speculationrules">
 			{
 				"prefetch": [
