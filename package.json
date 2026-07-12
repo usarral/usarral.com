@@ -39,7 +39,7 @@
 		"remark-directive": "^4.0.0",
 		"satori": "0.26.0",
 		"satori-html": "^0.3.2",
-		"sharp": "^0.34.5",
+		"sharp": "^0.35.0",
 		"unified": "^11.0.5",
 		"unist-util-visit": "^5.1.0"
 	},
@@ -67,12 +67,12 @@
 	"pnpm": {
 		"onlyBuiltDependencies": ["@biomejs/biome", "@tailwindcss/oxide", "esbuild", "sharp"],
 		"overrides": {
-			"sharp": "^0.34.5",
+			"sharp": "^0.35.0",
 			"yaml": ">=2.8.3"
 		}
 	},
 	"overrides": {
-		"sharp": "^0.34.5",
+		"sharp": "^0.35.0",
 		"yaml": ">=2.8.3"
 	}
 }
