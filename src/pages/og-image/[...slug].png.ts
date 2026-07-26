@@ -52,12 +52,16 @@ const markup = (title: string, pubDate: string) =>
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 export async function GET(context: APIContext) {
-	const { pubDate, title } = context.props as Props;
+	const { pubDate, title, lang } = context.props as Props;
 
-	const postDate = getFormattedDate(pubDate, {
-		month: "long",
-		weekday: "long",
-	});
+	const postDate = getFormattedDate(
+		pubDate,
+		{
+			month: "long",
+			weekday: "long",
+		},
+		lang,
+	);
 	const svg = await satori(markup(title, postDate), ogOptions);
 	const pngBuffer = new Resvg(svg).render().asPng();
 	const png = new Uint8Array(pngBuffer);
@@ -78,6 +82,7 @@ export async function getStaticPaths() {
 			props: {
 				pubDate: post.data.updatedDate ?? post.data.publishDate,
 				title: post.data.title,
+				lang: post.data.lang,
 			},
 		}));
 }
