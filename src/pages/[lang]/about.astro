@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
+import SocialList from "@/components/SocialList.astro";
 import { isLocale, type Locale, locales } from "@/i18n/config";
 import { useTranslations } from "@/i18n/utils";
 import PageLayout from "@/layouts/Base.astro";
@@ -22,11 +23,21 @@ const meta = {
 <PageLayout meta={meta} locale={locale}>
 	<h1 class="title mb-12">{t("about.title")}</h1>
 	<div class="prose prose-sm prose-cactus max-w-none">
-		<p>{t("home.bio")}</p>
-		<ul>
-			<li>
-				<a href="https://github.com/usarral" rel="me noreferrer" target="_blank">GitHub</a>
-			</li>
-		</ul>
+		<p>{t("about.intro")}</p>
 	</div>
+	<section class="mt-16">
+		<h2 class="title mb-6 text-xl">{t("about.stackTitle")}</h2>
+		<ul class="space-y-2 text-sm" role="list">
+			<li>{t("about.stackBackend")}</li>
+			<li>{t("about.stackFrontend")}</li>
+			<li>{t("about.stackInfra")}</li>
+			<li>{t("about.stackOther")}</li>
+		</ul>
+		<p class="mt-4 text-sm">
+			<a class="cactus-link" href={`/${locale}/projects/`}>{t("about.projectsCta")}</a>
+		</p>
+	</section>
+	<section class="mt-16">
+		<SocialList locale={locale} />
+	</section>
 </PageLayout>
