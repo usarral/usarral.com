@@ -34,21 +34,14 @@ const markup = (title: string, pubDate: string) =>
 			<p tw="text-2xl mb-6">${pubDate}</p>
 			<h1 tw="text-6xl font-bold leading-snug text-white">${title}</h1>
 		</div>
-		<div tw="flex items-center justify-between w-full p-10 border-t border-[#2bbc89] text-xl">
+		<div tw="flex items-center justify-between w-full p-10 border-t border-[#4cbe8a] text-xl">
 			<div tw="flex items-center">
-				<svg height="60" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 480">
+				<svg height="40" width="60" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 100">
 					<path
-						fill="#cdffb8"
-						d="M181.334 93.333v-40L226.667 80v40zM136.001 53.333 90.667 26.667v426.666L136.001 480zM45.333 220 0 193.334v140L45.333 360z"
+						d="M 10 10 V 70 L 30 90 H 70 L 90 70 V 10 H 65 V 65 H 35 V 10 Z"
+						fill="#FBFAF9"
 					/>
-					<path
-						fill="#d482ab"
-						d="M90.667 26.667 136.001 0l45.333 26.667-45.333 26.666zM181.334 53.33l45.333-26.72L272 53.33 226.667 80zM136 240l-45.333-26.67v53.34zM0 193.33l45.333-26.72 45.334 26.72L45.333 220zM181.334 93.277 226.667 120l-45.333 26.67z"
-					/>
-					<path
-						fill="#2abc89"
-						d="m136 53.333 45.333-26.666v120L226.667 120V80L272 53.333V160l-90.667 53.333v240L136 480V306.667L45.334 360V220l45.333-26.667v73.334L136 240z"
-					/>
+					<rect x="100" y="65" width="40" height="25" fill="#4CBE8A" />
 				</svg>
 				<p tw="ml-3 font-semibold">${siteConfig.title}</p>
 			</div>
