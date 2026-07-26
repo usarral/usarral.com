@@ -36,14 +36,14 @@ const markup = (title: string, pubDate: string) =>
 		</div>
 		<div tw="flex items-center justify-between w-full p-10 border-t border-[#4cbe8a] text-xl">
 			<div tw="flex items-center">
-				<svg height="40" width="60" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 100">
+				<svg height="40" width="208" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 100">
 					<path
 						d="M 10 10 V 70 L 30 90 H 70 L 90 70 V 10 H 65 V 65 H 35 V 10 Z"
 						fill="#FBFAF9"
 					/>
 					<rect x="100" y="65" width="40" height="25" fill="#4CBE8A" />
+					<text x="170" y="86" font-family="'JetBrains Mono'" font-size="75" font-weight="600" fill="#FBFAF9">usarral</text>
 				</svg>
-				<p tw="ml-3 font-semibold">${siteConfig.title}</p>
 			</div>
 			<p>by ${siteConfig.author}</p>
 		</div>
