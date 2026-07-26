@@ -1,0 +1,261 @@
+{
+	"schemaVersion": 2,
+	"generatedAt": "2026-07-26T17:22:52Z",
+	"title": "Design System: usarral.com",
+	"extensions": {
+		"colorMeta": {
+			"paper-white": {
+				"role": "neutral",
+				"displayName": "Paper White",
+				"canonical": "oklch(98.48% 0 0)",
+				"tonalRamp": [
+					"oklch(15% 0 0)",
+					"oklch(28% 0 0)",
+					"oklch(40% 0 0)",
+					"oklch(55% 0 0)",
+					"oklch(70% 0 0)",
+					"oklch(85% 0 0)",
+					"oklch(94% 0 0)",
+					"oklch(98.48% 0 0)"
+				]
+			},
+			"heading-ink": {
+				"role": "neutral",
+				"displayName": "Heading Ink",
+				"canonical": "oklch(18.15% 0 0)",
+				"tonalRamp": [
+					"oklch(18.15% 0 0)",
+					"oklch(28% 0 0)",
+					"oklch(40% 0 0)",
+					"oklch(55% 0 0)",
+					"oklch(70% 0 0)",
+					"oklch(85% 0 0)",
+					"oklch(94.66% 0 0)",
+					"oklch(98% 0 0)"
+				]
+			},
+			"ink-slate": {
+				"role": "neutral",
+				"displayName": "Ink Slate",
+				"canonical": "oklch(26.99% 0.0096 235.05)",
+				"tonalRamp": [
+					"oklch(26.99% 0.0096 235.05)",
+					"oklch(38% 0.009 235)",
+					"oklch(50% 0.008 240)",
+					"oklch(62% 0.006 245)",
+					"oklch(73% 0.003 255)",
+					"oklch(83.54% 0 264)",
+					"oklch(90% 0 264)",
+					"oklch(96% 0 264)"
+				]
+			},
+			"desert-bloom": {
+				"role": "primary",
+				"displayName": "Desert Bloom (light) / Cactus Night (dark)",
+				"canonical": "oklch(55.27% 0.195 19.06)",
+				"tonalRamp": [
+					"oklch(20% 0.09 19.06)",
+					"oklch(32% 0.13 19.06)",
+					"oklch(44% 0.17 19.06)",
+					"oklch(55.27% 0.195 19.06)",
+					"oklch(65% 0.17 19.06)",
+					"oklch(75% 0.13 19.06)",
+					"oklch(85% 0.08 19.06)",
+					"oklch(93% 0.03 19.06)"
+				]
+			},
+			"cactus-night": {
+				"role": "primary",
+				"displayName": "Cactus Night (dark-mode accent)",
+				"canonical": "oklch(70.91% 0.1415 163.7)",
+				"tonalRamp": [
+					"oklch(20% 0.07 163.7)",
+					"oklch(32% 0.1 163.7)",
+					"oklch(44% 0.13 163.7)",
+					"oklch(56% 0.14 163.7)",
+					"oklch(70.91% 0.1415 163.7)",
+					"oklch(80% 0.1 163.7)",
+					"oklch(88% 0.06 163.7)",
+					"oklch(95% 0.02 163.7)"
+				]
+			},
+			"muted-teal-link": {
+				"role": "secondary",
+				"displayName": "Muted Teal Link (light) / Pink Link (dark)",
+				"canonical": "oklch(55.44% 0.0431 185.69)",
+				"tonalRamp": [
+					"oklch(20% 0.02 185.69)",
+					"oklch(32% 0.03 185.69)",
+					"oklch(44% 0.04 185.69)",
+					"oklch(55.44% 0.0431 185.69)",
+					"oklch(65% 0.04 185.69)",
+					"oklch(75% 0.03 185.69)",
+					"oklch(85% 0.02 185.69)",
+					"oklch(93% 0.01 185.69)"
+				]
+			},
+			"quote-bloom": {
+				"role": "tertiary",
+				"displayName": "Quote Bloom (light) / Quote Lime (dark)",
+				"canonical": "oklch(55.27% 0.195 19.06)",
+				"tonalRamp": [
+					"oklch(20% 0.09 19.06)",
+					"oklch(32% 0.13 19.06)",
+					"oklch(44% 0.17 19.06)",
+					"oklch(55.27% 0.195 19.06)",
+					"oklch(65% 0.17 19.06)",
+					"oklch(75% 0.13 19.06)",
+					"oklch(85% 0.08 19.06)",
+					"oklch(93% 0.03 19.06)"
+				]
+			}
+		},
+		"typographyMeta": {
+			"headline": {
+				"displayName": "Headline",
+				"purpose": "Single per-page <h1> title (.title class)."
+			},
+			"title": {
+				"displayName": "Title",
+				"purpose": "In-page section subheads (e.g. Pinned Posts, Posts)."
+			},
+			"body": { "displayName": "Body", "purpose": "All running copy; global default on <body>." },
+			"label": {
+				"displayName": "Label",
+				"purpose": "Dates, tech pills, filter/footer meta, small supporting text."
+			}
+		},
+		"shadows": [],
+		"motion": [
+			{
+				"name": "transition-colors",
+				"value": "color/background/border-color 150ms ease",
+				"purpose": "Default hover transition on links, icon toggles, and tech pills."
+			},
+			{
+				"name": "transition-all-icon-morph",
+				"value": "all 150ms ease (scale + opacity)",
+				"purpose": "Sun/moon and hamburger/cross icon morphs in ThemeToggle and mobile nav button."
+			}
+		],
+		"breakpoints": [{ "name": "sm", "value": "640px" }, { "name": "lg", "value": "1024px" }]
+	},
+	"components": [
+		{
+			"name": "Text Link",
+			"kind": "custom",
+			"refersTo": "cactus-link",
+			"description": "Default inline link style used across post previews, project links, and prose body copy.",
+			"html": "<a class=\"ds-text-link\" href=\"#\">Read the post</a>",
+			"css": ".ds-text-link { color: inherit; text-decoration: underline; text-underline-offset: 2px; } @media (hover: hover) { .ds-text-link:hover { text-decoration-color: oklch(55.44% 0.0431 185.69); text-decoration-thickness: 2px; } }"
+		},
+		{
+			"name": "Icon Toggle Button",
+			"kind": "button",
+			"refersTo": "icon-toggle",
+			"description": "36x36px icon-only button used for theme toggle, language toggle, and search open.",
+			"html": "<button class=\"ds-icon-toggle\" aria-label=\"Toggle theme\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/></svg></button>",
+			"css": ".ds-icon-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 8px; border-radius: 6px; background: transparent; border: none; color: oklch(18.15% 0 0); cursor: pointer; transition: color 150ms ease; } .ds-icon-toggle:hover, .ds-icon-toggle:focus-visible { color: oklch(55.27% 0.195 19.06); } .ds-icon-toggle:focus-visible { outline: 2px solid oklch(55.27% 0.195 19.06); outline-offset: 2px; }"
+		},
+		{
+			"name": "Tech Filter Button",
+			"kind": "chip",
+			"refersTo": "tech-filter-btn",
+			"description": "The sitewide filter control (one button per unique technology, shown once above the project grid); borrows the technology's own brand color on hover/active.",
+			"html": "<button class=\"ds-tech-pill\" aria-pressed=\"false\">TypeScript</button>",
+			"css": ".ds-tech-pill { font-size: 0.6875rem; font-weight: 500; padding: 2px 6px; border-radius: 4px; border: 1px solid oklch(18.15% 0 0 / 0.2); background: transparent; color: oklch(18.15% 0 0); cursor: pointer; transition: all 150ms ease; } .ds-tech-pill:hover, .ds-tech-pill[aria-pressed='true'] { background: #3178C6; border-color: #3178C6; color: #ffffff; }"
+		},
+		{
+			"name": "Tech Badge (static)",
+			"kind": "chip",
+			"refersTo": "tech-badge",
+			"description": "Non-interactive per-card tag shown inside ProjectCard; lights up with the tech's brand color only when it matches the active sitewide filter.",
+			"html": "<span class=\"ds-tech-badge\">TypeScript</span>",
+			"css": ".ds-tech-badge { font-size: 0.6875rem; font-weight: 500; padding: 2px 6px; border-radius: 4px; border: 1px solid oklch(18.15% 0 0 / 0.2); background: transparent; color: oklch(18.15% 0 0); transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease; } .ds-tech-badge[data-active] { background: #3178C6; border-color: #3178C6; color: #ffffff; }"
+		},
+		{
+			"name": "Project Card",
+			"kind": "card",
+			"refersTo": "project-card",
+			"description": "Dashed-border, background-free card for a portfolio project entry.",
+			"html": "<article class=\"ds-project-card\"><h3 class=\"ds-project-card-title\">e-RVC · Catalonia's vineyard registry</h3><p class=\"ds-project-card-summary\">Microservices platform for Catalonia's public wine-growing registry.</p></article>",
+			"css": ".ds-project-card { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 6px; border: 1px dashed oklch(18.15% 0 0 / 0.15); transition: border-color 150ms ease; } .ds-project-card:hover { border-style: solid; border-color: oklch(55.27% 0.195 19.06 / 0.6); } .ds-project-card-title { font-size: 1rem; font-weight: 600; color: oklch(18.15% 0 0); } .ds-project-card-summary { font-size: 0.75rem; color: oklch(45% 0 0); }"
+		},
+		{
+			"name": "GitHub Card",
+			"kind": "card",
+			"refersTo": "github-card",
+			"description": "Tonal-fill embed card for a linked GitHub repository or profile.",
+			"html": "<div class=\"ds-github-card\"><div class=\"ds-github-card-title\">usarral/usarral.com</div><p class=\"ds-github-card-desc\">Personal site and technical blog, statically built with Astro.</p></div>",
+			"css": ".ds-github-card { background: oklch(26.99% 0.0096 235.05 / 0.05); border-radius: 6px; padding: 12px 16px; } .ds-github-card-title { font-size: 1rem; display: flex; align-items: center; gap: 8px; } .ds-github-card-desc { margin-top: 16px; line-height: 1.3; }"
+		},
+		{
+			"name": "Admonition",
+			"kind": "custom",
+			"refersTo": "admonition",
+			"description": "Left-border callout block for note/tip/important/caution/warning content in long-form posts.",
+			"html": "<div class=\"ds-admonition\"><div class=\"ds-admonition-title\">Note</div><div class=\"ds-admonition-content\">Body copy of the callout.</div></div>",
+			"css": ".ds-admonition { border-inline-start: 2px solid #60a5fa; padding-block: 16px; padding-inline-start: 16px; background: color-mix(in oklab, #60a5fa 5%, transparent); } .ds-admonition-title { font-weight: 700; font-size: 0.875rem; color: #60a5fa; text-transform: capitalize; margin: 0; }"
+		},
+		{
+			"name": "Header Navigation",
+			"kind": "nav",
+			"refersTo": "nav-link",
+			"description": "Primary site navigation in the sidebar-style header.",
+			"html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Home</a><a class=\"ds-nav-link\" href=\"#\">Projects</a><a class=\"ds-nav-link\" href=\"#\">Blog</a></nav>",
+			"css": ".ds-nav { display: flex; gap: 4px; } .ds-nav-link { padding: 16px 8px; font-weight: 600; color: oklch(55.27% 0.195 19.06); text-decoration: none; } @media (hover: hover) { .ds-nav-link:hover { text-decoration: underline; text-underline-offset: 2px; } }"
+		}
+	],
+	"narrative": {
+		"northStar": "The Terminal Garden",
+		"overview": "The site reads as a desert terminal: a spartan, monospace console where almost nothing is decorative and one living accent color does all the emotional work. Every line of body copy, every heading, every button label is set in the same monospace face — there is no separate display font pretending to be editorial. Structure is carried by size and weight steps within that one typeface, not by switching typefaces.\n\nThe system is flat by conviction, not by omission: no shadows exist anywhere in the codebase. Depth and grouping come from low-opacity tonal borders and dashed strokes instead — a \"stitched\" quality that echoes both a terminal's plain rules and a cactus's ribbed, dashed silhouette. The one indulgence is the accent color, and even that indulgence is disciplined: it changes meaning between light and dark rather than multiplying into a full palette.\n\nThis is a personal, text-first site for a developer audience as much as a recruiting one, and the visual system matches that: it never reaches for a marketing \"hero,\" a filled call-to-action button, or imagery. Links, dashed borders, and small tech-colored chips are the entire vocabulary.",
+		"keyCharacteristics": [
+			"One monospace typeface for literally everything; hierarchy is size/weight only.",
+			"Fully flat — zero shadows; depth is low-opacity tonal fills and dashed rules.",
+			"Small, restrained radii (2–6px) except fully circular avatars.",
+			"A single accent color that swaps hue by theme (Desert Bloom coral in light, Cactus Night green in dark) rather than expanding into a multi-color palette.",
+			"No primary CTA button exists anywhere; the interaction vocabulary is text links, icon toggles, and filter chips."
+		],
+		"rules": [
+			{
+				"name": "The Desert Bloom / Cactus Night Rule",
+				"body": "The accent color is not a fixed hue — it is a warm coral bloom in light mode and a cactus green in dark mode. Preserve this theme-driven hue swap; it is the system's signature move.",
+				"section": "colors"
+			},
+			{
+				"name": "The One Accent Rule",
+				"body": "Only one accent color is active at a time. Tech pills borrow arbitrary brand colors for their own badges, but those represent external technology identity, not the site's own palette.",
+				"section": "colors"
+			},
+			{
+				"name": "The One Voice Rule",
+				"body": "Every text role uses the same monospace family. Resist adding a serif/display face for 'editorial' moments even under pressure to make headings feel designed.",
+				"section": "typography"
+			},
+			{
+				"name": "The Flat-By-Conviction Rule",
+				"body": "Never introduce a box-shadow, a lifted card, or a blurred backdrop. Solve any need for a 'layer' with a low-opacity tonal fill or a border.",
+				"section": "elevation"
+			},
+			{
+				"name": "The Dashed-at-Rest Rule",
+				"body": "Structural borders default to dashed and low-opacity tonal color. A border only becomes solid and full-color accent when it signals hover/active state.",
+				"section": "elevation"
+			}
+		],
+		"dos": [
+			"Do keep every text role in the same monospace stack; size and weight carry hierarchy, not typeface switching.",
+			"Do let the accent color swap hue between light (Desert Bloom coral) and dark (Cactus Night green) themes.",
+			"Do default structural borders to dashed and low-opacity; reserve solid, full-color borders for hover/active states.",
+			"Do use tech-pill brand colors only for external technology identity, never bleed them into site chrome.",
+			"Do keep depth flat: tonal opacity fills and borders, never shadows."
+		],
+		"donts": [
+			"Don't introduce a box-shadow, lifted card, or blurred backdrop anywhere in the system.",
+			"Don't add a second typeface (serif/display/humanist-sans) for 'editorial' moments; it breaks the One Voice Rule.",
+			"Don't add a filled primary CTA button; links, icon toggles, and chips are the entire interaction vocabulary.",
+			"Don't flatten the accent color to a single fixed hue across both themes.",
+			"Don't increase corner radii beyond the established 2–6px scale (excluding the intentionally circular avatar) without a confirmed direction change."
+		]
+	}
+}
