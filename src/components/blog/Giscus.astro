@@ -18,7 +18,8 @@ const lang = locale === "es" ? "es" : "en";
 	const lang = container?.dataset.lang ?? "en";
 
 	function getTheme() {
-		return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+		const mode = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+		return new URL(`/giscus/${mode}.css`, window.location.origin).href;
 	}
 
 	const script = document.createElement("script");
