@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { LocalizedProject } from "@/data/projects";
+import { defaultTechColor, techColors } from "@/data/techColors";
 
 interface Props {
 	project: LocalizedProject;
@@ -8,49 +9,29 @@ interface Props {
 
 const { project } = Astro.props;
 const primaryLink = project.links?.[0];
-
-const techColors: Record<string, { bg: string; text: string }> = {
-	Java: { bg: "#ED8B00", text: "#1f2937" },
-	"Spring Boot": { bg: "#6DB33F", text: "#1f2937" },
-	Angular: { bg: "#DD0031", text: "#fff" },
-	"Node.js": { bg: "#417E38", text: "#fff" },
-	Docker: { bg: "#0070C5", text: "#fff" },
-	Jenkins: { bg: "#D33833", text: "#fff" },
-	OpenShift: { bg: "#CC0000", text: "#fff" },
-	Git: { bg: "#CC3B18", text: "#fff" },
-	Jira: { bg: "#0052CC", text: "#fff" },
-	Servlets: { bg: "#ED8B00", text: "#1f2937" },
-	JSP: { bg: "#ED8B00", text: "#1f2937" },
-	Tomcat: { bg: "#CC3B00", text: "#fff" },
-	Apertium: { bg: "#7C3AED", text: "#fff" },
-	"SAP ABAP4": { bg: "#007DB8", text: "#fff" },
-	"SAP UI5": { bg: "#007DB8", text: "#fff" },
-	WebSockets: { bg: "#4338CA", text: "#fff" },
-	Arduino: { bg: "#007D80", text: "#fff" },
-	IoT: { bg: "#1565C0", text: "#fff" },
-	TailwindCSS: { bg: "#06B6D4", text: "#0f172a" },
-	"CI/CD": { bg: "#475569", text: "#fff" },
-	Python: { bg: "#3776AB", text: "#fff" },
-	PyTorch: { bg: "#C0380A", text: "#fff" },
-	React: { bg: "#20232A", text: "#61DAFB" },
-	"Machine Learning": { bg: "#6D28D9", text: "#fff" },
-	MongoDB: { bg: "#2E6B31", text: "#fff" },
-	"Discord API": { bg: "#5865F2", text: "#fff" },
-	TypeScript: { bg: "#3178C6", text: "#fff" },
-	Web: { bg: "#475569", text: "#fff" },
-	Astro: { bg: "#FF5D01", text: "#1f2937" },
-};
 ---
 
 <article
-	class={`border-accent-2/15 group relative flex flex-col gap-3 rounded-md border border-dashed p-4 transition-colors${primaryLink ? " hover:border-accent/60 cursor-pointer" : ""}`}
+	class={`border-accent-2/15 group flex flex-col gap-3 rounded-md border border-dashed p-4 transition-colors${primaryLink ? " hover:border-accent/60" : ""}`}
+	data-techs={project.tech.join(",")}
 >
 	<header class="flex flex-col gap-1">
-		<h3
-			class={`text-accent-2 text-base font-semibold${primaryLink ? " group-hover:text-accent transition-colors" : ""}`}
-		>
-			{project.name}
-		</h3>
+		<h2 class="text-accent-2 text-base font-semibold">
+			{
+				primaryLink ? (
+					<a
+						class="group-hover:text-accent transition-colors"
+						href={primaryLink.href}
+						rel="noreferrer"
+						target="_blank"
+					>
+						{project.name}
+					</a>
+				) : (
+					project.name
+				)
+			}
+		</h2>
 		<p class="text-xs text-gray-600 dark:text-gray-400">{project.summary}</p>
 	</header>
 
@@ -58,20 +39,18 @@ const techColors: Record<string, { bg: string; text: string }> = {
 
 	{
 		project.tech.length > 0 && (
-			<ul class="relative z-10 flex flex-wrap gap-1.5" role="list">
+			<ul class="flex flex-wrap gap-1.5" role="list">
 				{project.tech.map((t) => {
-					const color = techColors[t] ?? { bg: "#6B7280", text: "#fff" };
+					const color = techColors[t] ?? defaultTechColor;
 					return (
 						<li>
-							<button
-								aria-pressed="false"
-								class="tech-pill border-accent-2/20 cursor-pointer rounded border px-1.5 py-0.5 text-[11px] font-medium transition-all duration-150"
+							<span
+								class="tech-badge border-accent-2/20 rounded border px-1.5 py-0.5 text-[11px] font-medium transition-colors duration-150"
 								data-tech={t}
 								style={`--pill-bg: ${color.bg}; --pill-text: ${color.text};`}
-								type="button"
 							>
 								{t}
-							</button>
+							</span>
 						</li>
 					);
 				})}
@@ -81,7 +60,7 @@ const techColors: Record<string, { bg: string; text: string }> = {
 
 	{
 		project.links && project.links.length > 0 && (
-			<ul class="relative z-10 mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-1" role="list">
+			<ul class="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-1" role="list">
 				{project.links.map((link) => (
 					<li>
 						<a
@@ -103,23 +82,10 @@ const techColors: Record<string, { bg: string; text: string }> = {
 			</ul>
 		)
 	}
-
-	{
-		primaryLink && (
-			<a
-				aria-label={project.name}
-				class="absolute inset-0 rounded-md"
-				href={primaryLink.href}
-				rel="noreferrer"
-				target="_blank"
-			/>
-		)
-	}
 </article>
 
 <style>
-	.tech-pill:hover,
-	.tech-pill[aria-pressed="true"] {
+	.tech-badge[data-active] {
 		background-color: var(--pill-bg);
 		color: var(--pill-text);
 		border-color: var(--pill-bg);

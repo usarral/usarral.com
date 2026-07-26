@@ -35,7 +35,8 @@ export const ui = {
 		"projects.pageDescription":
 			"A selection of the projects I've worked on: from microservice architectures to live IoT, Discord bots and tools I use day to day.",
 		"projects.intro":
-			"A selection of professional and personal projects I've worked on — ranging from microservice architectures and SAP, to live IoT, Discord bots and tooling to automate my day to day. Click on any technology pill to filter.",
+			"A selection of professional and personal projects I've worked on — ranging from microservice architectures and SAP, to live IoT, Discord bots and tooling to automate my day to day. Use the filters below to narrow by technology.",
+		"projects.filterByTech": "Filter by technology",
 		"projects.filterBy": "Filtering by",
 		"projects.clearFilter": "Clear filter",
 		"projects.ofProjects": "of",
@@ -72,6 +73,15 @@ export const ui = {
 
 		"about.title": "About",
 		"about.description": "More about me, what I do and the technologies I work with.",
+		"about.intro":
+			"This page goes one layer deeper than the homepage: the technologies I actually use day to day, and the kind of problems I've been paid to solve.",
+		"about.stackTitle": "What I work with",
+		"about.stackBackend": "Backend & languages: Java, Spring Boot, NestJS, PHP, Node.js, Python.",
+		"about.stackFrontend": "Frontend: Angular, TypeScript, React.",
+		"about.stackInfra": "Infrastructure & delivery: Docker, Jenkins, OpenShift, CI/CD, Git.",
+		"about.stackOther":
+			"Also: SAP ABAP4/UI5 for ERP customization, IoT with Arduino and WebSockets, and machine learning with PyTorch.",
+		"about.projectsCta": "See the full list of projects, with real client and personal work →",
 
 		"404.title": "404 | Oops something went wrong",
 		"404.description": "Oops! It looks like this page is lost in space!",
@@ -113,7 +123,8 @@ export const ui = {
 		"projects.pageDescription":
 			"Una selección de los proyectos en los que he trabajado: desde arquitecturas de microservicios hasta IoT en directo, bots de Discord y herramientas que uso a diario.",
 		"projects.intro":
-			"Una selección de proyectos profesionales y personales en los que he trabajado — desde arquitecturas de microservicios y SAP, hasta IoT en directo, bots de Discord y herramientas para automatizar mi día a día. Haz clic en cualquier pastilla de tecnología para filtrar.",
+			"Una selección de proyectos profesionales y personales en los que he trabajado — desde arquitecturas de microservicios y SAP, hasta IoT en directo, bots de Discord y herramientas para automatizar mi día a día. Usa los filtros de abajo para acotar por tecnología.",
+		"projects.filterByTech": "Filtrar por tecnología",
 		"projects.filterBy": "Filtrando por",
 		"projects.clearFilter": "Limpiar filtro",
 		"projects.ofProjects": "de",
@@ -150,6 +161,16 @@ export const ui = {
 
 		"about.title": "Sobre mí",
 		"about.description": "Más sobre mí, lo que hago y las tecnologías con las que trabajo.",
+		"about.intro":
+			"Esta página va un paso más allá que la portada: las tecnologías que uso en el día a día y el tipo de problemas que he resuelto profesionalmente.",
+		"about.stackTitle": "Con qué trabajo",
+		"about.stackBackend": "Backend y lenguajes: Java, Spring Boot, NestJS, PHP, Node.js, Python.",
+		"about.stackFrontend": "Frontend: Angular, TypeScript, React.",
+		"about.stackInfra": "Infraestructura y despliegue: Docker, Jenkins, OpenShift, CI/CD, Git.",
+		"about.stackOther":
+			"También: SAP ABAP4/UI5 para personalización de ERP, IoT con Arduino y WebSockets, y machine learning con PyTorch.",
+		"about.projectsCta":
+			"Ver la lista completa de proyectos, con trabajo real de clientes y personal →",
 
 		"404.title": "404 | Vaya, algo ha ido mal",
 		"404.description": "¡Vaya! Parece que esta página se ha perdido en el espacio.",
