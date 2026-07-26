@@ -4,7 +4,7 @@ import Search from "@/components/Search.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { useTranslations } from "@/i18n/utils";
-import { getLocalizedMenuLinks, siteConfig } from "@/site.config";
+import { getLocalizedMenuLinks } from "@/site.config";
 
 interface Props {
 	locale?: Locale;
@@ -25,20 +25,27 @@ const homePath = `/${locale}/`;
 		>
 			<svg
 				aria-hidden="true"
-				class="me-3 h-10 w-15 sm:absolute sm:-start-20 sm:me-0 sm:h-12 sm:w-18"
+				class="h-10 w-52 sm:absolute sm:-start-[82px] sm:h-12 sm:w-[250px]"
 				fill="none"
 				focusable="false"
-				viewBox="0 0 150 100"
+				viewBox="0 0 520 100"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<title>Usarral Logo</title>
+				<title>usarral</title>
 				<path
 					d="M 10 10 V 70 L 30 90 H 70 L 90 70 V 10 H 65 V 65 H 35 V 10 Z"
 					fill="currentColor"
 				></path>
 				<rect x="100" y="65" width="40" height="25" fill="var(--color-accent)"></rect>
+				<text
+					x="170"
+					y="86"
+					font-family="'JetBrains Mono', monospace"
+					font-size="75"
+					font-weight="600"
+					fill="currentColor"
+				>usarral</text>
 			</svg>
-			<span class="text-xl font-bold sm:text-2xl">{siteConfig.title}</span>
 		</a>
 		<nav
 			aria-label={t("nav.mainMenu")}
