@@ -1,0 +1,114 @@
+/*!
+ * Custom giscus theme for usarral.com ("The Terminal Garden", see DESIGN.md).
+ * Derived from giscus's own dark.css (MIT, github.com/giscus/giscus), with
+ * color/font values swapped for the site's tokens: monospace-only type,
+ * flat surfaces (no shadows), and the Cactus Night accent.
+ */
+
+:host,
+html {
+	--font-family-sans:
+		ui-monospace, "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",
+		monospace;
+	--font-family-monospace:
+		ui-monospace, "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",
+		monospace;
+}
+
+main {
+	/* Syntax highlighting for code in comments: kept close to GitHub's own
+	 * dark defaults, since DESIGN.md doesn't define a code-syntax palette. */
+	--color-prettylights-syntax-comment: #8b949e;
+	--color-prettylights-syntax-constant: #79c0ff;
+	--color-prettylights-syntax-entity: #d2a8ff;
+	--color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+	--color-prettylights-syntax-entity-tag: #7ee787;
+	--color-prettylights-syntax-keyword: #ff7b72;
+	--color-prettylights-syntax-string: #a5d6ff;
+	--color-prettylights-syntax-variable: #ffa657;
+	--color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
+	--color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
+	--color-prettylights-syntax-invalid-illegal-bg: #8e1519;
+	--color-prettylights-syntax-carriage-return-text: #f0f6fc;
+	--color-prettylights-syntax-carriage-return-bg: #b62324;
+	--color-prettylights-syntax-string-regexp: #7ee787;
+	--color-prettylights-syntax-markup-list: #f2cc60;
+	--color-prettylights-syntax-markup-heading: #1f6feb;
+	--color-prettylights-syntax-markup-italic: #c9d1d9;
+	--color-prettylights-syntax-markup-bold: #c9d1d9;
+	--color-prettylights-syntax-markup-deleted-text: #ffdcd7;
+	--color-prettylights-syntax-markup-deleted-bg: #67060c;
+	--color-prettylights-syntax-markup-inserted-text: #aff5b4;
+	--color-prettylights-syntax-markup-inserted-bg: #033a16;
+	--color-prettylights-syntax-markup-changed-text: #ffdfb6;
+	--color-prettylights-syntax-markup-changed-bg: #5a1e02;
+	--color-prettylights-syntax-markup-ignored-text: #c9d1d9;
+	--color-prettylights-syntax-markup-ignored-bg: #1158c7;
+	--color-prettylights-syntax-meta-diff-range: #d2a8ff;
+	--color-prettylights-syntax-brackethighlighter-angle: #8b949e;
+	--color-prettylights-syntax-sublimelinter-gutter-mark: #545d68;
+	--color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
+
+	/* Buttons: flat (no shadow), tonal-fill default, Cactus Night primary. */
+	--color-btn-text: oklch(94.66% 0 0);
+	--color-btn-bg: oklch(27% 0.005 248);
+	--color-btn-border: oklch(94.66% 0 0 / 15%);
+	--color-btn-shadow: 0 0 transparent;
+	--color-btn-inset-shadow: 0 0 transparent;
+	--color-btn-hover-bg: oklch(31% 0.005 248);
+	--color-btn-hover-border: oklch(94.66% 0 0 / 25%);
+	--color-btn-active-bg: oklch(33% 0.005 248);
+	--color-btn-active-border: oklch(94.66% 0 0 / 25%);
+	--color-btn-selected-bg: oklch(29% 0.005 248);
+	--color-btn-primary-text: oklch(18.15% 0 0);
+	--color-btn-primary-bg: oklch(70.91% 0.1415 163.7);
+	--color-btn-primary-border: oklch(70.91% 0.1415 163.7);
+	--color-btn-primary-shadow: 0 0 transparent;
+	--color-btn-primary-inset-shadow: 0 0 transparent;
+	--color-btn-primary-hover-bg: oklch(76% 0.1415 163.7);
+	--color-btn-primary-hover-border: oklch(76% 0.1415 163.7);
+	--color-btn-primary-selected-bg: oklch(76% 0.1415 163.7);
+	--color-btn-primary-selected-shadow: 0 0 transparent;
+	--color-btn-primary-disabled-text: oklch(18.15% 0 0 / 60%);
+	--color-btn-primary-disabled-bg: oklch(70.91% 0.1415 163.7 / 50%);
+	--color-btn-primary-disabled-border: oklch(70.91% 0.1415 163.7 / 30%);
+
+	--color-action-list-item-default-hover-bg: oklch(94.66% 0 0 / 8%);
+	--color-segmented-control-bg: oklch(27% 0.005 248);
+	--color-segmented-control-button-bg: oklch(23.64% 0.0045 248);
+	--color-segmented-control-button-selected-border: oklch(94.66% 0 0 / 25%);
+
+	/* Text and surfaces: the site's own Soft Fog / Night Slate pair. */
+	--color-fg-default: oklch(83.54% 0 264);
+	--color-fg-muted: oklch(65% 0 264);
+	--color-fg-subtle: oklch(55% 0 264);
+	--color-canvas-default: oklch(23.64% 0.0045 248);
+	--color-canvas-overlay: oklch(23.64% 0.0045 248);
+	--color-canvas-inset: oklch(27% 0.005 248);
+	--color-canvas-subtle: oklch(27% 0.005 248);
+	--color-border-default: oklch(94.66% 0 0 / 15%);
+	--color-border-muted: oklch(94.66% 0 0 / 10%);
+	--color-neutral-muted: oklch(94.66% 0 0 / 8%);
+
+	/* Cactus Night accent; danger reuses the dark-mode link pink rather
+	 * than introducing GitHub's unrelated red. */
+	--color-accent-fg: oklch(70.91% 0.1415 163.7);
+	--color-accent-emphasis: oklch(70.91% 0.1415 163.7);
+	--color-accent-muted: oklch(70.91% 0.1415 163.7 / 40%);
+	--color-accent-subtle: oklch(70.91% 0.1415 163.7 / 12%);
+	--color-success-fg: oklch(70.91% 0.1415 163.7);
+	--color-attention-fg: oklch(75% 0.13 85);
+	--color-attention-muted: oklch(75% 0.13 85 / 40%);
+	--color-attention-subtle: oklch(75% 0.13 85 / 15%);
+	--color-danger-fg: oklch(70.44% 0.1133 349);
+	--color-danger-muted: oklch(70.44% 0.1133 349 / 40%);
+	--color-danger-subtle: oklch(70.44% 0.1133 349 / 12%);
+	--color-primer-shadow-inset: 0 0 transparent;
+
+	--color-scale-gray-7: oklch(27% 0.005 248);
+	--color-scale-blue-8: oklch(70.91% 0.1415 163.7 / 20%);
+
+	/*! Extensions from @primer/css/alerts/flash.scss */
+	--color-social-reaction-bg-hover: var(--color-scale-gray-7);
+	--color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+}
