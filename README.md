@@ -1,12 +1,11 @@
 <div align="center">
-  <img alt="Astro Cactus logo" src="https://github.com/user-attachments/assets/92dfbabf-ca65-4bf6-991d-9a71e5319880" width="70" />
+  <img alt="Usarral logo" src="/logo.svg" width="70" />
 </div>
 <h1 align="center">
-  Astro Cactus
+  usarral.com
 </h1>
 
-
-Astro Cactus is a simple opinionated starter built with [Astro](https://astro.build). Use it to create an easy-to-use blog or website.
+Personal website and technical blog for Carlos (usarral), built with Astro, Tailwind, and JetBrains Mono.
 
 ## Table Of Contents
 
