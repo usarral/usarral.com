@@ -84,7 +84,7 @@ export const projects: Project[] = [
 			es: "Desarrollo de funcionalidades y resolución de bugs en SAP ABAP4 para grandes cadenas hoteleras, incluyendo trabajo de frontend en SAP UI5 e integración con flujos basados en Node.js 18 y Angular.",
 		},
 		tech: ["SAP ABAP4", "SAP UI5", "Node.js", "Angular"],
-		links: [{ label: "tmsforhotels.com", href: "https://www.tmsforhotels.com/tmshotels" }],
+		links: [{ label: "tmsforhotels.com", href: "http://www.tmsforhotels.com/tmshotels" }],
 	},
 	{
 		name: {
