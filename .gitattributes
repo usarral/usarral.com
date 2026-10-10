@@ -1,0 +1,18 @@
+# Keep LF in the working tree on every OS. Without this, Git for Windows
+# (core.autocrlf=true) checks files out as CRLF and the biome pre-commit hook
+# rewrites them back to LF, leaving dozens of whitespace-only changes.
+* text=auto eol=lf
+
+# Binary assets: never touch line endings or diff them as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+
+# Despite the extension, this file is an SVG (text): keep it LF-normalized.
+src/assets/blog/placeholder-blog.png text eol=lf
