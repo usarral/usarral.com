@@ -283,27 +283,37 @@ SYSTEMONE_MODEL=clef
 SYSTEMONE_API_KEY=<token de Workers AI>
 ```
 
-Mismas preguntas (v3), mismos 246 emails:
+Ya puestos, pasé también **Clef-flash por Workers AI**. Así podía separar dos cosas: cuánto cambia por el tamaño del modelo y cuánto por ejecutarlo cuantizado en mi gráfica. Mismas preguntas (v3), mismos 246 emails:
 
-| | Clef-flash 9B (mi 3060) | Clef 27B (Workers AI) |
-|---|---|---|
-| Categoría | **89,4 %** | 87,8 % |
-| Prioridad | 77,2 % | **78,0 %** |
-| Ruido | 94,3 % | **95,1 %** |
-| Sospechoso | **89,4 %** | 88,2 % |
-| Requiere acción | 91,1 % | **95,9 %** |
-| Van a revisión | 53 | **30** |
-| Acierto en lo que clasifica solo | **94,8 %** | 93,1 % |
-| Latencia por email (p50) | 1,34 s | **0,31 s** |
-| Coste de los 246 emails | luz de casa | ~0,07 $ |
+| | Flash 9B (mi 3060, q8) | Flash 9B (Workers AI) | Clef 27B (Workers AI) |
+|---|---|---|---|
+| Categoría | 89,4 % | 87,8 % | 87,8 % |
+| Prioridad | 77,2 % | 75,2 % | 78,0 % |
+| Ruido | 94,3 % | 94,3 % | 95,1 % |
+| Sospechoso | 89,4 % | 89,0 % | 88,2 % |
+| Requiere acción | 91,1 % | 91,5 % | 95,9 % |
+| Van a revisión | 53 | 58 | 30 |
+| Acierto en lo que clasifica solo | 94,8 % | 95,7 % | 93,1 % |
+| Latencia por email (p50) | 1,34 s | 0,31 s | 0,31 s |
+| Coste de los 246 emails | luz de casa | ~0,02 $ | ~0,07 $ |
+
+### Local frente a nube: el mismo modelo
+
+La versión cuantizada de mi gráfica y la de Cloudflare **toman la misma decisión de categoría en 241 de 246 correos**. Las probabilidades se mueven muy poco: la diferencia mediana es de 0,007.
+
+¿Y los 5 que cambian? Todos eran **casi empates**, del estilo `otro 0,49 / personal 0,46` en local y `personal 0,49 / otro 0,45` en la nube. Todos tenían un margen menor de 0,15, así que la política de revisión **ya los mandaba a `Revisar` en los dos casos**. La cuantización solo mueve lo que ya era dudoso, y eso es precisamente lo que el margen está para atrapar. El 1,6 % de ventaja de mi versión local sale de esos empates, no de que q8 sea mejor.
+
+### El grande frente al pequeño
 
 Sorpresa: **el grande no es mejor**. Acierta más en "requiere acción" y está más seguro de sí mismo: manda a revisión 30 correos en vez de 53, y por tanto automatiza el 88 % del buzón frente al 78 %. A cambio, falla algo más en lo que decide solo.
 
-El dato que más me dice: **de sus 30 fallos de categoría, 24 son exactamente los mismos que los de Flash.** Cuando dos modelos de tamaños tan distintos fallan en los mismos correos, el problema no es el modelo. Es mi taxonomía, o directamente mis etiquetas *gold*. Un modelo más grande no arregla que tus categorías estén mal definidas.
+El dato que más me dice: **hay 24 fallos de categoría que se repiten en las tres ejecuciones.** Cuando dos modelos de tamaños tan distintos, en dos infraestructuras distintas, fallan en los mismos correos, el problema no es el modelo. Es mi taxonomía, o directamente mis etiquetas *gold*. Un modelo más grande no arregla que tus categorías estén mal definidas.
 
 Tiene una sutileza: ajusté las preguntas mirando los errores de Flash, así que la comparación juega un poco a su favor. Aun así, la diferencia es pequeña en ambos sentidos.
 
-Lo que sí cambia de verdad es la velocidad: **unos 300 ms por correo** en la infraestructura de Cloudflare, frente a 1,3 s en mi gráfica. El coste es ridículo: 270.663 tokens de entrada a 0,24 $ por millón son unos 7 céntimos el buzón entero, y la salida no se cobra porque no hay salida. A cambio, claro, tus correos salen de casa.
+Lo que sí cambia de verdad es la velocidad: **unos 300 ms por correo** en Cloudflare, frente a 1,3 s en mi gráfica. Curiosamente, Flash y el 27B tardan lo mismo en la nube. Una petición vacía a la API de Cloudflare ya tarda unos 270 ms desde mi casa, así que **lo que se mide es la red**, y la diferencia de cómputo que anuncia Cloudflare (39 ms frente a 209 ms) queda escondida.
+
+El coste es ridículo: 270.663 tokens de entrada son unos 2 céntimos con Flash y unos 7 con el 27B por el buzón entero, y la salida no se cobra porque no hay salida. A cambio, claro, tus correos salen de casa.
 
 Y un detalle que me gustó: ejecutar Flash en local sobre los ficheros dio **exactamente las mismas cifras** que la ejecución sobre Gmail, al decimal. Una sola pasada sin muestreo: la misma entrada da siempre la misma salida. Prueba a conseguir eso pidiéndole JSON a un modelo de chat.
 
