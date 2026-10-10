@@ -3,6 +3,7 @@ title: "Clef-flash: a model that decides, not writes"
 description: Cloudflare released Clef, a "System One" model that doesn't generate text but probabilities. I put it to work triaging 246 emails from a Gmail inbox over IMAP, locally, on a 12 GB RTX 3060. Here's how it works, how I set it up and how it went, including what didn't go so well.
 publishDate: 2026-10-13T08:30:00+02:00
 draft: false
+pinned: true
 tags:
   - ai
   - llm
