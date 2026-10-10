@@ -99,7 +99,7 @@ Lo curioso es que las etiquetas *gold* encajaban perfectamente con los tipos de 
 
 ## Ponerlo en marcha en local
 
-Mi primer plan era usar `llama.cpp`, que desde la release `b11430` expone el endpoint `/v1/systemone`, con un GGUF cuantizado. Pero resulta que **Ollama** (desde la 0.35.1) también lo soporta, y ya lo tenía instalado:
+Vi que **Ollama** soporta Clef-flash y su endpoint `/v1/systemone` desde la versión 0.35.1, así que lo probé directamente ahí:
 
 ```bash
 ollama pull clef-flash
