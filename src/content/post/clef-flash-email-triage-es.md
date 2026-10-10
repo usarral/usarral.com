@@ -315,6 +315,8 @@ Lo que sí cambia de verdad es la velocidad: **unos 300 ms por correo** en Cloud
 
 ¿Y el coste? Workers AI mide el consumo en **neuronas** y regala **10.000 al día**. Cada respuesta incluye una cabecera `cf-ai-neurons` con lo que ha gastado esa petición, y el panel de Cloudflare lleva la cuenta. El buzón entero (270.663 tokens de entrada) consumió **6.140 neuronas con el 27B** y apenas **561 con Flash**. Las dos pasadas, más las pruebas, **entraron en la cuota gratuita del día**. Pagando, el 27B saldría por unos 7 céntimos y Flash por menos de uno. La salida no se cobra porque no hay salida. A cambio, claro, tus correos salen de casa.
 
+![Panel de Workers AI con el consumo en neuronas de Clef y Clef-flash](../../assets/blog/clef-flash-email-triage/cloudflare-usage.png)
+
 Y un detalle que me gustó: ejecutar Flash en local sobre los ficheros dio **exactamente las mismas cifras** que la ejecución sobre Gmail, al decimal. Una sola pasada sin muestreo: la misma entrada da siempre la misma salida. Prueba a conseguir eso pidiéndole JSON a un modelo de chat.
 
 ## Lo que no salió tan bien
