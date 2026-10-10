@@ -1,5 +1,9 @@
+# Supply-chain policy: refuse packages published less than a day ago (pnpm 11 default,
+# made explicit). Renovate waits 3 days (renovate.json) so its PRs never trip it.
+minimumReleaseAge: 1440
+
 overrides:
-  sharp: ^0.35.3
+  sharp: ^0.35.5
   yaml: '>=2.8.3'
 
 allowBuilds:
