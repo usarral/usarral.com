@@ -9,7 +9,6 @@ tags:
   - traefik
   - security
   - tutorial
-pinned: true
 ---
 
 In this guide, we will explore step by step how to set up an Ubuntu server from scratch, ensuring its security and preparing an efficient environment for automated deployments using Docker, Traefik, and GitHub Actions.
