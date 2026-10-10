@@ -273,6 +273,40 @@ Merece la pena ver qué acaba en `Clef/Revisar`: un "Re: asdf, mañana lo vemos"
 
 Este ejemplo resume bien cómo trabaja: un clásico "su cuenta será suspendida en 24 horas" con un enlace a un dominio que no es el del remitente. No encaja en ninguna categoría de negocio (`Otro`), la decisión es dudosa (`Revisar`), es claramente fraude (`Sospechoso`) y, pese a la urgencia que finge, la prioridad es `Informativo`. Son cinco preguntas independientes, y cada una aporta su parte.
 
+## ¿Y el modelo grande?
+
+La pregunta obvia: ¿y si en vez de Flash uso **Clef**, el de 27B? En una 3060 no cabe, así que lo probé en **Cloudflare Workers AI**. Bastó con cambiar la URL y añadir el token. El cliente no necesitó ni una línea nueva, porque la API es la misma:
+
+```
+SYSTEMONE_URL=https://api.cloudflare.com/client/v4/accounts/<ACCOUNT_ID>/ai/run/@cf/cloudflare/clef
+SYSTEMONE_MODEL=clef
+SYSTEMONE_API_KEY=<token de Workers AI>
+```
+
+Mismas preguntas (v3), mismos 246 emails:
+
+| | Clef-flash 9B (mi 3060) | Clef 27B (Workers AI) |
+|---|---|---|
+| Categoría | **89,4 %** | 87,8 % |
+| Prioridad | 77,2 % | **78,0 %** |
+| Ruido | 94,3 % | **95,1 %** |
+| Sospechoso | **89,4 %** | 88,2 % |
+| Requiere acción | 91,1 % | **95,9 %** |
+| Van a revisión | 53 | **30** |
+| Acierto en lo que clasifica solo | **94,8 %** | 93,1 % |
+| Latencia por email (p50) | 1,34 s | **0,31 s** |
+| Coste de los 246 emails | luz de casa | ~0,07 $ |
+
+Sorpresa: **el grande no es mejor**. Acierta más en "requiere acción" y está más seguro de sí mismo: manda a revisión 30 correos en vez de 53, y por tanto automatiza el 88 % del buzón frente al 78 %. A cambio, falla algo más en lo que decide solo.
+
+El dato que más me dice: **de sus 30 fallos de categoría, 24 son exactamente los mismos que los de Flash.** Cuando dos modelos de tamaños tan distintos fallan en los mismos correos, el problema no es el modelo. Es mi taxonomía, o directamente mis etiquetas *gold*. Un modelo más grande no arregla que tus categorías estén mal definidas.
+
+Tiene una sutileza: ajusté las preguntas mirando los errores de Flash, así que la comparación juega un poco a su favor. Aun así, la diferencia es pequeña en ambos sentidos.
+
+Lo que sí cambia de verdad es la velocidad: **unos 300 ms por correo** en la infraestructura de Cloudflare, frente a 1,3 s en mi gráfica. El coste es ridículo: 270.663 tokens de entrada a 0,24 $ por millón son unos 7 céntimos el buzón entero, y la salida no se cobra porque no hay salida. A cambio, claro, tus correos salen de casa.
+
+Y un detalle que me gustó: ejecutar Flash en local sobre los ficheros dio **exactamente las mismas cifras** que la ejecución sobre Gmail, al decimal. Una sola pasada sin muestreo: la misma entrada da siempre la misma salida. Prueba a conseguir eso pidiéndole JSON a un modelo de chat.
+
 ## Lo que no salió tan bien
 
 Porque no todo es bonito:
@@ -297,6 +331,7 @@ Y el trabajo de "prompting" se convierte en algo casi de diseño de producto: **
 ## Fuentes
 
 - [Clef-flash en Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/models/clef-flash/)
+- [Clef en Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/models/clef/)
 - [Cloudflare publica Clef y Clef-flash (MarkTechPost)](https://www.marktechpost.com/2026/10/01/cloudflare-releases-clef-and-clef-flash/)
 - [A deep dive into Clef, Flavio Copes](https://flaviocopes.com/clef/)
 - [API System One de TypeSafe](https://docs.typesafe.ai/api)
