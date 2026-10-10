@@ -131,7 +131,7 @@ La versión q8_0 cabe en 12 GB, pero muy justa. Si tienes otras cosas usando la 
 
 El proyecto está en Node 24 con TypeScript. Node 24 ya ejecuta `.ts` directamente, sin paso de compilación (`node src/cli.ts`), y `tsc` solo sirve para comprobar tipos. Dependencias: `imapflow` para IMAP y `mailparser` para el MIME. El resto es `fetch` y `node:test`.
 
-<!-- TODO: enlace al repositorio cuando esté publicado -->
+> **📦 Código completo:** el proyecto, el corpus de 246 emails con sus etiquetas, la bitácora y los logs de cada ejecución están en el [repositorio clef-triage](https://github.com/usarral/clef-triage).
 
 La arquitectura es de puertos y adaptadores, sin volverse loco:
 

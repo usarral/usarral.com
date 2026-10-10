@@ -132,7 +132,7 @@ The q8_0 version fits in 12 GB, but only just. If other things are using the GPU
 
 The project is Node 24 with TypeScript. Node 24 already runs `.ts` directly, with no build step (`node src/cli.ts`), and `tsc` is only there for type checking. Dependencies: `imapflow` for IMAP and `mailparser` for MIME. The rest is `fetch` and `node:test`.
 
-<!-- TODO: link to the repository once it's published -->
+> **📦 Full code:** the project, the 246-email corpus with its labels, the design log and the logs of every run are in the [clef-triage repository](https://github.com/usarral/clef-triage).
 
 The architecture is ports and adapters, without going overboard:
 
