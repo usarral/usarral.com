@@ -1,9 +1,65 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["config:recommended"],
+	"extends": ["config:recommended", ":semanticCommits"],
+	"timezone": "Europe/Madrid",
+	"schedule": ["before 9am on monday"],
+	"labels": ["dependencies"],
 	"rebaseWhen": "auto",
+	"prConcurrentLimit": 5,
+	"prHourlyLimit": 2,
+	"minimumReleaseAge": "3 days",
+	"internalChecksFilter": "strict",
+	"postUpdateOptions": ["pnpmDedupe"],
+	"platformAutomerge": false,
 	"lockFileMaintenance": {
-		"enabled": true
+		"enabled": true,
+		"automerge": true,
+		"schedule": ["before 9am on monday"]
 	},
-	"postUpdateOptions": ["pnpmDedupe"]
+	"vulnerabilityAlerts": {
+		"labels": ["dependencies", "security"],
+		"schedule": ["at any time"]
+	},
+	"osvVulnerabilityAlerts": true,
+	"packageRules": [
+		{
+			"description": "One weekly PR for non-major runtime updates, reviewed by hand because they ship with the site",
+			"matchManagers": ["npm"],
+			"matchUpdateTypes": ["minor", "patch"],
+			"groupName": "non-major dependencies",
+			"groupSlug": "non-major"
+		},
+		{
+			"description": "Dev tooling (lint, format, types, commit hooks) is low risk: group it and automerge when CI is green",
+			"matchManagers": ["npm"],
+			"matchDepTypes": ["devDependencies"],
+			"matchUpdateTypes": ["minor", "patch"],
+			"groupName": "dev tooling (non-major)",
+			"groupSlug": "dev-tooling",
+			"automerge": true
+		},
+		{
+			"description": "GitHub Actions: grouped and automerged when CI is green",
+			"matchManagers": ["github-actions"],
+			"matchUpdateTypes": ["minor", "patch", "digest"],
+			"groupName": "github actions",
+			"groupSlug": "github-actions",
+			"automerge": true
+		},
+		{
+			"description": "satori renders the OG images and 0.x minors can break them: separate PR that needs a visual check",
+			"matchPackageNames": ["satori"],
+			"groupName": "satori (OG images)",
+			"groupSlug": "satori",
+			"automerge": false,
+			"addLabels": ["needs-visual-check"]
+		},
+		{
+			"description": "Majors (TypeScript, pnpm, Node, Astro...) wait for approval in the Dependency Dashboard",
+			"matchUpdateTypes": ["major"],
+			"dependencyDashboardApproval": true,
+			"automerge": false,
+			"addLabels": ["major"]
+		}
+	]
 }
