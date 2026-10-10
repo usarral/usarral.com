@@ -295,7 +295,7 @@ Ya puestos, pasé también **Clef-flash por Workers AI**. Así podía separar do
 | Van a revisión | 53 | 58 | 30 |
 | Acierto en lo que clasifica solo | 94,8 % | 95,7 % | 93,1 % |
 | Latencia por email (p50) | 1,34 s | 0,31 s | 0,31 s |
-| Coste de los 246 emails | luz de casa | ~0,02 $ | ~0,07 $ |
+| Consumo de los 246 emails | luz de casa | 561 neuronas | 6.140 neuronas |
 
 ### Local frente a nube: el mismo modelo
 
@@ -313,7 +313,7 @@ Tiene una sutileza: ajusté las preguntas mirando los errores de Flash, así que
 
 Lo que sí cambia de verdad es la velocidad: **unos 300 ms por correo** en Cloudflare, frente a 1,3 s en mi gráfica. Curiosamente, Flash y el 27B tardan lo mismo en la nube. Una petición vacía a la API de Cloudflare ya tarda unos 270 ms desde mi casa, así que **lo que se mide es la red**, y la diferencia de cómputo que anuncia Cloudflare (39 ms frente a 209 ms) queda escondida.
 
-El coste es ridículo: 270.663 tokens de entrada son unos 2 céntimos con Flash y unos 7 con el 27B por el buzón entero, y la salida no se cobra porque no hay salida. A cambio, claro, tus correos salen de casa.
+¿Y el coste? Workers AI mide el consumo en **neuronas** y regala **10.000 al día**. Cada respuesta incluye una cabecera `cf-ai-neurons` con lo que ha gastado esa petición, y el panel de Cloudflare lleva la cuenta. El buzón entero (270.663 tokens de entrada) consumió **6.140 neuronas con el 27B** y apenas **561 con Flash**. Las dos pasadas, más las pruebas, **entraron en la cuota gratuita del día**. Pagando, el 27B saldría por unos 7 céntimos y Flash por menos de uno. La salida no se cobra porque no hay salida. A cambio, claro, tus correos salen de casa.
 
 Y un detalle que me gustó: ejecutar Flash en local sobre los ficheros dio **exactamente las mismas cifras** que la ejecución sobre Gmail, al decimal. Una sola pasada sin muestreo: la misma entrada da siempre la misma salida. Prueba a conseguir eso pidiéndole JSON a un modelo de chat.
 
