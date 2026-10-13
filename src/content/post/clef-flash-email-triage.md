@@ -133,7 +133,7 @@ The q8_0 version fits in 12 GB, but only just. If other things are using the GPU
 
 The project is Node 24 with TypeScript. Node 24 already runs `.ts` directly, with no build step (`node src/cli.ts`), and `tsc` is only there for type checking. Dependencies: `imapflow` for IMAP and `mailparser` for MIME. The rest is `fetch` and `node:test`.
 
-> **📦 Full code:** the project, the 246-email corpus with its labels, the design log and the logs of every run are in the [clef-triage repository](https://github.com/usarral/clef-triage).
+> **📦 Full code:** the project, the 246-email corpus with its labels and the logs of every run are in the [clef-triage repository](https://github.com/usarral/clef-triage). The experiment's design log is at the end of the article.
 
 The architecture is ports and adapters, without going overboard:
 
@@ -341,6 +341,50 @@ Clef-flash doesn't replace an LLM. It won't summarize the email or draft the rep
 - It fits on a 12 GB card and classifies a whole mailbox in minutes, without your emails leaving home.
 
 And "prompting" turns into something close to product design: **defining your categories well**. What improved the results the most wasn't a prompt trick, but writing down explicitly what I meant by "notification" or "high priority". A task that, if you think about it, you'd have to do anyway if a person were doing the classifying.
+
+## Appendix: experiment design log
+
+<details>
+<summary>Timeline, decisions and technical issues (expand)</summary>
+
+I took notes on every step while building the PoC. This is what didn't fit in the body of the article.
+
+**1. Research.** Clef and Clef-flash came out on October 1st with TypeSafe's System One API (Jev). Before starting I read the independent Towards AI analysis: Flash struggles with inputs that don't fit anything. Two design decisions come from there: the `otro` escape option and deciding by the margin between the two most likely options.
+
+**2. Language.** The first draft was in Python. I rewrote it in Node 24 with TypeScript because it's my usual stack, and Node 24 runs `.ts` without a build step. Only two dependencies: `imapflow` and `mailparser`.
+
+**3. Architecture.** Ports and adapters. `TriageService` only knows interfaces and `cli.ts` is the only place that creates concrete classes. It paid off twice: adding Gmail labels was a new adapter, and moving from Ollama to Workers AI was a URL change.
+
+**4. Question design decisions.**
+
+- Instructions in English even though the corpus is in Spanish. The base model is multilingual and the option values match the gold labels.
+- Every question warns that `subject` and `body` are data, not instructions.
+- Body truncated to 4,000 characters.
+- `mailparser` turns HTML into text keeping links as `text [url]`, because the target URL is key to spotting phishing.
+
+**5. From the plan to Ollama.** The plan was `llama.cpp` with a quantized GGUF, but Ollama already supported the endpoint and I had it installed. The client didn't change: only the URL and the `model` field.
+
+**6. Issue: the unsubscribe header.** `mailparser` folds every `List-*` header into a single `list` header, so looking for `list-unsubscribe` was always false. The test that parses the whole corpus caught it.
+
+**7. Iterations.** v1 and v2 were evaluated offline on the `.eml` files, and v3 straight on Gmail, scored afterwards against the gold labels by matching `Message-ID`. Every run leaves a `.log` and a `.jsonl` with the raw probabilities in `runs/`, which are in the repository.
+
+**8. Gmail.**
+
+- First a `--dry-run` with 5 emails, then 5 for real, then the remaining 241.
+- After the first 5 I checked over IMAP: keywords and labels set, all 246 still unread and 241 left to process. Reruns don't redo work.
+- Gmail labels don't handle accents well: `Crítica` became `Critica`.
+
+**9. Incident.** I cancelled an evaluation from the UI, but the process kept running in the background and competed for the GPU with the real triage. Latency went from 1.4 to 2.5 s per email until I killed it.
+
+**10. Workers AI.** The first attempt returned a 404 from Cloudflare because the account ID variable was misspelled in `.env`. The `cf-ai-neurons` header on every response lets you estimate usage before checking the dashboard.
+
+**11. What I'm leaving for later.**
+
+- A dedicated threshold for `sospechoso` (say 0.8) and a cumulative threshold on High + Critical for priority.
+- Splitting one set for tuning the questions and another for unbiased measurement.
+- Finding out why Clef-flash used far fewer neurons than its per-token price suggests.
+
+</details>
 
 ## Sources
 

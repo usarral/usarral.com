@@ -132,7 +132,7 @@ La versión q8_0 cabe en 12 GB, pero muy justa. Si tienes otras cosas usando la 
 
 El proyecto está en Node 24 con TypeScript. Node 24 ya ejecuta `.ts` directamente, sin paso de compilación (`node src/cli.ts`), y `tsc` solo sirve para comprobar tipos. Dependencias: `imapflow` para IMAP y `mailparser` para el MIME. El resto es `fetch` y `node:test`.
 
-> **📦 Código completo:** el proyecto, el corpus de 246 emails con sus etiquetas, la bitácora y los logs de cada ejecución están en el [repositorio clef-triage](https://github.com/usarral/clef-triage).
+> **📦 Código completo:** el proyecto, el corpus de 246 emails con sus etiquetas y los logs de cada ejecución están en el [repositorio clef-triage](https://github.com/usarral/clef-triage). La bitácora del experimento está al final del artículo.
 
 La arquitectura es de puertos y adaptadores, sin volverse loco:
 
@@ -340,6 +340,50 @@ Clef-flash no sustituye a un LLM. No te va a resumir el email ni a redactar la r
 - Cabe en una gráfica de 12 GB y clasifica un buzón entero en minutos, sin que tus correos salgan de casa.
 
 Y el trabajo de "prompting" se convierte en algo casi de diseño de producto: **definir bien tus categorías**. Lo que más mejoró los resultados no fue un truco de prompt, sino escribir de forma explícita qué entendía yo por "notificación" o por "prioridad alta". Una tarea que, si lo piensas, deberías hacer igual aunque clasificara una persona.
+
+## Anexo: bitácora del experimento
+
+<details>
+<summary>Cronología, decisiones y problemas técnicos (desplegar)</summary>
+
+Fui apuntando cada paso mientras montaba la PoC. Esto es lo que no cabe en el cuerpo del artículo.
+
+**1. Investigación.** Clef y Clef-flash salieron el 1 de octubre con la API System One de TypeSafe (Jev). Antes de empezar leí el análisis independiente de Towards AI: Flash flojea con entradas que no encajan en nada. De ahí salen dos decisiones del diseño, la opción de escape `otro` y decidir por margen entre las dos opciones más probables.
+
+**2. Lenguaje.** El primer borrador fue en Python. Lo rehíce en Node 24 con TypeScript porque es mi stack habitual, y Node 24 ejecuta `.ts` sin compilar. Solo dos dependencias: `imapflow` y `mailparser`.
+
+**3. Arquitectura.** Puertos y adaptadores. `TriageService` solo conoce interfaces y `cli.ts` es el único sitio que crea clases concretas. Se notó dos veces: añadir las etiquetas de Gmail fue un adaptador nuevo, y pasar de Ollama a Workers AI fue cambiar una URL.
+
+**4. Decisiones de las preguntas.**
+
+- Instrucciones en inglés aunque el corpus está en español. El modelo base es multilingüe y los valores de las opciones coinciden con el gold.
+- Cada pregunta avisa de que `subject` y `body` son datos, no instrucciones.
+- Cuerpo truncado a 4.000 caracteres.
+- `mailparser` convierte el HTML a texto conservando los enlaces como `texto [url]`, porque la URL de destino es clave para detectar phishing.
+
+**5. Del plan a Ollama.** El plan era `llama.cpp` con un GGUF cuantizado, pero Ollama ya soportaba el endpoint y lo tenía instalado. El cliente no cambió: solo la URL y el campo `model`.
+
+**6. Problema: la cabecera de baja.** `mailparser` agrupa todas las cabeceras `List-*` en una sola cabecera `list`, así que buscar `list-unsubscribe` siempre daba falso. Lo detectó el test que parsea el corpus entero.
+
+**7. Iteraciones.** v1 y v2 se evaluaron offline sobre los `.eml`, y v3 directamente sobre Gmail, puntuada después contra el gold cruzando por `Message-ID`. Cada ejecución deja en `runs/` un `.log` y un `.jsonl` con las probabilidades crudas, que están en el repositorio.
+
+**8. Gmail.**
+
+- Primero un `--dry-run` con 5 correos, luego 5 en real y después los 241 restantes.
+- Tras los 5 primeros lo comprobé por IMAP: keywords y etiquetas puestas, los 246 seguían sin leer y quedaban 241 por procesar. La ejecución se puede repetir sin duplicar trabajo.
+- Las etiquetas de Gmail no admiten bien los acentos: `Crítica` pasó a `Critica`.
+
+**9. Incidente.** Cancelé una evaluación desde la interfaz, pero el proceso siguió vivo en segundo plano y competía por la GPU con el triaje real. La latencia subió de 1,4 a 2,5 s por correo hasta que lo maté.
+
+**10. Workers AI.** El primer intento devolvió un 404 de Cloudflare porque la variable del account ID estaba mal escrita en el `.env`. La cabecera `cf-ai-neurons` de cada respuesta permite estimar el consumo antes de mirar el panel.
+
+**11. Lo que dejo pendiente.**
+
+- Un umbral propio para `sospechoso` (por ejemplo 0,8) y un umbral acumulado sobre Alta + Crítica para la prioridad.
+- Separar un conjunto para ajustar las preguntas y otro para medir sin sesgo.
+- Confirmar por qué Clef-flash consumió muchas menos neuronas de lo que indica su precio por token.
+
+</details>
 
 ## Fuentes
 
