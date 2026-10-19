@@ -3,7 +3,7 @@ import type { Locale } from "./config";
 export const ui = {
 	en: {
 		"site.description":
-			"Software developer based in Spain. Articles on web development, architecture, Angular, TypeScript, Spring Boot and NestJS.",
+			"Software developer focused on solution architecture and microservices design. Articles on NestJS, TypeScript, domain-driven design, Docker and cloud delivery.",
 
 		"nav.home": "Home",
 		"nav.projects": "Projects",
@@ -25,8 +25,8 @@ export const ui = {
 
 		"home.title": "Hi, I'm Carlos",
 		"home.bio":
-			"I'm a software developer based in Spain, with experience in web development. I'm passionate about technology and I love to learn new things. I'm always looking for new challenges and opportunities to grow as a professional. I work with technologies like Spring Boot, Angular, TypeScript, NestJS, PHP, and more.",
-		"home.pageTitle": "Home",
+			"I'm a software developer focused on solution architecture and microservices design. I'm at my best turning a fuzzy problem into a clear system: the boundaries, the trade-offs and the decisions, written down. And I stay close to the code, building and shipping what I design, mainly in NestJS, TypeScript and Java. Three years in production, plus freelance projects before that. Based in Spain, open to remote architecture roles and to hands-on engineering roles with a design focus.",
+		"home.pageTitle": "Solution architecture and microservices",
 		"home.pinnedPosts": "Pinned Posts",
 		"home.posts": "Posts",
 		"home.findMeOn": "Find me on",
@@ -42,6 +42,7 @@ export const ui = {
 		"projects.ofProjects": "of",
 		"projects.projects": "projects",
 		"projects.present": "present",
+		"projects.roleLabel": "Role",
 
 		"posts.title": "Posts",
 		"posts.pageDescription": "Read my collection of posts and the things that interest me",
@@ -73,15 +74,28 @@ export const ui = {
 		"tags.posts": "Posts",
 
 		"about.title": "About",
-		"about.description": "More about me, what I do and the technologies I work with.",
+		"about.description":
+			"What I do, how I work and the technologies I use: solution architecture, microservices design and the backends that implement them.",
 		"about.intro":
-			"This page goes one layer deeper than the homepage: the technologies I actually use day to day, and the kind of problems I've been paid to solve.",
+			"I design systems and I build them. My work starts with the problem: the domain, the constraints and the decisions that are expensive to reverse. Then I shape the architecture around them, and I stay close to the code to make sure it ships.",
+		"about.how":
+			"I write decisions down, draw the system before building it and keep the trade-offs visible. I lean on domain-driven design and hexagonal architecture when the domain justifies them, and on a simple monolith when it doesn't.",
 		"about.stackTitle": "What I work with",
-		"about.stackBackend": "Backend & languages: Java, Spring Boot, NestJS, PHP, Node.js, Python.",
-		"about.stackFrontend": "Frontend: Angular, TypeScript, React.",
-		"about.stackInfra": "Infrastructure & delivery: Docker, Jenkins, OpenShift, CI/CD, Git.",
+		"about.stackArchitecture":
+			"Architecture & design: microservices, domain-driven design, hexagonal architecture, CQRS, architecture decision records.",
+		"about.stackBackend":
+			"Backend & languages: NestJS, TypeScript, Node.js, Java, Spring Boot, Python.",
+		"about.stackFrontend": "Frontend: Angular, React, TypeScript.",
+		"about.stackInfra":
+			"Cloud & delivery: OpenShift, Docker, Jenkins, CI/CD, Git, Cloudflare, Vercel.",
 		"about.stackOther":
-			"Also: SAP ABAP4/UI5 for ERP customization, IoT with Arduino and WebSockets, and machine learning with PyTorch.",
+			"Also: PHP, SAP ABAP4/UI5 for ERP customization, IoT with Arduino and WebSockets, and machine learning with PyTorch.",
+		"about.experienceTitle": "Experience",
+		"about.experienceFreelance": "Before that, freelance projects.",
+		"about.ctaTitle": "Work with me",
+		"about.cta":
+			"I'm open to remote architecture roles and to hands-on engineering roles with a design focus.",
+		"about.emailLabel": "Email",
 		"about.projectsCta": "See the full list of projects, with real client and personal work →",
 
 		"404.title": "404 | Oops something went wrong",
@@ -92,7 +106,7 @@ export const ui = {
 	},
 	es: {
 		"site.description":
-			"Desarrollador de software en España. Artículos sobre desarrollo web, arquitectura, Angular, TypeScript, Spring Boot y NestJS.",
+			"Desarrollador de software especializado en arquitectura de soluciones y diseño de microservicios. Artículos sobre NestJS, TypeScript, domain-driven design, Docker y entrega en la nube.",
 
 		"nav.home": "Inicio",
 		"nav.projects": "Proyectos",
@@ -114,8 +128,8 @@ export const ui = {
 
 		"home.title": "Hola, soy Carlos",
 		"home.bio":
-			"Soy un desarrollador de software, con experiencia en desarrollo web. Me apasiona la tecnología y me encanta aprender cosas nuevas. Siempre estoy buscando nuevos retos y oportunidades para crecer como profesional. Trabajo con tecnologías como Spring Boot, Angular, TypeScript, NestJS, PHP y más.",
-		"home.pageTitle": "Inicio",
+			"Soy un desarrollador de software especializado en arquitectura de soluciones y diseño de microservicios. Donde más aporto es convirtiendo un problema difuso en un sistema claro: los límites, los trade-offs y las decisiones, por escrito. Y sigo cerca del código: construyo y entrego lo que diseño, sobre todo en NestJS, TypeScript y Java. Tres años en producción, más proyectos freelance antes. En España, abierto a puestos remotos de arquitectura y a puestos de desarrollo con foco en diseño.",
+		"home.pageTitle": "Arquitectura de soluciones y microservicios",
 		"home.pinnedPosts": "Posts destacados",
 		"home.posts": "Posts",
 		"home.findMeOn": "Encuéntrame en",
@@ -131,6 +145,7 @@ export const ui = {
 		"projects.ofProjects": "de",
 		"projects.projects": "proyectos",
 		"projects.present": "actualidad",
+		"projects.roleLabel": "Rol",
 
 		"posts.title": "Posts",
 		"posts.pageDescription": "Lee mi colección de posts y las cosas que me interesan",
@@ -162,15 +177,28 @@ export const ui = {
 		"tags.posts": "Posts",
 
 		"about.title": "Sobre mí",
-		"about.description": "Más sobre mí, lo que hago y las tecnologías con las que trabajo.",
+		"about.description":
+			"Lo que hago, cómo trabajo y las tecnologías que uso: arquitectura de soluciones, diseño de microservicios y los backends que los implementan.",
 		"about.intro":
-			"Esta página va un paso más allá que la portada: las tecnologías que uso en el día a día y el tipo de problemas que he resuelto profesionalmente.",
+			"Diseño sistemas y también los construyo. Mi trabajo empieza por el problema: el dominio, las restricciones y las decisiones que cuesta revertir. Después doy forma a la arquitectura a su alrededor, y sigo cerca del código para asegurarme de que sale adelante.",
+		"about.how":
+			"Escribo las decisiones, dibujo el sistema antes de construirlo y mantengo visibles los trade-offs. Recurro a domain-driven design y arquitectura hexagonal cuando el dominio lo justifica, y a un monolito sencillo cuando no.",
 		"about.stackTitle": "Con qué trabajo",
-		"about.stackBackend": "Backend y lenguajes: Java, Spring Boot, NestJS, PHP, Node.js, Python.",
-		"about.stackFrontend": "Frontend: Angular, TypeScript, React.",
-		"about.stackInfra": "Infraestructura y despliegue: Docker, Jenkins, OpenShift, CI/CD, Git.",
+		"about.stackArchitecture":
+			"Arquitectura y diseño: microservicios, domain-driven design, arquitectura hexagonal, CQRS, registros de decisiones de arquitectura.",
+		"about.stackBackend":
+			"Backend y lenguajes: NestJS, TypeScript, Node.js, Java, Spring Boot, Python.",
+		"about.stackFrontend": "Frontend: Angular, React, TypeScript.",
+		"about.stackInfra":
+			"Cloud y despliegue: OpenShift, Docker, Jenkins, CI/CD, Git, Cloudflare, Vercel.",
 		"about.stackOther":
-			"También: SAP ABAP4/UI5 para personalización de ERP, IoT con Arduino y WebSockets, y machine learning con PyTorch.",
+			"También: PHP, SAP ABAP4/UI5 para personalización de ERP, IoT con Arduino y WebSockets, y machine learning con PyTorch.",
+		"about.experienceTitle": "Experiencia",
+		"about.experienceFreelance": "Antes, proyectos freelance.",
+		"about.ctaTitle": "Trabajemos juntos",
+		"about.cta":
+			"Estoy abierto a puestos remotos de arquitectura y a puestos de desarrollo con foco en diseño.",
+		"about.emailLabel": "Correo",
 		"about.projectsCta":
 			"Ver la lista completa de proyectos, con trabajo real de clientes y personal →",
 

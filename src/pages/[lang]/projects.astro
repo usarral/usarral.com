@@ -76,7 +76,7 @@ const meta = {
 		data-of={t("projects.ofProjects")}
 		data-projects={t("projects.projects")}
 	>
-		{projects.map((project) => <ProjectCard project={project} />)}
+		{projects.map((project) => <ProjectCard project={project} roleLabel={t("projects.roleLabel")} />)}
 	</div>
 </PageLayout>
 
