@@ -43,6 +43,7 @@ export const projects: Project[] = [
 			"Spring Boot",
 			"Angular",
 			"Node.js",
+			"WebSockets",
 			"Docker",
 			"Jenkins",
 			"OpenShift",
