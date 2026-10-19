@@ -24,7 +24,95 @@ export interface LocalizedProject {
 	links: { label: string; href: string }[] | undefined;
 }
 
+// Ordered from most to least recent, by start date.
 export const projects: Project[] = [
+	{
+		name: {
+			en: "Pequeñas Raíces Libres · NGO website",
+			es: "Pequeñas Raíces Libres · Web de ONG",
+		},
+		summary: {
+			en: "Website rebuilt from Canva into a fast static site that non-technical staff edit themselves.",
+			es: "Web reconstruida desde Canva como sitio estático y rápido que el equipo no técnico edita por sí mismo.",
+		},
+		description: {
+			en: "Full rebuild of the website of a non-profit from Huesca that supports children in Guaricano (Dominican Republic). The previous Canva site blocked Google from indexing it and rendered everything with JavaScript. The new one is static HTML built with Astro and Tailwind, with a Sveltia CMS editing panel behind GitHub login so the association updates texts, photos and projects (each one a blog-style page) without touching code. Changes go through pull requests validated by GitHub Actions, photos are resized and compressed automatically on upload, fonts are self-hosted and there are no cookies. Deployed on Cloudflare Pages, scoring 97 on mobile and 100 on desktop in PageSpeed Insights, and 100 in SEO.",
+			es: "Reconstrucción completa de la web de una asociación sin ánimo de lucro de Huesca que apoya a la infancia de Guaricano (República Dominicana). La web anterior, hecha con Canva, impedía que Google la indexara y lo pintaba todo con JavaScript. La nueva es HTML estático con Astro y Tailwind, con un panel de edición Sveltia CMS tras el acceso con GitHub, para que la asociación actualice textos, fotos y proyectos (cada uno una página tipo blog) sin tocar código. Los cambios pasan por pull requests validados con GitHub Actions, las fotos se reducen y comprimen solas al subirlas, las fuentes son propias y no hay cookies. Desplegada en Cloudflare Pages, con 97 en móvil y 100 en escritorio en PageSpeed Insights, y 100 en SEO.",
+		},
+		tech: ["Astro", "TailwindCSS", "TypeScript", "Sveltia CMS", "Cloudflare Pages", "CI/CD"],
+		links: [{ label: "pequenasraiceslibres.org", href: "https://pequenasraiceslibres.org" }],
+	},
+	{
+		name: {
+			en: "usarral.com",
+			es: "usarral.com",
+		},
+		summary: {
+			en: "Personal site and technical blog, statically built with Astro.",
+			es: "Web personal y blog técnico, construido estáticamente con Astro.",
+		},
+		description: {
+			en: "Personal website and technical blog focused on development, Docker deployments, security and systems automation. Static, fast and shipped through a custom CI/CD pipeline.",
+			es: "Web personal y blog técnico centrado en desarrollo, despliegues con Docker, seguridad y automatización de sistemas. Estático, rápido y publicado mediante un pipeline CI/CD propio.",
+		},
+		tech: ["Astro", "Node.js", "TailwindCSS", "Docker", "CI/CD"],
+		links: [
+			{ label: "usarral.com", href: "https://usarral.com" },
+			{ label: "GitHub", href: "https://github.com/usarral/usarral.com" },
+		],
+	},
+	{
+		name: {
+			en: "butler-ci-cli",
+			es: "butler-ci-cli",
+		},
+		summary: {
+			en: "Terminal tooling to drive Jenkins pipelines from the command line.",
+			es: "Herramienta de terminal para gestionar pipelines de Jenkins desde la línea de comandos.",
+		},
+		description: {
+			en: "Terminal tooling to automate Jenkins pipelines straight from the command line.",
+			es: "Herramienta de terminal para automatizar pipelines de Jenkins directamente desde la línea de comandos.",
+		},
+		tech: ["Node.js", "TypeScript", "Jenkins"],
+		links: [{ label: "GitHub", href: "https://github.com/usarral/butler-ci-cli" }],
+	},
+	{
+		name: {
+			en: "Astra5 · NASA Space Apps Challenge",
+			es: "Astra5 · NASA Space Apps Challenge",
+		},
+		summary: {
+			en: "Machine-learning flood detection on Sentinel-1 satellite imagery.",
+			es: "Detección de inundaciones mediante machine learning sobre imágenes del satélite Sentinel-1.",
+		},
+		description: {
+			en: "Flood detection tool built on Sentinel-1 imagery using Machine Learning with PyTorch. Backend in Node.js, model in Python and frontend in React.",
+			es: "Herramienta de detección de inundaciones construida sobre imágenes Sentinel-1 con Machine Learning en PyTorch. Backend en Node.js, modelo en Python y frontend en React.",
+		},
+		tech: ["Node.js", "Python", "PyTorch", "React", "Machine Learning"],
+		links: [{ label: "astra5.usarral.com", href: "https://astra5.usarral.com" }],
+	},
+	{
+		name: {
+			en: "Various projects at The Box of the Boss",
+			es: "Varios proyectos en The Box of the Boss",
+		},
+		summary: {
+			en: "Web platforms and IoT stage effects for an events production company.",
+			es: "Plataformas web y efectos escénicos IoT para una productora de eventos y espectáculos.",
+		},
+		description: {
+			en: "Web applications and platforms for an events and shows production company, including IoT-based control systems for stage illusion effects using Arduino, WebSockets and Node.js.",
+			es: "Aplicaciones y plataformas web para una productora de eventos y espectáculos, incluyendo sistemas de control IoT para efectos de ilusionismo en escenario con Arduino, WebSockets y Node.js.",
+		},
+		tech: ["Node.js", "WebSockets", "Arduino", "IoT"],
+		links: [
+			{ label: "theboxoftheboss.com", href: "https://theboxoftheboss.com" },
+			{ label: "plandefuga.es", href: "https://plandefuga.es" },
+			{ label: "pedrotercero.com", href: "https://pedrotercero.com" },
+		],
+	},
 	{
 		name: {
 			en: "e-RVC · Catalonia's vineyard registry",
@@ -89,26 +177,6 @@ export const projects: Project[] = [
 	},
 	{
 		name: {
-			en: "Various projects at The Box of the Boss",
-			es: "Varios proyectos en The Box of the Boss",
-		},
-		summary: {
-			en: "Web platforms and IoT stage effects for an events production company.",
-			es: "Plataformas web y efectos escénicos IoT para una productora de eventos y espectáculos.",
-		},
-		description: {
-			en: "Web applications and platforms for an events and shows production company, including IoT-based control systems for stage illusion effects using Arduino, WebSockets and Node.js.",
-			es: "Aplicaciones y plataformas web para una productora de eventos y espectáculos, incluyendo sistemas de control IoT para efectos de ilusionismo en escenario con Arduino, WebSockets y Node.js.",
-		},
-		tech: ["Node.js", "WebSockets", "Arduino", "IoT"],
-		links: [
-			{ label: "theboxoftheboss.com", href: "https://theboxoftheboss.com" },
-			{ label: "plandefuga.es", href: "https://plandefuga.es" },
-			{ label: "pedrotercero.com", href: "https://pedrotercero.com" },
-		],
-	},
-	{
-		name: {
 			en: "GDM La Merced",
 			es: "GDM La Merced",
 		},
@@ -122,57 +190,6 @@ export const projects: Project[] = [
 		},
 		tech: ["Node.js", "Web"],
 		links: [{ label: "gdmlamerced.com", href: "https://gdmlamerced.com" }],
-	},
-	{
-		name: {
-			en: "Pequeñas Raíces Libres · NGO website",
-			es: "Pequeñas Raíces Libres · Web de ONG",
-		},
-		summary: {
-			en: "Website rebuilt from Canva into a fast static site that non-technical staff edit themselves.",
-			es: "Web reconstruida desde Canva como sitio estático y rápido que el equipo no técnico edita por sí mismo.",
-		},
-		description: {
-			en: "Full rebuild of the website of a non-profit from Huesca that supports children in Guaricano (Dominican Republic). The previous Canva site blocked Google from indexing it and rendered everything with JavaScript. The new one is static HTML built with Astro and Tailwind, with a Sveltia CMS editing panel behind GitHub login so the association updates texts, photos and projects (each one a blog-style page) without touching code. Changes go through pull requests validated by GitHub Actions, photos are resized and compressed automatically on upload, fonts are self-hosted and there are no cookies. Deployed on Cloudflare Pages, scoring 97 on mobile and 100 on desktop in PageSpeed Insights, and 100 in SEO.",
-			es: "Reconstrucción completa de la web de una asociación sin ánimo de lucro de Huesca que apoya a la infancia de Guaricano (República Dominicana). La web anterior, hecha con Canva, impedía que Google la indexara y lo pintaba todo con JavaScript. La nueva es HTML estático con Astro y Tailwind, con un panel de edición Sveltia CMS tras el acceso con GitHub, para que la asociación actualice textos, fotos y proyectos (cada uno una página tipo blog) sin tocar código. Los cambios pasan por pull requests validados con GitHub Actions, las fotos se reducen y comprimen solas al subirlas, las fuentes son propias y no hay cookies. Desplegada en Cloudflare Pages, con 97 en móvil y 100 en escritorio en PageSpeed Insights, y 100 en SEO.",
-		},
-		tech: ["Astro", "TailwindCSS", "TypeScript", "Sveltia CMS", "Cloudflare Pages", "CI/CD"],
-		links: [{ label: "pequenasraiceslibres.org", href: "https://pequenasraiceslibres.org" }],
-	},
-	{
-		name: {
-			en: "usarral.com",
-			es: "usarral.com",
-		},
-		summary: {
-			en: "Personal site and technical blog, statically built with Astro.",
-			es: "Web personal y blog técnico, construido estáticamente con Astro.",
-		},
-		description: {
-			en: "Personal website and technical blog focused on development, Docker deployments, security and systems automation. Static, fast and shipped through a custom CI/CD pipeline.",
-			es: "Web personal y blog técnico centrado en desarrollo, despliegues con Docker, seguridad y automatización de sistemas. Estático, rápido y publicado mediante un pipeline CI/CD propio.",
-		},
-		tech: ["Astro", "Node.js", "TailwindCSS", "Docker", "CI/CD"],
-		links: [
-			{ label: "usarral.com", href: "https://usarral.com" },
-			{ label: "GitHub", href: "https://github.com/usarral/usarral.com" },
-		],
-	},
-	{
-		name: {
-			en: "Astra5 · NASA Space Apps Challenge",
-			es: "Astra5 · NASA Space Apps Challenge",
-		},
-		summary: {
-			en: "Machine-learning flood detection on Sentinel-1 satellite imagery.",
-			es: "Detección de inundaciones mediante machine learning sobre imágenes del satélite Sentinel-1.",
-		},
-		description: {
-			en: "Flood detection tool built on Sentinel-1 imagery using Machine Learning with PyTorch. Backend in Node.js, model in Python and frontend in React.",
-			es: "Herramienta de detección de inundaciones construida sobre imágenes Sentinel-1 con Machine Learning en PyTorch. Backend en Node.js, modelo en Python y frontend en React.",
-		},
-		tech: ["Node.js", "Python", "PyTorch", "React", "Machine Learning"],
-		links: [{ label: "astra5.usarral.com", href: "https://astra5.usarral.com" }],
 	},
 	{
 		name: {
@@ -194,22 +211,6 @@ export const projects: Project[] = [
 				href: "https://github.com/LyricalString/Node-Discord-Bot/tree/master",
 			},
 		],
-	},
-	{
-		name: {
-			en: "butler-ci-cli",
-			es: "butler-ci-cli",
-		},
-		summary: {
-			en: "Terminal tooling to drive Jenkins pipelines from the command line.",
-			es: "Herramienta de terminal para gestionar pipelines de Jenkins desde la línea de comandos.",
-		},
-		description: {
-			en: "Terminal tooling to automate Jenkins pipelines straight from the command line.",
-			es: "Herramienta de terminal para automatizar pipelines de Jenkins directamente desde la línea de comandos.",
-		},
-		tech: ["Node.js", "TypeScript", "Jenkins"],
-		links: [{ label: "GitHub", href: "https://github.com/usarral/butler-ci-cli" }],
 	},
 ];
 
