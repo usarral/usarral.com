@@ -4,6 +4,7 @@ import { getPostsByLocale } from "@/data/post";
 import { isLocale, locales } from "@/i18n/config";
 import { ui } from "@/i18n/ui";
 import { siteConfig } from "@/site.config";
+import { collectionDateSort } from "@/utils/date";
 
 export const getStaticPaths = (() => {
 	return locales.map((lang) => ({ params: { lang } }));
@@ -12,7 +13,7 @@ export const getStaticPaths = (() => {
 export const GET = async (context: APIContext) => {
 	const { lang } = context.params;
 	if (!isLocale(lang)) throw new Error(`Invalid locale: ${lang}`);
-	const posts = await getPostsByLocale(lang);
+	const posts = (await getPostsByLocale(lang)).sort(collectionDateSort);
 
 	return rss({
 		title: siteConfig.title,
