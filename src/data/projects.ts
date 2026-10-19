@@ -124,6 +124,22 @@ export const projects: Project[] = [
 	},
 	{
 		name: {
+			en: "Pequeñas Raíces Libres · NGO website",
+			es: "Pequeñas Raíces Libres · Web de ONG",
+		},
+		summary: {
+			en: "Website rebuilt from Canva into a fast static site that non-technical staff edit themselves.",
+			es: "Web reconstruida desde Canva como sitio estático y rápido que el equipo no técnico edita por sí mismo.",
+		},
+		description: {
+			en: "Full rebuild of the website of a non-profit from Huesca that supports children in Guaricano (Dominican Republic). The previous Canva site blocked Google from indexing it and rendered everything with JavaScript. The new one is static HTML built with Astro and Tailwind, with a Sveltia CMS editing panel behind GitHub login so the association updates texts, photos and projects (each one a blog-style page) without touching code. Changes go through pull requests validated by GitHub Actions, photos are resized and compressed automatically on upload, fonts are self-hosted and there are no cookies. Deployed on Cloudflare Pages, scoring 97 on mobile and 100 on desktop in PageSpeed Insights, and 100 in SEO.",
+			es: "Reconstrucción completa de la web de una asociación sin ánimo de lucro de Huesca que apoya a la infancia de Guaricano (República Dominicana). La web anterior, hecha con Canva, impedía que Google la indexara y lo pintaba todo con JavaScript. La nueva es HTML estático con Astro y Tailwind, con un panel de edición Sveltia CMS tras el acceso con GitHub, para que la asociación actualice textos, fotos y proyectos (cada uno una página tipo blog) sin tocar código. Los cambios pasan por pull requests validados con GitHub Actions, las fotos se reducen y comprimen solas al subirlas, las fuentes son propias y no hay cookies. Desplegada en Cloudflare Pages, con 97 en móvil y 100 en escritorio en PageSpeed Insights, y 100 en SEO.",
+		},
+		tech: ["Astro", "TailwindCSS", "TypeScript", "Sveltia CMS", "Cloudflare Pages", "CI/CD"],
+		links: [{ label: "pequenasraiceslibres.org", href: "https://pequenasraiceslibres.org" }],
+	},
+	{
+		name: {
 			en: "usarral.com",
 			es: "usarral.com",
 		},

@@ -28,6 +28,8 @@ export const techColors: Record<string, { bg: string; text: string }> = {
 	TypeScript: { bg: "#3178C6", text: "#fff" },
 	Web: { bg: "#475569", text: "#fff" },
 	Astro: { bg: "#FF5D01", text: "#1f2937" },
+	"Sveltia CMS": { bg: "#A21CAF", text: "#fff" },
+	"Cloudflare Pages": { bg: "#F6821F", text: "#1f2937" },
 };
 
 export const defaultTechColor = { bg: "#6B7280", text: "#fff" };
