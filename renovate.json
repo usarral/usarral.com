@@ -55,6 +55,11 @@
 			"addLabels": ["needs-visual-check"]
 		},
 		{
+			"description": "astro check does not support TypeScript 7 yet (it fails the CI): stay on 6.x until Astro adds support, then remove this rule",
+			"matchPackageNames": ["typescript"],
+			"allowedVersions": "<7"
+		},
+		{
 			"description": "Majors (TypeScript, pnpm, Node, Astro...) wait for approval in the Dependency Dashboard",
 			"matchUpdateTypes": ["major"],
 			"dependencyDashboardApproval": true,
