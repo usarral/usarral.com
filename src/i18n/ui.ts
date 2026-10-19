@@ -41,6 +41,7 @@ export const ui = {
 		"projects.clearFilter": "Clear filter",
 		"projects.ofProjects": "of",
 		"projects.projects": "projects",
+		"projects.present": "present",
 
 		"posts.title": "Posts",
 		"posts.pageDescription": "Read my collection of posts and the things that interest me",
@@ -129,6 +130,7 @@ export const ui = {
 		"projects.clearFilter": "Limpiar filtro",
 		"projects.ofProjects": "de",
 		"projects.projects": "proyectos",
+		"projects.present": "actualidad",
 
 		"posts.title": "Posts",
 		"posts.pageDescription": "Lee mi colección de posts y las cosas que me interesan",
