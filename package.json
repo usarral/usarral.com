@@ -12,7 +12,7 @@
 		"preview": "astro preview",
 		"check": "astro check && biome check",
 		"lint": "biome check --write",
-		"format": "prettier -w . --cache",
+		"format": "biome format --write",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -57,9 +57,6 @@
 		"autoprefixer": "^10.6.1",
 		"husky": "^9.1.7",
 		"pagefind": "^1.5.2",
-		"prettier": "^3.9.9",
-		"prettier-plugin-astro": "0.14.1",
-		"prettier-plugin-tailwindcss": "^0.8.1",
 		"reading-time": "^1.5.0",
 		"tailwindcss": "4.3.3",
 		"typescript": "^6.0.3"

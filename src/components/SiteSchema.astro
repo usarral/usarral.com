@@ -1,0 +1,32 @@
+---
+import { siteConfig } from "@/site.config";
+
+const site = siteConfig.url;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": `${site}/#website`,
+			url: site,
+			name: siteConfig.title,
+			inLanguage: ["en", "es"],
+			publisher: { "@id": `${site}/#person` },
+		},
+		{
+			"@type": "Person",
+			"@id": `${site}/#person`,
+			name: "Carlos Sesma",
+			alternateName: siteConfig.author,
+			url: site,
+			jobTitle: "Software developer",
+			description: siteConfig.description,
+			address: { "@type": "PostalAddress", addressCountry: "ES" },
+			sameAs: ["https://github.com/usarral", "https://linkedin.com/in/usarral"],
+		},
+	],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -91,7 +91,7 @@ The site reads as a desert terminal: a spartan, monospace console where almost n
 
 The system is flat by conviction, not by omission: no shadows exist anywhere in the codebase. Depth and grouping come from low-opacity tonal borders and dashed strokes instead — a "stitched" quality that echoes both a terminal's plain rules and a cactus's ribbed, dashed silhouette. The one indulgence is the accent color, and even that indulgence is disciplined: it changes meaning between light and dark rather than multiplying into a full palette.
 
-This is a personal, text-first site (see PRODUCT.md) for a developer audience as much as a recruiting one, and the visual system matches that: it never reaches for a marketing "hero," a filled call-to-action button, or imagery. Links, dashed borders, and small tech-colored chips are the entire vocabulary.
+This is a personal, text-first site for a developer audience as much as a recruiting one, and the visual system matches that: it never reaches for a marketing "hero," a filled call-to-action button, or imagery. Links, dashed borders, and small tech-colored chips are the entire vocabulary.
 
 **Key Characteristics:**
 - One monospace typeface for literally everything; hierarchy is size/weight only.
@@ -176,7 +176,7 @@ Radii are small and utilitarian: `2px` on inline code, `4px` (default `rounded`)
 - **Background:** transparent (no fill) at all times — the border and text carry the whole card.
 - **Internal Padding:** 16px, with an internal `gap-3` (12px) stack for header/description/pills/links.
 
-### GitHub Card (webmention/repo embed)
+### GitHub Card (repo embed)
 - **Corner Style:** `rounded-md` (6px).
 - **Background:** low-opacity heading-ink tonal fill (`bg-global-text/5`) — the one component that does use a background fill, since it needs to read as an embedded "card" distinct from the page.
 - **Loading state:** `animate-pulse` skeleton using the same tonal fill, text made transparent.
