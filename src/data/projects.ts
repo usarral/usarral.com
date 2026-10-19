@@ -17,6 +17,10 @@ export interface Project {
 	summary: LocalizedString;
 	description: LocalizedString;
 	period: ProjectPeriod;
+	/** What I did in the project; omit when unknown. */
+	role?: LocalizedString;
+	/** Paid work for a client or employer, as opposed to personal projects. Feeds the About page. */
+	professional?: boolean;
 	tech: string[];
 	links?: {
 		label: string;
@@ -32,6 +36,8 @@ export interface LocalizedProject {
 	period: string;
 	/** First year, for structured data. */
 	periodStart: string;
+	role: string | undefined;
+	professional: boolean;
 	tech: string[];
 	links: { label: string; href: string }[] | undefined;
 }
@@ -52,6 +58,10 @@ export const projects: Project[] = [
 			es: "Reconstrucción completa de la web de una asociación sin ánimo de lucro de Huesca que apoya a la infancia de Guaricano (República Dominicana). La web anterior, hecha con Canva, impedía que Google la indexara y lo pintaba todo con JavaScript. La nueva es HTML estático con Astro y Tailwind, con un panel de edición Sveltia CMS tras el acceso con GitHub, para que la asociación actualice textos, fotos y proyectos (cada uno una página tipo blog) sin tocar código. Los cambios pasan por pull requests validados con GitHub Actions, las fotos se reducen y comprimen solas al subirlas, las fuentes son propias y no hay cookies. Desplegada en Cloudflare Pages, con 97 en móvil y 100 en escritorio en PageSpeed Insights, y 100 en SEO.",
 		},
 		period: { start: 2026, end: "present" },
+		role: {
+			en: "Design and development",
+			es: "Diseño y desarrollo",
+		},
 		tech: ["Astro", "TailwindCSS", "TypeScript", "Sveltia CMS", "Cloudflare Pages", "CI/CD"],
 		links: [{ label: "pequenasraiceslibres.org", href: "https://pequenasraiceslibres.org" }],
 	},
@@ -69,6 +79,10 @@ export const projects: Project[] = [
 			es: "Web personal y blog técnico centrado en desarrollo, despliegues con Docker, seguridad y automatización de sistemas. Estático, rápido y publicado mediante un pipeline CI/CD propio.",
 		},
 		period: { start: 2022, end: "present" },
+		role: {
+			en: "Design, development and operations",
+			es: "Diseño, desarrollo y operación",
+		},
 		tech: ["Astro", "Node.js", "TailwindCSS", "Docker", "CI/CD"],
 		links: [
 			{ label: "usarral.com", href: "https://usarral.com" },
@@ -89,6 +103,10 @@ export const projects: Project[] = [
 			es: "Herramienta de terminal para automatizar pipelines de Jenkins directamente desde la línea de comandos.",
 		},
 		period: { start: 2025, end: "present" },
+		role: {
+			en: "Design and development",
+			es: "Diseño y desarrollo",
+		},
 		tech: ["Node.js", "TypeScript", "Jenkins"],
 		links: [{ label: "GitHub", href: "https://github.com/usarral/butler-ci-cli" }],
 	},
@@ -123,6 +141,10 @@ export const projects: Project[] = [
 			es: "Aplicaciones y plataformas web para una productora de eventos y espectáculos, incluyendo sistemas de control IoT para efectos de ilusionismo en escenario con Arduino, WebSockets y Node.js.",
 		},
 		period: { start: 2025 },
+		role: {
+			en: "Development",
+			es: "Desarrollo",
+		},
 		tech: ["Node.js", "WebSockets", "Arduino", "IoT"],
 		links: [
 			{ label: "theboxoftheboss.com", href: "https://theboxoftheboss.com" },
@@ -144,6 +166,11 @@ export const projects: Project[] = [
 			es: "Plataforma de microservicios detrás del e-RVC, el registro público de la Generalitat de Catalunya donde viticultores, bodegas y consejos reguladores gestionan plantaciones, vendimias y potencial vitivinícola. 22 microservicios en Java 8 y Spring Boot con un frontend Angular 14. Trabajo directo con cliente para recogida de requisitos, análisis funcional y resolución de incidencias críticas. Desplegado sobre Docker, Jenkins y OpenShift.",
 		},
 		period: { start: 2024, end: "present" },
+		role: {
+			en: "Requirements, functional analysis and critical incident resolution",
+			es: "Requisitos, análisis funcional y resolución de incidencias críticas",
+		},
+		professional: true,
 		tech: [
 			"Java",
 			"Spring Boot",
@@ -172,6 +199,11 @@ export const projects: Project[] = [
 			es: "Evolución y mantenimiento de las aplicaciones legacy de la administración lingüística de la Generalitat de Catalunya — VxL (Voluntariat per la Llengua, el programa que empareja aprendices de catalán con hablantes fluidos), GestCerCat (gestión de exámenes oficiales de catalán), LLC (portal de recursos en catalán), RTIJ (registro de traductores e intérpretes jurados) y los traductores automáticos basados en Apertium para occitano/aranés y el resto de pares de idiomas — construidas sobre Java 7, Servlets y JSP, desplegadas en Tomcat 7/9.",
 		},
 		period: { start: 2023, end: 2024 },
+		role: {
+			en: "Evolution and maintenance",
+			es: "Evolución y mantenimiento",
+		},
+		professional: true,
 		tech: ["Java", "Servlets", "JSP", "Tomcat", "Jenkins", "Apertium"],
 		links: [
 			{ label: "VxL", href: "https://www.vxl.cat" },
@@ -192,6 +224,11 @@ export const projects: Project[] = [
 			es: "Desarrollo de funcionalidades y resolución de bugs en SAP ABAP4 para grandes cadenas hoteleras, incluyendo trabajo de frontend en SAP UI5 e integración con flujos basados en Node.js 18 y Angular.",
 		},
 		period: { start: 2023 },
+		role: {
+			en: "Feature development and bug fixing",
+			es: "Desarrollo de funcionalidades y resolución de bugs",
+		},
+		professional: true,
 		tech: ["SAP ABAP4", "SAP UI5", "Node.js", "Angular"],
 		links: [{ label: "tmsforhotels.com", href: "http://www.tmsforhotels.com/tmshotels" }],
 	},
@@ -209,6 +246,10 @@ export const projects: Project[] = [
 			es: "Desarrollo y mantenimiento de la web y herramientas internas para un club local de balonmano: gestión de jugadores, calendarios de partidos y publicación de resultados.",
 		},
 		period: { start: 2022 },
+		role: {
+			en: "Development and maintenance",
+			es: "Desarrollo y mantenimiento",
+		},
 		tech: ["Node.js", "Web"],
 		links: [{ label: "gdmlamerced.com", href: "https://gdmlamerced.com" }],
 	},
@@ -226,6 +267,10 @@ export const projects: Project[] = [
 			es: "Chatbot de Discord escalable construido con Node.js y MongoDB. Llegó a más de 3 millones de usuarios en 27.000 servidores.",
 		},
 		period: { start: 2021, end: 2023 },
+		role: {
+			en: "Design and development",
+			es: "Diseño y desarrollo",
+		},
 		tech: ["Node.js", "MongoDB", "Discord API"],
 		links: [
 			{
@@ -256,6 +301,8 @@ export function localizeProject(project: Project, locale: Locale): LocalizedProj
 		description: project.description[locale],
 		period: formatPeriod(project.period, locale),
 		periodStart: String(project.period.start),
+		role: project.role?.[locale],
+		professional: project.professional ?? false,
 		tech: project.tech,
 		links: project.links,
 	};

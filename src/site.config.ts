@@ -12,7 +12,8 @@ export const siteConfig: SiteConfig = {
 		},
 	},
 	description:
-		"Software developer based in Spain. Articles on web development, architecture, Angular, TypeScript, Spring Boot and NestJS.",
+		"Software developer focused on solution architecture and microservices design. Articles on NestJS, TypeScript, domain-driven design, Docker and cloud delivery.",
+	email: "web@usarral.com",
 	lang: "en-US",
 	ogLocale: "en_US",
 	title: "Usarral",

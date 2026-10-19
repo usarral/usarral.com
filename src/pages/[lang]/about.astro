@@ -2,9 +2,11 @@
 import type { GetStaticPaths } from "astro";
 import SiteSchema from "@/components/SiteSchema.astro";
 import SocialList from "@/components/SocialList.astro";
+import { getLocalizedProjects } from "@/data/projects";
 import { isLocale, type Locale, locales } from "@/i18n/config";
 import { useTranslations } from "@/i18n/utils";
 import PageLayout from "@/layouts/Base.astro";
+import { siteConfig } from "@/site.config";
 
 export const getStaticPaths = (() => {
 	return locales.map((lang) => ({ params: { lang } }));
@@ -14,6 +16,8 @@ const { lang } = Astro.params;
 if (!isLocale(lang)) throw new Error(`Invalid locale: ${lang}`);
 const locale: Locale = lang;
 const t = useTranslations(locale);
+
+const experience = getLocalizedProjects(locale).filter((p) => p.professional);
 
 const meta = {
 	description: t("about.description"),
@@ -26,17 +30,42 @@ const meta = {
 	<h1 class="title mb-12">{t("about.title")}</h1>
 	<div class="prose prose-sm prose-usarral max-w-none">
 		<p>{t("about.intro")}</p>
+		<p>{t("about.how")}</p>
 	</div>
 	<section class="mt-16">
 		<h2 class="title mb-6 text-xl">{t("about.stackTitle")}</h2>
 		<ul class="space-y-2 text-sm" role="list">
+			<li>{t("about.stackArchitecture")}</li>
 			<li>{t("about.stackBackend")}</li>
-			<li>{t("about.stackFrontend")}</li>
 			<li>{t("about.stackInfra")}</li>
+			<li>{t("about.stackFrontend")}</li>
 			<li>{t("about.stackOther")}</li>
 		</ul>
 		<p class="mt-4 text-sm">
 			<a class="usarral-link" href={`/${locale}/projects/`}>{t("about.projectsCta")}</a>
+		</p>
+	</section>
+	<section class="mt-16">
+		<h2 class="title mb-6 text-xl">{t("about.experienceTitle")}</h2>
+		<ul class="space-y-2 text-sm" role="list">
+			{
+				experience.map((project) => (
+					<li>
+						<span class="text-gray-600 tabular-nums dark:text-gray-400">{project.period}</span>
+						{" · "}
+						{project.name}
+					</li>
+				))
+			}
+			<li>{t("about.experienceFreelance")}</li>
+		</ul>
+	</section>
+	<section class="mt-16">
+		<h2 class="title mb-6 text-xl">{t("about.ctaTitle")}</h2>
+		<p class="text-sm">{t("about.cta")}</p>
+		<p class="mt-2 text-sm">
+			{t("about.emailLabel")}:{" "}
+			<a class="usarral-link" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
 		</p>
 	</section>
 	<section class="mt-16">

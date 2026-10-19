@@ -5,9 +5,10 @@ import { defaultTechColor, techColors } from "@/data/techColors";
 
 interface Props {
 	project: LocalizedProject;
+	roleLabel: string;
 }
 
-const { project } = Astro.props;
+const { project, roleLabel } = Astro.props;
 const primaryLink = project.links?.[0];
 ---
 
@@ -34,6 +35,13 @@ const primaryLink = project.links?.[0];
 			}
 		</h2>
 		<p class="text-xs text-gray-600 dark:text-gray-400">{project.summary}</p>
+		{
+			project.role && (
+				<p class="text-xs text-gray-600 dark:text-gray-400">
+					<span class="font-semibold">{roleLabel}:</span> {project.role}
+				</p>
+			)
+		}
 	</header>
 
 	<p class="text-sm leading-relaxed">{project.description}</p>
