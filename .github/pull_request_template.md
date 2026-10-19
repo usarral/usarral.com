@@ -1,21 +1,24 @@
-<!-- Thank you for opening a PR and making this theme even better, I appreciate you taking the time to help out 🙌 -->
+## What does this change?
 
-#### What kind of changes does this PR include?
+<!-- A short summary and the reason behind it. Link the issue if there is one: Closes #123 -->
 
-<!-- Delete any that don’t apply -->
+## Type of change
 
-- Minor fixes (broken links, typos, css, etc.)
-- Changes with larger consequences (logic, library updates, etc.)
-- Something else!
+<!-- Match the Conventional Commits type of the PR title (see docs/COMMIT_CONVENTIONS.md). -->
 
-#### Description
+- [ ] `feat`: new feature, page or content
+- [ ] `fix`: bug fix
+- [ ] `perf` / `refactor`: no change in behaviour
+- [ ] `docs` / `chore` / `ci` / `build`: documentation, tooling or dependencies
 
-- Closes # <!-- Add an issue number if this PR will close it. -->
-- What does this PR change? A brief description would be great.
-- Did you change something visual? A before/after screenshot can be helpful.
+## Checklist
 
-<!--
-Here’s what will happen next:
-Hopefully I'll get time soon after your pull request to take a look and may ask you to make changes.
-I'll try to be responsive, but don’t worry if this takes a week or 2.
--->
+- [ ] The PR title follows Conventional Commits (it becomes the squash commit message).
+- [ ] `pnpm check` passes and `pnpm build` succeeds (Node 24).
+- [ ] Content exists in both languages (EN and ES), including new UI strings in `src/i18n/ui.ts`.
+- [ ] If it adds a third-party origin (script, style, frame, API), the CSP in `vercel.json` allows it and the browser console shows no violations.
+- [ ] Visual changes: checked in light and dark mode, on mobile and desktop.
+
+## Screenshots
+
+<!-- Before / after, if something looks different. Delete this section otherwise. -->
