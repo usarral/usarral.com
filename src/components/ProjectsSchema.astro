@@ -17,6 +17,7 @@ const schema = {
 			"@type": "CreativeWork",
 			name: project.name,
 			description: project.summary,
+			dateCreated: project.periodStart,
 			...(project.links?.[0] && { url: project.links[0].href }),
 		},
 	})),
