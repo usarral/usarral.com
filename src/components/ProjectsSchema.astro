@@ -1,0 +1,26 @@
+---
+import type { LocalizedProject } from "@/data/projects";
+
+interface Props {
+	projects: LocalizedProject[];
+}
+
+const { projects } = Astro.props;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	itemListElement: projects.map((project, index) => ({
+		"@type": "ListItem",
+		position: index + 1,
+		item: {
+			"@type": "CreativeWork",
+			name: project.name,
+			description: project.summary,
+			...(project.links?.[0] && { url: project.links[0].href }),
+		},
+	})),
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

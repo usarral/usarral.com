@@ -20,6 +20,7 @@ const homePath = `/${locale}/`;
 	<div class="flex sm:flex-col">
 		<a
 			aria-current={Astro.url.pathname === homePath ? "page" : false}
+			aria-label={`usarral · ${t("nav.home")}`}
 			class="inline-flex items-center sm:relative sm:inline-block sm:grayscale sm:hover:filter-none"
 			href={homePath}
 		>

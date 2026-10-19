@@ -36,9 +36,9 @@
 	--color-global-bg: #fbfaf9;
 	--color-global-text: #2b2e33;
 	--color-link: oklch(55.44% 0.0431 185.69);
-	--color-accent: #d8482e;
+	--color-accent: #c94126;
 	--color-accent-2: #2b2e33;
-	--color-quote: #d8482e;
+	--color-quote: #c94126;
 }
 
 @layer base {

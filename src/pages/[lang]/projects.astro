@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
+import ProjectsSchema from "@/components/ProjectsSchema.astro";
 import ProjectCard from "@/components/projects/ProjectCard.astro";
 import { getLocalizedProjects } from "@/data/projects";
 import { defaultTechColor, techColors } from "@/data/techColors";
@@ -28,6 +29,7 @@ const meta = {
 ---
 
 <PageLayout meta={meta} locale={locale}>
+	<ProjectsSchema projects={projects} />
 	<h1 class="title mb-4">{t("projects.title")}</h1>
 	<p class="mb-6 text-sm">{t("projects.intro")}</p>
 

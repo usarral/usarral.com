@@ -2,6 +2,7 @@
 import { type CollectionEntry } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
+import SiteSchema from "@/components/SiteSchema.astro";
 import SocialList from "@/components/SocialList.astro";
 import { getPostsByLocale } from "@/data/post";
 import { isLocale, type Locale, locales } from "@/i18n/config";
@@ -30,6 +31,7 @@ const latestPosts = allPostsByDate.filter((p) => !pinnedIds.has(p.id)).slice(0, 
 ---
 
 <PageLayout meta={{ title: t("home.pageTitle") }} locale={locale}>
+	<SiteSchema />
 	<section>
 		<h1 class="title mb-12">{t("home.title")}</h1>
 		<p class="mb-4">{t("home.bio")}</p>
