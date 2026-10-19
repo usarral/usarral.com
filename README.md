@@ -38,7 +38,6 @@ Personal website and technical blog for Carlos (usarral), built with Astro, Tail
   - Includes [Admonitions](https://astro-cactus.chriswilliams.dev/posts/markdown-elements/admonitions/)
 - [Satori](https://github.com/vercel/satori) for creating open graph png images
 - [Automatic RSS feeds](https://docs.astro.build/en/guides/rss)
-- [Webmentions](https://webmention.io/)
 - Auto-generated:
   - [sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
   - [robots.txt](https://github.com/alextim/astro-lib/blob/main/packages/astro-robots-txt/README.md)
@@ -99,7 +98,6 @@ Replace pnpm with your choice of npm / yarn
 - Modify file `src/styles/global.css` with your own light and dark styles, and customise [Tailwind's theme settings](https://tailwindcss.com/docs/theme#customizing-your-theme).
 - Edit social links in `src/components/SocialList.astro` to add/replace your media profile. Icons can be found @ [icones.js.org](https://icones.js.org/), per [Astro Icon's instructions](https://www.astroicon.dev/guides/customization/#find-an-icon-set).
 - Create/edit posts & notes for your blog within `src/content/post/` & `src/content/note/` with .md/mdx file(s). See [below](#adding-posts-notes-and-tags) for more details.
-  - Read [this post](http://astro-cactus.chriswilliams.dev/posts/webmentions/) for adding webmentions to your site.
   - Add any custom Tag pages for related blog posts in `/src/content/tag/`, ensuring that the file name is the same as the tag.
 - OG Image:
   - If you would like to change the style of the generated image the Satori library creates, open up `src/pages/og-image/[slug].png.ts` to the markup function where you can edit the html/tailwind-classes as necessary. You can use this [playground](https://og-playground.vercel.app/) to aid your design.

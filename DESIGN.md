@@ -176,7 +176,7 @@ Radii are small and utilitarian: `2px` on inline code, `4px` (default `rounded`)
 - **Background:** transparent (no fill) at all times — the border and text carry the whole card.
 - **Internal Padding:** 16px, with an internal `gap-3` (12px) stack for header/description/pills/links.
 
-### GitHub Card (webmention/repo embed)
+### GitHub Card (repo embed)
 - **Corner Style:** `rounded-md` (6px).
 - **Background:** low-opacity heading-ink tonal fill (`bg-global-text/5`) — the one component that does use a background fill, since it needs to read as an embedded "card" distinct from the page.
 - **Loading state:** `animate-pulse` skeleton using the same tonal fill, text made transparent.
