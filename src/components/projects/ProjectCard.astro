@@ -16,6 +16,7 @@ const primaryLink = project.links?.[0];
 	data-techs={project.tech.join(",")}
 >
 	<header class="flex flex-col gap-1">
+		<p class="text-xs text-gray-600 tabular-nums dark:text-gray-400">{project.period}</p>
 		<h2 class="text-accent-2 text-base font-semibold">
 			{
 				primaryLink ? (
