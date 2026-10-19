@@ -27,3 +27,9 @@ fuentes/
 
 .playwright-mcp/
 .data/
+
+# editor and local tooling config
+.impeccable/
+.vscode/
+.zed/
+.github/hooks/
