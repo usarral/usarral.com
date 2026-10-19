@@ -1,0 +1,31 @@
+name: Notify profile
+
+# After each production deploy, ask usarral/usarral to refresh the
+# "Latest writing" list in its README.
+# Needs the secret PROFILE_DISPATCH_TOKEN: a fine-grained token limited to the
+# usarral/usarral repository with "Contents: Read and write". Without it this
+# workflow does nothing, and the profile still refreshes itself once a day.
+on:
+  deployment_status:
+
+permissions: {}
+
+jobs:
+  notify:
+    name: Trigger the profile README update
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch site-deployed
+        env:
+          TOKEN: ${{ secrets.PROFILE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "PROFILE_DISPATCH_TOKEN is not set, skipping."
+            exit 0
+          fi
+          curl --fail-with-body -sS -X POST \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/usarral/usarral/dispatches \
+            -d '{"event_type":"site-deployed"}'
