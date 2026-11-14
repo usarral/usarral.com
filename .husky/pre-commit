@@ -1,2 +1,1 @@
-pnpm astro check
-pnpm exec biome check --write .
+mise exec -- pnpm exec biome check --staged --no-errors-on-unmatched

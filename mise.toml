@@ -1,0 +1,28 @@
+[tools]
+# Same versions as CI (.github/workflows/ci.yml: node 24) and .nvmrc
+node = "24"
+pnpm = "11"
+
+[tasks.install]
+description = "Install dependencies with the locked versions"
+run = "pnpm install --frozen-lockfile"
+
+[tasks.dev]
+description = "Start the Astro dev server"
+run = "pnpm dev"
+
+[tasks.check]
+description = "Type-check and lint (same as CI)"
+run = ["pnpm astro check", "pnpm biome check"]
+
+[tasks.build]
+description = "Production build (runs pagefind via postbuild)"
+run = "pnpm build"
+
+[tasks.update]
+description = "Install, check and build the project (full local verification)"
+run = [
+  "mise run install",
+  "mise run check",
+  "mise run build",
+]
