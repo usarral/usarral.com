@@ -35,8 +35,14 @@ const post = defineCollection({
 				.optional()
 				.transform((str) => (str ? new Date(str) : undefined)),
 			pinned: z.boolean().default(false),
-			/** Published and reachable by URL, but hidden from listings, RSS, tags, search and sitemap, and marked noindex. */
+			/** Reachable by URL but hidden from listings, RSS, tags, search and sitemap, and marked noindex (until `listedAt`, if set). */
 			unlisted: z.boolean().default(false),
+			/** With `unlisted: true`: from this date and time on the post stops being unlisted (listed, indexable). Needs a rebuild at that time. */
+			listedAt: z
+				.string()
+				.or(z.date())
+				.optional()
+				.transform((val) => (val ? new Date(val) : undefined)),
 			lang: z.enum(["en", "es"]).default("en"),
 		}),
 });
