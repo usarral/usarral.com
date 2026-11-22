@@ -318,7 +318,7 @@ En cada arranque en frío, la tele enseñaba la consola unos segundos antes de l
 
 Para esconder el resto descarté Plymouth: va en el initramfs y, al salir, deja un hueco (negro o el login) hasta que mpv pinta. En su lugar, `console=serial` en `armbianEnv.txt`, `vt.global_cursor_default=0 logo.nologo` y una imagen pintada directamente en `/dev/fb0` en cuanto arranca systemd. Lo que hace u-boot en los primeros segundos no se puede esconder sin recompilarlo.
 
-La primera versión era una imagen cruda fija de 2560×1440 en BGRX, que era justo el modo de mi tele (el framebuffer de la consola no va a 1920×1080 como mpv, sino al modo preferido de la pantalla). En cuanto enchufé la caja a **otro monitor** (un portátil Arzopa), la pantalla de arranque salió rota. Ahora un pequeño `tvcast-splash` lee por `ioctl` la resolución, los bits por píxel, el orden de los colores y el *stride* del framebuffer, y pinta la imagen adaptada en cada arranque. La lección: nunca supongas que el framebuffer será el de tu tele.
+La primera versión era una imagen cruda fija de 2560×1440 en BGRX, justo el modo preferido de mi tele (el framebuffer de la consola no va a la resolución de mpv, sino al modo que elija la pantalla). En cuanto enchufé la caja a **otro monitor** (un portátil Arzopa, con un framebuffer de 1920×1080) la imagen no cabía: `cat` fallaba con `ENOSPC` y la pantalla de arranque salía rota. Ahora un pequeño `tvcast-splash` lee por `ioctl` la resolución, los bits por píxel, el orden de los colores y el *stride* del framebuffer, y pinta la imagen adaptada en cada arranque. La lección: nunca supongas que el framebuffer será el de tu tele.
 
 ### El mando de Sunday
 
@@ -328,13 +328,15 @@ Lo curioso es que Linux no crea ningún `/dev/input`: el mando imita un teclado 
 
 Para tvcast hice un servicio aparte, `tvcast-remote`, en Go y hablando con BlueZ por D-Bus (bleak necesita ver al mando anunciándose para conectar, y eso estorba al reconectar). Llama a la API HTTP de tvcast en loopback, sin uinput, y se reconecta solo en unos 2 s. El botón de apagado lo dejé sin mapear a propósito: una pulsación accidental dejaría a la familia con un login en la tele.
 
-Todo esto lo validé **en la torre**, con un adaptador USB. Probar el mando en la propia caja es lo siguiente.
+Primero lo validé **en la torre**, con un adaptador USB, y después **en la caja**, también con su chip Bluetooth interno. Ahí me costó un buen rato un detalle: BlueZ necesita un *agente* de `bluetoothctl` en la misma sesión que hace el emparejamiento; sin él, el `pair` termina en `Authentication Failed 0x05`.
 
 ### Cuando el Bluetooth interno cuelga la caja (en curso)
 
 La caja se colgó dos veces con el Bluetooth del chip interno activo (WiFi y Bluetooth comparten el BCM4334): una copiando 192 MB por WiFi y otra con el mando conectado. El journal se cortaba de golpe. Por eso `bluetooth.service` está deshabilitado al arrancar, `journald` sincroniza cada 2 s y `kernel.panic=10` reinicia la caja si el kernel falla. Una tercera prueba aguantó 2,5 min conectado sin colgarse, pero tampoco llegó ninguna tecla.
 
-La idea es usar el Bluetooth interno de todos modos, con un watchdog de hardware que reinicia la caja y un guardián que apaga el Bluetooth interno si se cuelga dos veces. Ya está hecho y desplegándose en la caja. **Todavía no lo he probado**, así que dejo esto abierto hasta tener resultado.
+La idea es usar el Bluetooth interno de todos modos, con un watchdog de hardware que reinicia la caja y un guardián que apaga el Bluetooth si se cuelga dos veces. Ya está desplegado en la caja.
+
+Lo que he visto desde entonces es más raro que un cuelgue limpio: con el chip interno y una subida de fotos en marcha, la caja **pierde la red pero el sistema sigue vivo**. Por eso añadí también un watchdog de red. Y aquí viene el matiz importante: la antena WiFi de la caja es un cable provisional (la pegatina se despegó), la señal es de unos −69 dBm y hay cortes **incluso sin Bluetooth**. Hasta que no suelde la antena, no puedo decir si el culpable es el Bluetooth o la antena. Dejo la conclusión abierta.
 
 ### Un panel de administración oculto
 
@@ -342,7 +344,7 @@ Los atajos sueltos de la tabla de arriba empezaban a ser demasiados, así que lo
 
 ### Lo que queda a medias
 
-- **Probar el mando en la caja** con el Bluetooth interno, que es la parte arriesgada (arriba). El watchdog y el guardián ya están hechos; falta ver cómo se porta de verdad.
+- **Soldar la antena WiFi** de la caja y repetir las pruebas con el Bluetooth interno, para saber de verdad quién cuelga la red (arriba).
 - **Quitar los permisos de `sudo` temporales** que dejé para trabajar (el panel ya no los necesita) y publicar tvcast en un repositorio de GitHub (privado de momento).
 
 > ✏️ **PENDIENTE:** si el repositorio se hace público, enlázalo aquí.
