@@ -1,6 +1,6 @@
 ---
-title: "Sunday Box: una noche peleando con una caja de 4 €"
-description: Compré en una subasta una Sunday Box, una caja Android para mandar fotos a la tele de los abuelos cuya app ya no vincula. Te cuento todo lo que probé para recuperarla (ADB, DNS spoofing, maskrom, UART con un ESP32…), lo que falló, que fue casi todo, y cómo acabó corriendo Armbian.
+title: "Sunday Box: de caja muerta a marco de fotos"
+description: Compré en una subasta una Sunday Box cuya app ya no vincula. Cuento lo que probé para recuperarla (ADB, DNS spoofing, maskrom, UART con un ESP32…), lo que falló, cómo acabó con Armbian y cómo la convertí en tvcast, un marco de fotos sin internet.
 publishDate: 2026-11-22
 draft: true
 pinned: false
@@ -20,7 +20,7 @@ La **Sunday Box** es un producto de una startup francesa (Hopen Project SAS, mar
 
 El problema: la enchufé, salió su app y se quedó eternamente intentando generar el **código de vinculación**. Sin ese código no hay nada que hacer con ella.
 
-Así que me pasé una noche entera (de las 23:00 a pasadas las 3:00) intentando recuperar el control. Con Claude de copiloto, una capturadora HDMI, un ESP32 y bastante cabezonería. **Casi todo lo que probé falló.** Este post va de eso, porque los fallos me enseñaron más que el acierto final.
+Así que me pasé una noche entera (de las 23:00 a pasadas las 3:00) intentando recuperar el control, y los días siguientes dándole un uso nuevo. Con Claude de copiloto, una capturadora HDMI, un ESP32 y bastante cabezonería. **Casi todo lo que probé falló.** Este post va de eso, porque los fallos me enseñaron más que el acierto final.
 
 > **Lo que sé y lo que supongo.** Voy a separar siempre las dos cosas. Por ejemplo: **no sé si Sunday ha cerrado el servicio**. No he encontrado ningún anuncio oficial. Lo que sí he comprobado es que el dominio de su API no existe en el DNS público (lo explico abajo). Que eso signifique "han cerrado" es una inferencia razonable, no un hecho confirmado.
 
@@ -206,7 +206,7 @@ xz -dc multitool.img.xz | sudo dd of=/dev/rdiskN bs=1m
 
 > Ojo con el `dd`: comprueba con `diskutil list` qué disco es la SD **antes** de escribir. Equivocarte de número borra otro disco sin preguntar.
 
-> No enlazo el mirror: no he comprobado de dónde sale ni lo he cotejado con un checksum oficial. Si lo necesitas, busca el Multitool en el [hilo de Armbian para RK3318/RK3328](https://forum.armbian.com/topic/26978-csc-armbian-for-rk3318rk3328-tv-box-boards).
+> ✏️ **ENLACE PENDIENTE:** el mirror del Multitool, que sacará Carlos de su Mac. Mientras tanto, el proyecto está en el [hilo de Armbian para RK3318/RK3328](https://forum.armbian.com/topic/26978-csc-armbian-for-rk3318rk3328-tv-box-boards).
 
 ## Cómo acabó: Armbian con i3
 
@@ -228,6 +228,65 @@ Lo que corre ahora mismo:
 
 La caja que llegó como un pisapapeles con un asistente que no terminaba nunca ahora arranca **Armbian desde su propia eMMC**, y es mía.
 
+## Después: tvcast, mi propia Sunday Box
+
+Con Linux en la caja, el siguiente paso era devolverle su propósito original sin depender de la nube de nadie. Lo he llamado **tvcast**, y tiene una restricción que lo condiciona todo: **la caja va a una casa sin WiFi**. Así que no puede depender de ninguna red; tiene que **crear la suya**, que se llama `Tele`.
+
+La idea:
+
+- La tele muestra un **código QR**. Lo escaneas con el móvil, te conectas a la WiFi de la caja y se abre una web para **subir fotos**.
+- Las fotos salen en la tele como pase de diapositivas.
+
+Por dentro es sencillo: un **binario de Go estático para arm64**, que corre como usuario de sistema bajo **systemd** y escucha en el puerto 80 gracias a `CAP_NET_BIND_SERVICE` (sin ser root). Las fotos las pinta **mpv directamente por DRM/KMS** a 1920×1080, sin X ni gestor de ventanas. El i3 de la primera noche ya sobra. La primera prueba, todavía por la WiFi de casa, recibió fotos a la primera.
+
+### El hallazgo: WPA2 que nunca arranca
+
+Montar el punto de acceso me costó bastante más que el resto. `iw list` decía que el chip soportaba modo AP, así que lo intenté con lo que traía el sistema.
+
+Primero, una sorpresa: Armbian gestionaba el WiFi con **netplan + systemd-networkd**, y NetworkManager lo veía como `unmanaged` por una regla de udev de netplan. Lo pasé a NetworkManager. Después, el punto de acceso de NetworkManager **falló tres veces seguidas**:
+
+1. **`key setting validation failed`** en el log del kernel. Se arregló desactivando PMF (*Protected Management Frames*).
+2. **Faltaba `dnsmasq-base`**, que NetworkManager necesita para dar IPs en modo compartido.
+3. Y la buena: la red `Tele` aparecía, pero el móvil decía **"contraseña incorrecta"**. Con `iw event` se veía que el móvil **sí se asociaba** (`new station`… `del station`), pero el `wpa_supplicant` que NetworkManager usa en modo AP **nunca empezaba el 4-way handshake** de WPA2 con este Broadcom. Con una **red abierta** sí funcionaba, lo que dejaba el problema aislado en el WPA2 del AP de NetworkManager.
+
+La solución fue sacar a NetworkManager del punto de acceso y montarlo a la antigua, con **hostapd + dnsmasq** en servicios propios (`tele-ap` y `tele-dhcp`). Así el **4-way handshake se completa**: lo comprobé con un iPhone. NetworkManager sigue llevando la WiFi de casa.
+
+Por qué falla exactamente NetworkManager + `brcmfmac` + este firmware no lo sé. Puede tener que ver con el firmware viejo (además, sin `clm_blob`), pero es una sospecha, no algo comprobado.
+
+### Las trampas de una caja que solo tiene WiFi
+
+- **Si cambias la red por SSH, te quedas fuera.** No hay Ethernet, así que tocar el WiFi corta tu propia sesión. Antes de cada cambio programé una **vuelta atrás automática** con `systemd-run --on-active=10m`: si no la cancelo, la red vuelve sola a como estaba.
+- **Arrancar sin la WiFi de casa.** Un servicio `tele-auto` espera 40 segundos; si no encuentra la red de casa, levanta `Tele`. Y tvcast se reinicia cada vez que `Tele` sube o baja, para que el QR lleve la IP correcta.
+- **Atajos de teclado como salida de emergencia**, con un teclado USB enchufado a la caja (los de Q, S, V y T van con `triggerhappy`):
+
+| Atajo | Qué hace |
+|---|---|
+| Ctrl+Alt+C | Abre una consola |
+| Ctrl+Alt+T | Muestra el QR |
+| Ctrl+Alt+Q | Deja el QR fijo en pantalla |
+| Ctrl+Alt+S | Pase de diapositivas |
+| Ctrl+Alt+V | Vacía las fotos |
+
+- **mpv no suelta la pantalla.** Mientras mpv tiene el *DRM master*, Ctrl+Alt+F2 no te lleva a ninguna consola. Por eso existe el atajo Ctrl+Alt+C. Ya en consola hay comandos cortos para lo habitual: `ayuda`, `casa`, `tele`, `logwifi`, `qr`, `vaciar`…
+
+### UX: dónde poner el QR
+
+Primera versión: el QR salía mientras no hubiera fotos. En cuanto subías unas cuantas, **desaparecía**, y quien llegara después no tenía forma de conectarse. Ahora, durante el pase de fotos hay un **QR pequeño en una esquina con un PIN de 6 cifras**, y **cada 12 fotos aparece el QR completo**.
+
+### La tele enseñaba la consola al arrancar
+
+En cada arranque en frío, la tele enseñaba la consola unos segundos antes de las fotos. No era la red: tvcast esperaba solo 5 s a que mpv creara su socket IPC y, con la CPU a tope al arrancar, mpv tarda unos 8 s en abrir DRM. tvcast lo daba por muerto, lo mataba (y salía la consola) y lo relanzaba 2 s después. El journal lo delata con `mpv: no IPC socket` nada más arrancar. Ahora espera hasta 30 s mientras el proceso de mpv siga vivo.
+
+Para esconder el resto descarté Plymouth: va en el initramfs y, al salir, deja un hueco (negro o el login) hasta que mpv pinta. En su lugar, `console=serial` en `armbianEnv.txt`, `vt.global_cursor_default=0 logo.nologo` y una imagen pintada directamente en `/dev/fb0` en cuanto arranca systemd. Lo que hace u-boot en los primeros segundos no se puede esconder sin recompilarlo.
+
+La primera versión era una imagen cruda fija de 2560×1440 en BGRX, justo el modo preferido de mi tele (el framebuffer de la consola no va a la resolución de mpv, sino al modo que elija la pantalla). En cuanto enchufé la caja a **otro monitor** (un portátil Arzopa, con un framebuffer de 1920×1080) la imagen no cabía: `cat` fallaba con `ENOSPC` y la pantalla de arranque salía rota. Ahora un pequeño `tvcast-splash` lee por `ioctl` la resolución, los bits por píxel, el orden de los colores y el *stride* del framebuffer, y pinta la imagen adaptada en cada arranque. La lección: nunca supongas que el framebuffer será el de tu tele.
+
+### Un panel de administración oculto
+
+Los atajos sueltos de la tabla de arriba empezaban a ser demasiados, así que los sustituye un **panel de administración oculto**. Se abre con Ctrl+Alt+A o con una combinación en el mando (Corazón, Arriba, Corazón, Abajo). Enseña el estado de la caja, el QR, la red y los logs, y deja borrar fotos, volver a emparejar el mando, cambiar el idioma, reiniciar o abrir la consola. Cada acción destructiva pide confirmación (No/Sí), y las que necesitan root van por systemd y polkit, sin `sudo`.
+
+El mando oficial de Sunday también funciona, y me dio más guerra que todo lo demás junto. Le dedico [su propio post](/es/posts/sunday-box-mando-ble-es/).
+
 ## Lo que no salió bien
 
 Aunque el final sea feliz, la mayor parte de la noche fue esto:
@@ -238,6 +297,8 @@ Aunque el final sea feliz, la mayor parte de la noche fue esto:
 - **El maskrom por botón no existe en esta placa**, y el bueno exige puentear un pin que no me atreví a tocar.
 - **Me faltó lo más tonto:** cuatro cables Dupont y pilas para el tester.
 - **El copiloto también se equivocó**, y conviene contarlo. Claude dio por hecho que la caja tenía Ethernet (el conector pequeño era la salida óptica), me mandó a buscar un botón de reset dentro del jack AV que no existe (el botón está en otro sitio), interpretó un menú de ajustes como prueba de que había OTG cuando no la era, y confundió un conector de la placa con un micro-USB. Para encontrar la caja en la red apostó por su MAC a partir del prefijo de Murata; acabó siendo correcta, pero durante un rato fue solo una hipótesis que un ping fallido puso en duda, y así me lo dijo. Lo bueno es que cada error se corrigió en cuanto le enseñé una foto o un dato, y que en general marcaba bien qué era una comprobación y qué una suposición. Lo útil de verdad fue esa disciplina: medir antes de afirmar (los 13 nodos USB, el `dig` contra 1.1.1.1, el registro de AdGuard).
+- **Di por hecho que el AP de NetworkManager valdría con `brcmfmac`.** Tres intentos hasta aceptar que no y pasar a hostapd.
+- **La primera prueba de reinicio pareció fallar.** En realidad `Tele` tardaba unos 65 segundos en aparecer y no esperé lo suficiente.
 - **La copia de la eMMC llegó tardísimo.** Era lo primero de la lista y no pude hacerla hasta el final, cuando arrancó el Multitool. Mientras tanto hice un reset de fábrica y metí APKs que rompieron el arranque, todo sin red de seguridad.
 
 ## Lo que me llevo
@@ -247,8 +308,7 @@ Aunque el final sea feliz, la mayor parte de la noche fue esto:
 - **Contar dispositivos USB** con el cable puesto y quitado es una forma tonta y fiable de saber si un puerto hace algo.
 - **Un ESP32 es un USB-TTL decente** si no tienes uno a mano, y además a 3,3 V.
 - **En estas cajas, prueba el Multitool antes que nada.** Una imagen genérica de Armbian puede no arrancar desde la SD y el Multitool sí. Me habría ahorrado media noche, y me habría dado la copia de la eMMC desde el principio.
+- **Cuando cambies la red de una caja que solo tiene WiFi, programa antes la vuelta atrás.**
+- **No supongas el framebuffer de tu tele.** Lee la resolución, el orden de colores y el *stride* al arrancar.
+- **Sin pila de reloj, no te fíes de la hora de los logs.** Para ordenar un arranque, `journalctl -o short-monotonic`.
 - **Ten la UART como plan B.** Todo lo demás (ADB, DNS, MITM, botones) dependía de que el fabricante me lo pusiera fácil, y no lo hizo. El puente con el ESP32 queda listo para cuando haga falta.
-
-## Y ahora, ¿qué hago con ella?
-
-Con Linux en la caja, el siguiente paso era devolverle su propósito original, sin nube de nadie. Eso me dio para otro post: [tvcast, mi propia Sunday Box](/es/posts/tvcast-sunday-box-es/).
