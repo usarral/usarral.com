@@ -9,10 +9,10 @@ export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
 	});
 }
 
-/** posts filtered by language */
+/** posts filtered by language; unlisted posts are left out (use getAllPosts to get them) */
 export async function getPostsByLocale(locale: Locale): Promise<CollectionEntry<"post">[]> {
 	const all = await getAllPosts();
-	return all.filter((post) => post.data.lang === locale);
+	return all.filter((post) => post.data.lang === locale && !post.data.unlisted);
 }
 
 /** Get tag metadata by tag name */
