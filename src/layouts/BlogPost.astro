@@ -32,7 +32,9 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 	meta={{
 		articleDate,
 		description,
-		noindex: unlisted,
+		// noindex only for posts hidden for good: a post with `listedAt` is hidden for a day or two and
+		// crawlers must be able to find it once it is listed.
+		noindex: unlisted && !post.data.listedAt,
 		ogImage: socialImage,
 		title,
 	}}
