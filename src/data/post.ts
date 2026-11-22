@@ -1,18 +1,33 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import type { Locale } from "@/i18n/config";
 
-/** filter out draft posts and future-dated posts */
+/** true while a post must stay reachable only by URL: `unlisted` and `listedAt` not reached yet */
+export function isUnlisted(
+	data: { unlisted: boolean; listedAt?: Date | undefined },
+	now: Date = new Date(),
+): boolean {
+	return data.unlisted && !(data.listedAt && data.listedAt <= now);
+}
+
+/** filter out draft posts and future-dated posts. Posts still unlisted are built whatever their
+ *  publishDate, so their page and OG image can be checked and shared before they go public. */
 export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
+	const now = new Date();
 	return await getCollection("post", ({ data }) => {
 		if (data.draft) return false;
-		return data.publishDate <= new Date();
+		if (isUnlisted(data, now)) return true;
+		return data.publishDate <= now;
 	});
 }
 
-/** posts filtered by language; unlisted posts are left out (use getAllPosts to get them) */
+/** published posts for the listings, RSS and tags: unlisted ones are left out (use getAllPosts to get them) */
 export async function getPostsByLocale(locale: Locale): Promise<CollectionEntry<"post">[]> {
 	const all = await getAllPosts();
-	return all.filter((post) => post.data.lang === locale && !post.data.unlisted);
+	const now = new Date();
+	return all.filter(
+		(post) =>
+			post.data.lang === locale && !isUnlisted(post.data, now) && post.data.publishDate <= now,
+	);
 }
 
 /** Get tag metadata by tag name */

@@ -20,7 +20,8 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 
 // https://astro.build/config
-/** Paths (e.g. `/es/posts/my-post/`) of posts with `unlisted: true`, to keep them out of the sitemap. */
+/** Paths (e.g. `/es/posts/my-post/`) of posts still unlisted (`unlisted: true` and `listedAt` not
+ *  reached yet), to keep them out of the sitemap. */
 const unlistedPostPaths = fs
 	.readdirSync("./src/content/post")
 	.filter((file) => /\.mdx?$/.test(file))
@@ -28,6 +29,8 @@ const unlistedPostPaths = fs
 		const source = fs.readFileSync(`./src/content/post/${file}`, "utf8");
 		const frontmatter = source.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? "";
 		if (!/^unlisted:\s*true\s*$/m.test(frontmatter)) return [];
+		const listedAt = frontmatter.match(/^listedAt:\s*["']?([^"'\n]+?)["']?\s*$/m)?.[1];
+		if (listedAt && Date.parse(listedAt) <= Date.now()) return [];
 		const lang = frontmatter.match(/^lang:\s*(\w+)/m)?.[1] ?? "en";
 		return [`/${lang}/posts/${file.replace(/\.mdx?$/, "")}/`];
 	});
