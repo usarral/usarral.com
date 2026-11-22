@@ -255,6 +255,8 @@ Aunque el final sea feliz, la mayor parte de la noche fue esto:
 - **Contar dispositivos USB** con el cable puesto y quitado es una forma tonta y fiable de saber si un puerto hace algo.
 - **Un ESP32 es un USB-TTL decente** si no tienes uno a mano, y además a 3,3 V.
 - **En estas cajas, prueba el Multitool antes que nada.** Una imagen genérica de Armbian puede no arrancar desde la SD y el Multitool sí. Me habría ahorrado media noche, y me habría dado la copia de la eMMC desde el principio.
+- **Si algo no manda datos en macOS, prueba en Linux** antes de dar el hardware por malo: el mando no mandaba teclas hasta que el enlace estuvo cifrado.
+- **Sin pila de reloj, no te fíes de la hora de los logs.** Para ordenar un arranque, `journalctl -o short-monotonic`.
 - **Ten la UART como plan B.** Todo lo demás (ADB, DNS, MITM, botones) dependía de que el fabricante me lo pusiera fácil, y no lo hizo. El puente con el ESP32 queda listo para cuando haga falta.
 
 ## Después: tvcast, mi propia Sunday Box
@@ -310,9 +312,32 @@ Primera versión: el QR salía mientras no hubiera fotos. En cuanto subías unas
 - **Un `set -x` dejó una contraseña en un fichero de log.** Al depurar un script con trazas activadas, la clave de la WiFi de casa acabó escrita en texto plano. Se tapó al momento, pero la lección queda: **`set -x` y secretos no se mezclan**.
 - **La primera prueba de reinicio pareció fallar.** En realidad `Tele` tardaba unos 65 segundos en aparecer y no esperé lo suficiente. En la segunda prueba funcionó.
 
+### La tele enseñaba la consola al arrancar
+
+En cada arranque en frío, la tele enseñaba la consola unos segundos antes de las fotos. No era la red: tvcast esperaba solo 5 s a que mpv creara su socket IPC y, con la CPU a tope al arrancar, mpv tarda unos 8 s en abrir DRM. tvcast lo daba por muerto, lo mataba (y salía la consola) y lo relanzaba 2 s después. El journal lo delata con `mpv: no IPC socket` nada más arrancar. Ahora espera hasta 30 s mientras el proceso de mpv siga vivo.
+
+Para esconder el resto descarté Plymouth: va en el initramfs y, al salir, deja un hueco (negro o el login) hasta que mpv pinta. En su lugar, `console=serial` en `armbianEnv.txt`, `vt.global_cursor_default=0 logo.nologo` y una imagen cruda copiada a `/dev/fb0` en cuanto arranca systemd. Ojo: el framebuffer de la consola va a 2560×1440 (el modo preferido de la tele), no a 1920×1080 como mpv, así que la imagen tiene que medir lo que diga `/sys/class/graphics/fb0/virtual_size`, en BGRX. Lo que hace u-boot en los primeros segundos no se puede esconder sin recompilarlo.
+
+### El mando de Sunday
+
+El mando oficial **no es infrarrojo**: la placa tiene receptor IR, pero al pulsar no llega nada. Es **Bluetooth LE**, anuncia siempre el nombre `Sunday` y el fabricante es 4MOD. Se empareja con `bluetoothctl` sin PIN ni combinación de teclas.
+
+Lo curioso es que Linux no crea ningún `/dev/input`: el mando imita un teclado HID bajo otro UUID (`0xFF00`). Desde el Mac conectaba, leía batería y firmware, pero **no llegaba ninguna tecla**. Mi explicación, que comprobé en Linux: solo manda teclas con un enlace emparejado y cifrado, y macOS no deja forzar el emparejamiento desde un script. Con BlueZ sí; `btmon` enseña el cifrado AES-CCM y empiezan a llegar las pulsaciones.
+
+Para tvcast hice un servicio aparte, `tvcast-remote`, en Go y hablando con BlueZ por D-Bus (bleak necesita ver al mando anunciándose para conectar, y eso estorba al reconectar). Llama a la API HTTP de tvcast en loopback, sin uinput, y se reconecta solo en unos 2 s. El botón de apagado lo dejé sin mapear a propósito: una pulsación accidental dejaría a la familia con un login en la tele.
+
+Todo esto lo validé **en la torre**, con un adaptador USB. Probar el mando en la propia caja es lo siguiente.
+
+### Cuando el Bluetooth interno cuelga la caja (en curso)
+
+La caja se colgó dos veces con el Bluetooth del chip interno activo (WiFi y Bluetooth comparten el BCM4334): una copiando 192 MB por WiFi y otra con el mando conectado. El journal se cortaba de golpe. Por eso `bluetooth.service` está deshabilitado al arrancar, `journald` sincroniza cada 2 s y `kernel.panic=10` reinicia la caja si el kernel falla. Una tercera prueba aguantó 2,5 min conectado sin colgarse, pero tampoco llegó ninguna tecla.
+
+La idea es usar el Bluetooth interno de todos modos, con un watchdog de hardware que reinicie la caja y un guardián que apague el Bluetooth si se cuelga dos veces. **Todavía no lo he probado**, así que dejo esto abierto hasta tener resultado.
+
 ### Lo que queda a medias
 
-- **El QR sale con `127.0.0.1`** durante más o menos el primer minuto tras arrancar, hasta que tvcast se reinicia al subir `Tele`. Un QR con *localhost* no le sirve a ningún móvil. Está identificado, no arreglado.
-- **Para la próxima sesión:** una animación de arranque propia, que funcione el **mando oficial** de Sunday, publicar tvcast en un repositorio de GitHub (privado de momento) y quitar unos permisos de `sudo` temporales que dejé para trabajar.
+- **Probar el mando en la caja** con el Bluetooth interno, que es la parte arriesgada (arriba). Falta el watchdog y el guardián.
+- **Un panel de administración oculto** (combinación en el mando y Ctrl+Alt+A) que sustituya a los atajos sueltos de la tabla de arriba.
+- **Quitar los permisos de `sudo` temporales** que dejé para trabajar y publicar tvcast en un repositorio de GitHub (privado de momento).
 
 > ✏️ **PENDIENTE:** si el repositorio se hace público, enlázalo aquí.
