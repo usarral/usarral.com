@@ -20,7 +20,7 @@ La **Sunday Box** es un producto de una startup francesa (Hopen Project SAS, mar
 
 El problema: la enchufé, salió su app y se quedó eternamente intentando generar el **código de vinculación**. Sin ese código no hay nada que hacer con ella.
 
-Así que me pasé una noche entera (de las 23:00 a pasadas las 3:00) intentando recuperar el control y montando encima mi propio sistema. A la mañana siguiente lo pulí: pantalla de arranque, algún detalle más y el mando. Con Claude de copiloto, una capturadora HDMI, un ESP32 y bastante cabezonería. **Casi todo lo que probé falló.** Este post va de eso, porque los fallos me enseñaron más que el acierto final.
+Así que me pasé una noche entera (de las 23:00 a pasadas las 4:00) intentando recuperar el control y montando encima mi propio sistema. A la mañana siguiente lo pulí: pantalla de arranque, algún detalle más y el mando. Con Claude de copiloto, una capturadora HDMI, un ESP32 y bastante cabezonería. **Casi todo lo que probé falló.** Este post va de eso, porque los fallos me enseñaron más que el acierto final.
 
 > **Lo que sé y lo que supongo.** Voy a separar siempre las dos cosas. Por ejemplo: **no sé si Sunday ha cerrado el servicio**. No he encontrado ningún anuncio oficial. Lo que sí he comprobado es que el dominio de su API no existe en el DNS público (lo explico abajo). Que eso signifique "han cerrado" es una inferencia razonable, no un hecho confirmado.
 
@@ -245,6 +245,8 @@ Por qué falla exactamente NetworkManager + `brcmfmac` + este firmware no lo sé
 ### UX: dónde poner el QR
 
 Primera versión: el QR salía mientras no hubiera fotos. En cuanto subías unas cuantas, **desaparecía**, y quien llegara después no tenía forma de conectarse. Ahora, durante el pase de fotos hay un **QR pequeño en una esquina con un PIN de 6 cifras**, y **cada 12 fotos aparece el QR completo**.
+
+![Pantalla de la tele con dos QR: uno para unirse a la WiFi Tele y otro para abrir la web de subida de fotos](../../assets/blog/sunday-box-armbian/tvcast-qr-screen.png)
 
 ### La tele enseñaba la consola al arrancar
 
