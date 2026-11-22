@@ -206,14 +206,14 @@ xz -dc multitool.img.xz | sudo dd of=/dev/rdiskN bs=1m
 
 > Ojo con el `dd`: comprueba con `diskutil list` qué disco es la SD **antes** de escribir. Equivocarte de número borra otro disco sin preguntar.
 
-> ✏️ **ENLACE PENDIENTE:** el mirror del Multitool, que sacará Carlos de su Mac. Mientras tanto, el proyecto está en el [hilo de Armbian para RK3318/RK3328](https://forum.armbian.com/topic/26978-csc-armbian-for-rk3318rk3328-tv-box-boards).
+> **Ojo con el mirror.** El enlace oficial de jock (`users.armbian.com/jock/rk3318/multitool.img.xz`) ya no responde. Yo usé un [mirror de terceros en GitHub](https://github.com/sholehbaktiabadi/rockchip-rk3318-armbian-os/releases/tag/0.0.4) (`multitool.img.xz`), **no oficial**. Su SHA-256 es `9ce854059656f32c70ccb2d661c6c25ee0577bad5c507ddcfa587b2e1659449a`; compruébalo antes de grabarlo y, si puedes, compáralo con una fuente oficial, que yo no he encontrado. El proyecto sigue en el [hilo de Armbian para RK3318/RK3328](https://forum.armbian.com/topic/26978-csc-armbian-for-rk3318rk3328-tv-box-boards).
 
 ## Cómo acabó: Armbian con i3
 
 Y esta vez sí. Donde la imagen de Armbian se había quedado en un LED rojo, **el Multitool arrancó desde la SD**. Fue lo que desbloqueó todo:
 
 1. **Primero, copia de la eMMC.** Lo que debería haber sido el paso uno de la noche acabó siendo el último, pero lo hice antes de tocar nada. Si algún día quiero volver al Android de Sunday (no sé para qué), puedo.
-2. **Después, grabar Armbian en la eMMC** desde el propio Multitool. La imagen fue la misma que no arrancaba desde la SD: `Armbian_community_26.11.0-trunk.137_Rk3318-box_trixie_current_6.18.64_minimal`. Ya no depende de la SD.
+2. **Después, grabar Armbian en la eMMC** desde el propio Multitool. La imagen fue la misma que no arrancaba desde la SD: [`Armbian_community_26.11.0-trunk.137_Rk3318-box_trixie_current_6.18.64_minimal`](https://github.com/armbian/community/releases/tag/26.11.0-trunk.137) (SHA-256 `e275c6016008a60370b12a2e3efdb36530c81656fd5775de755ebbd8611e254a`). Ya no depende de la SD.
 3. **Arrancar.** Armbian arrancó, y le puse **i3** para tener un entorno gráfico ligero mientras decidía qué hacer con ella.
 
 
