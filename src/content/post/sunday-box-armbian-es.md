@@ -283,9 +283,11 @@ La primera versión era una imagen cruda fija de 2560×1440 en BGRX, justo el mo
 
 ### Un panel de administración oculto
 
-Los atajos sueltos de la tabla de arriba empezaban a ser demasiados, así que los sustituye un **panel de administración oculto**. Se abre con Ctrl+Alt+A o con una combinación en el mando (Corazón, Arriba, Corazón, Abajo). Enseña el estado de la caja, el QR, la red y los logs, y deja borrar fotos, volver a emparejar el mando, cambiar el idioma, reiniciar o abrir la consola. Cada acción destructiva pide confirmación (No/Sí), y las que necesitan root van por systemd y polkit, sin `sudo`.
+Los atajos sueltos de la tabla de arriba empezaban a ser demasiados, así que los sustituye un **panel de administración oculto**. Se abre con Ctrl+Alt+A (y, cuando el mando funcione, con una combinación de botones). Enseña el estado de la caja, el QR, la red y los logs, y deja borrar fotos, volver a emparejar el mando, cambiar el idioma, reiniciar o abrir la consola. Cada acción destructiva pide confirmación (No/Sí), y las que necesitan root van por systemd y polkit, sin `sudo`.
 
-El mando oficial de Sunday también funciona, y me dio más guerra que todo lo demás junto. Le dedico [su propio post](/es/posts/sunday-box-mando-ble-es/).
+### Lo que queda: el mando
+
+Todavía me falta que el **mando original** de la Sunday Box funcione bien en la caja. No es infrarrojo sino Bluetooth LE, y es lo que más problemas me está dando, sobre todo con el Bluetooth interno de la caja, que de momento no es de fiar. Lo dejo para un próximo post, cuando lo tenga resuelto.
 
 ## Lo que no salió bien
 

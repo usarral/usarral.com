@@ -13,7 +13,7 @@ tags:
   - homelab
 ---
 
-En el [post principal](/es/posts/sunday-box-armbian-es/) conté cómo convertí una Sunday Box en tvcast, un marco de fotos que crea su propia WiFi. Quedó una cosa fuera, porque me dio más problemas que todo lo demás junto: **el mando original**. Este post va solo de eso.
+En el post principal conté cómo convertí una Sunday Box en tvcast, un marco de fotos que crea su propia WiFi. Quedó una cosa fuera, porque me dio más problemas que todo lo demás junto: **el mando original**. Este post va solo de eso.
 
 > **En curso.** El final de este post está abierto: el diagnóstico de los cuelgues con el Bluetooth interno depende de una antena WiFi provisional que todavía tengo que soldar. Lo actualizaré cuando haya resultado.
 
