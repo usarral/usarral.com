@@ -20,7 +20,7 @@ La **Sunday Box** es un producto de una startup francesa (Hopen Project SAS, mar
 
 El problema: la enchufé, salió su app y se quedó eternamente intentando generar el **código de vinculación**. Sin ese código no hay nada que hacer con ella.
 
-Así que me pasé una noche entera (de las 23:00 a pasadas las 3:00) intentando recuperar el control, y los días siguientes dándole un uso nuevo. Con Claude de copiloto, una capturadora HDMI, un ESP32 y bastante cabezonería. **Casi todo lo que probé falló.** Este post va de eso, porque los fallos me enseñaron más que el acierto final.
+Así que me pasé una noche entera (de las 23:00 a pasadas las 3:00) intentando recuperar el control y montando encima mi propio sistema. A la mañana siguiente lo pulí: pantalla de arranque, algún detalle más y el mando. Con Claude de copiloto, una capturadora HDMI, un ESP32 y bastante cabezonería. **Casi todo lo que probé falló.** Este post va de eso, porque los fallos me enseñaron más que el acierto final.
 
 > **Lo que sé y lo que supongo.** Voy a separar siempre las dos cosas. Por ejemplo: **no sé si Sunday ha cerrado el servicio**. No he encontrado ningún anuncio oficial. Lo que sí he comprobado es que el dominio de su API no existe en el DNS público (lo explico abajo). Que eso signifique "han cerrado" es una inferencia razonable, no un hecho confirmado.
 
@@ -126,7 +126,7 @@ Vías de red: descartadas.
 
 ## Intento 5: sideload con un pendrive
 
-Aquí llegó el primer éxito real. Revolviendo en los ajustes encontré el **gestor de archivos de Android** (DocumentsUI). Un gestor de archivos puede abrir APKs, y en Android 9 el permiso de "orígenes desconocidos" se da por app. Así que:
+Aquí llegó el primer éxito real. Revolviendo en los ajustes encontré la app oficial de Android para gestionar archivos, **Files**. Un gestor de archivos puede abrir APKs, y en Android 9 el permiso de "orígenes desconocidos" se da por app. Así que:
 
 1. Pendrive en FAT32 con tres APKs: **FLauncher** (un launcher para Android TV), **TV Bro** (navegador) y **Termux** (terminal).
 2. Pendrive a la caja, abrir cada APK desde el gestor, dar permiso al instalador e instalar.
@@ -162,44 +162,7 @@ Luego leí en el foro de Armbian que en estas placas el maskrom se fuerza **puen
 
 ## Intento 7: la consola serie con un ESP32
 
-Los **4 pads** junto a la microSD tienen toda la pinta de ser la UART de depuración (normalmente GND, TX, RX y VCC; la flecha marca el pin 1). Por ahí sale el log del bootloader, y desde ahí puedes interrumpir u-boot y arrancar lo que quieras.
-
-Lo normal es usar un adaptador USB-TTL de 3,3 V. No tenía. Pero tenía un **ESP32 WROOM**, que trabaja a 3,3 V como la caja (un Arduino de 5 V **no** sirve, podría freír el SoC). La UART de Rockchip va a **1.500.000 baudios**, así que monté un puente desacoplado: el ESP32 habla con la caja a 1,5 Mbaud y con el Mac a 115200.
-
-```cpp
-// Puente USB <-> UART para la consola serie de la TV box RK3318/RK3328
-// Mac <--USB 115200--> ESP32 <--UART2 1500000--> TV box
-//   Box TX  -> ESP32 GPIO16 (RX2)
-//   Box RX  -> ESP32 GPIO17 (TX2)
-//   Box GND -> ESP32 GND   (VCC no se conecta)
-
-#define BOX_BAUD 1500000
-#define PC_BAUD  115200
-#define RX_PIN   16
-#define TX_PIN   17
-
-void setup() {
-  Serial.begin(PC_BAUD);
-  Serial2.begin(BOX_BAUD, SERIAL_8N1, RX_PIN, TX_PIN);
-}
-
-void loop() {
-  while (Serial2.available()) Serial.write(Serial2.read());  // caja -> Mac
-  while (Serial.available())  Serial2.write(Serial.read());  // Mac  -> caja
-}
-```
-
-Lo compilé y lo subí desde la terminal con `arduino-cli`. La primera subida falló a mitad ("The chip stopped responding"), y bajando la velocidad de subida a 115200 baudios entró sin problemas:
-
-```bash
-arduino-cli compile --fqbn esp32:esp32:esp32 esp32_uart_bridge
-arduino-cli upload -p /dev/cu.usbserial-XXXX \
-  --fqbn "esp32:esp32:esp32:UploadSpeed=115200" esp32_uart_bridge
-```
-
-El plan para encontrar el TX sin tester era seguro: GND del ESP32 a la **malla metálica de un USB** de la caja (masa garantizada), y la entrada GPIO16 tocando cada pad mientras la caja arranca. Una entrada de alta impedancia no se daña aunque toques VCC o GND. El pad que escupa texto legible es el TX.
-
-Plan perfecto. **No tenía cables Dupont**, el tester no tenía pilas y eran más de las dos de la madrugada. Ahí se quedó, documentado para el día siguiente.
+Los **4 pads** junto a la microSD tienen toda la pinta de ser la UART de depuración (GND, TX, RX y VCC; la flecha marca el pin 1). Por ahí sale el log del bootloader y puedes interrumpir u-boot. No tenía un adaptador USB-TTL de 3,3 V, pero sí un **ESP32**, que trabaja a la misma tensión que la caja, y preparé con él un puente USB-serie (la UART de Rockchip va a 1.500.000 baudios). El plan estaba listo, pero **no tenía cables Dupont**, el tester no tenía pilas y eran más de las dos de la madrugada. Se quedó documentado para otro día.
 
 ## Intento 8: el Multitool
 
@@ -214,13 +177,13 @@ xz -dc multitool.img.xz | sudo dd of=/dev/rdiskN bs=1m
 
 > **Ojo con el mirror.** El enlace oficial de jock (`users.armbian.com/jock/rk3318/multitool.img.xz`) ya no responde. Yo usé un [mirror de terceros en GitHub](https://github.com/sholehbaktiabadi/rockchip-rk3318-armbian-os/releases/tag/0.0.4) (`multitool.img.xz`), **no oficial**. Su SHA-256 es `9ce854059656f32c70ccb2d661c6c25ee0577bad5c507ddcfa587b2e1659449a`; compruébalo antes de grabarlo y, si puedes, compáralo con una fuente oficial, que yo no he encontrado. El proyecto sigue en el [hilo de Armbian para RK3318/RK3328](https://forum.armbian.com/topic/26978-csc-armbian-for-rk3318rk3328-tv-box-boards).
 
-## Cómo acabó: Armbian con i3
+## Cómo acabó: Armbian en la eMMC
 
 Y esta vez sí. Donde la imagen de Armbian se había quedado en un LED rojo, **el Multitool arrancó desde la SD**. Fue lo que desbloqueó todo:
 
 1. **Primero, copia de la eMMC.** Lo que debería haber sido el paso uno de la noche acabó siendo el último, pero lo hice antes de tocar nada. Si algún día quiero volver al Android de Sunday (no sé para qué), puedo.
 2. **Después, grabar Armbian en la eMMC** desde el propio Multitool. La imagen fue la misma que no arrancaba desde la SD: [`Armbian_community_26.11.0-trunk.137_Rk3318-box_trixie_current_6.18.64_minimal`](https://github.com/armbian/community/releases/tag/26.11.0-trunk.137) (SHA-256 `e275c6016008a60370b12a2e3efdb36530c81656fd5775de755ebbd8611e254a`). Ya no depende de la SD.
-3. **Arrancar.** Armbian arrancó, y le puse **i3** para tener un entorno gráfico ligero mientras decidía qué hacer con ella.
+3. **Arrancar.** Armbian arrancó desde la eMMC.
 
 
 Lo que corre ahora mismo:
@@ -243,7 +206,7 @@ La idea:
 - La tele muestra un **código QR**. Lo escaneas con el móvil, te conectas a la WiFi de la caja y se abre una web para **subir fotos**.
 - Las fotos salen en la tele como pase de diapositivas.
 
-Por dentro es sencillo: un **binario de Go estático para arm64**, que corre como usuario de sistema bajo **systemd** y escucha en el puerto 80 gracias a `CAP_NET_BIND_SERVICE` (sin ser root). Las fotos las pinta **mpv directamente por DRM/KMS** a 1920×1080, sin X ni gestor de ventanas. El i3 de la primera noche ya sobra. La primera prueba, todavía por la WiFi de casa, recibió fotos a la primera.
+Por dentro es sencillo: un **binario de Go estático para arm64**, que corre como usuario de sistema bajo **systemd** y escucha en el puerto 80 gracias a `CAP_NET_BIND_SERVICE` (sin ser root). Las fotos las pinta **mpv directamente por DRM/KMS** a 1920×1080, sin X ni gestor de ventanas. La primera prueba, todavía por la WiFi de casa, recibió fotos a la primera.
 
 ### El hallazgo: WPA2 que nunca arranca
 
@@ -314,7 +277,7 @@ Aunque el final sea feliz, la mayor parte de la noche fue esto:
 - **Comprueba antes de suponer.** "Los servidores están caídos" pasó a ser "el dominio no existe en el DNS público" con un `dig`. Sigue sin ser "la empresa ha cerrado", y está bien decirlo así.
 - **Una capturadora HDMI USB** convierte cualquier aparato con pantalla en algo que puedes depurar desde el ordenador.
 - **Contar dispositivos USB** con el cable puesto y quitado es una forma tonta y fiable de saber si un puerto hace algo.
-- **Un ESP32 es un USB-TTL decente** si no tienes uno a mano, y además a 3,3 V.
+- **Un ESP32 sirve de puente USB-serie** si no tienes un USB-TTL a mano, y además trabaja a 3,3 V (aunque yo no llegué a probarlo).
 - **En estas cajas, prueba el Multitool antes que nada.** Una imagen genérica de Armbian puede no arrancar desde la SD y el Multitool sí. Me habría ahorrado media noche, y me habría dado la copia de la eMMC desde el principio.
 - **Cuando cambies la red de una caja que solo tiene WiFi, programa antes la vuelta atrás.**
 - **No supongas el framebuffer de tu tele.** Lee la resolución, el orden de colores y el *stride* al arrancar.
