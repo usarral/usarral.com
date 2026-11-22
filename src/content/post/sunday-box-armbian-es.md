@@ -3,6 +3,7 @@ title: "Sunday Box: de caja muerta a marco de fotos"
 description: Compré en una subasta una Sunday Box cuya app ya no vincula. Cuento lo que probé para recuperarla (ADB, DNS spoofing, maskrom, UART con un ESP32…), lo que falló, cómo acabó con Armbian y cómo la convertí en tvcast, un marco de fotos sin internet.
 publishDate: 2026-11-22
 draft: true
+unlisted: true
 pinned: false
 lang: es
 tags:
