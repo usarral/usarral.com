@@ -201,6 +201,8 @@ La caja que llegó como un pisapapeles con un asistente que no terminaba nunca a
 
 Con Linux en la caja, el siguiente paso era devolverle su propósito original sin depender de la nube de nadie. Lo he llamado **tvcast**, y tiene una restricción que lo condiciona todo: **la caja va a una casa sin WiFi**. Así que no puede depender de ninguna red; tiene que **crear la suya**, que se llama `Tele`.
 
+El código es libre, con licencia AGPL-3.0: **[github.com/usarral/tvcast](https://github.com/usarral/tvcast)**. Incluye la guía de instalación en inglés y español y las lecciones aprendidas en el hardware real.
+
 La idea:
 
 - La tele muestra un **código QR**. Lo escaneas con el móvil, te conectas a la WiFi de la caja y se abre una web para **subir fotos**.
