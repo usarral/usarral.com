@@ -316,7 +316,9 @@ Primera versión: el QR salía mientras no hubiera fotos. En cuanto subías unas
 
 En cada arranque en frío, la tele enseñaba la consola unos segundos antes de las fotos. No era la red: tvcast esperaba solo 5 s a que mpv creara su socket IPC y, con la CPU a tope al arrancar, mpv tarda unos 8 s en abrir DRM. tvcast lo daba por muerto, lo mataba (y salía la consola) y lo relanzaba 2 s después. El journal lo delata con `mpv: no IPC socket` nada más arrancar. Ahora espera hasta 30 s mientras el proceso de mpv siga vivo.
 
-Para esconder el resto descarté Plymouth: va en el initramfs y, al salir, deja un hueco (negro o el login) hasta que mpv pinta. En su lugar, `console=serial` en `armbianEnv.txt`, `vt.global_cursor_default=0 logo.nologo` y una imagen cruda copiada a `/dev/fb0` en cuanto arranca systemd. Ojo: el framebuffer de la consola va a 2560×1440 (el modo preferido de la tele), no a 1920×1080 como mpv, así que la imagen tiene que medir lo que diga `/sys/class/graphics/fb0/virtual_size`, en BGRX. Lo que hace u-boot en los primeros segundos no se puede esconder sin recompilarlo.
+Para esconder el resto descarté Plymouth: va en el initramfs y, al salir, deja un hueco (negro o el login) hasta que mpv pinta. En su lugar, `console=serial` en `armbianEnv.txt`, `vt.global_cursor_default=0 logo.nologo` y una imagen pintada directamente en `/dev/fb0` en cuanto arranca systemd. Lo que hace u-boot en los primeros segundos no se puede esconder sin recompilarlo.
+
+La primera versión era una imagen cruda fija de 2560×1440 en BGRX, que era justo el modo de mi tele (el framebuffer de la consola no va a 1920×1080 como mpv, sino al modo preferido de la pantalla). En cuanto enchufé la caja a **otro monitor** (un portátil Arzopa), la pantalla de arranque salió rota. Ahora un pequeño `tvcast-splash` lee por `ioctl` la resolución, los bits por píxel, el orden de los colores y el *stride* del framebuffer, y pinta la imagen adaptada en cada arranque. La lección: nunca supongas que el framebuffer será el de tu tele.
 
 ### El mando de Sunday
 
@@ -332,12 +334,15 @@ Todo esto lo validé **en la torre**, con un adaptador USB. Probar el mando en l
 
 La caja se colgó dos veces con el Bluetooth del chip interno activo (WiFi y Bluetooth comparten el BCM4334): una copiando 192 MB por WiFi y otra con el mando conectado. El journal se cortaba de golpe. Por eso `bluetooth.service` está deshabilitado al arrancar, `journald` sincroniza cada 2 s y `kernel.panic=10` reinicia la caja si el kernel falla. Una tercera prueba aguantó 2,5 min conectado sin colgarse, pero tampoco llegó ninguna tecla.
 
-La idea es usar el Bluetooth interno de todos modos, con un watchdog de hardware que reinicie la caja y un guardián que apague el Bluetooth si se cuelga dos veces. **Todavía no lo he probado**, así que dejo esto abierto hasta tener resultado.
+La idea es usar el Bluetooth interno de todos modos, con un watchdog de hardware que reinicia la caja y un guardián que apaga el Bluetooth interno si se cuelga dos veces. Ya está hecho y desplegándose en la caja. **Todavía no lo he probado**, así que dejo esto abierto hasta tener resultado.
+
+### Un panel de administración oculto
+
+Los atajos sueltos de la tabla de arriba empezaban a ser demasiados, así que los sustituye un **panel de administración oculto**. Se abre con Ctrl+Alt+A o con una combinación en el mando (Corazón, Arriba, Corazón, Abajo). Enseña el estado de la caja, el QR, la red y los logs, y deja borrar fotos, volver a emparejar el mando, cambiar el idioma, reiniciar o abrir la consola. Cada acción destructiva pide confirmación (No/Sí), y las que necesitan root van por systemd y polkit, sin `sudo`.
 
 ### Lo que queda a medias
 
-- **Probar el mando en la caja** con el Bluetooth interno, que es la parte arriesgada (arriba). Falta el watchdog y el guardián.
-- **Un panel de administración oculto** (combinación en el mando y Ctrl+Alt+A) que sustituya a los atajos sueltos de la tabla de arriba.
-- **Quitar los permisos de `sudo` temporales** que dejé para trabajar y publicar tvcast en un repositorio de GitHub (privado de momento).
+- **Probar el mando en la caja** con el Bluetooth interno, que es la parte arriesgada (arriba). El watchdog y el guardián ya están hechos; falta ver cómo se porta de verdad.
+- **Quitar los permisos de `sudo` temporales** que dejé para trabajar (el panel ya no los necesita) y publicar tvcast en un repositorio de GitHub (privado de momento).
 
 > ✏️ **PENDIENTE:** si el repositorio se hace público, enlázalo aquí.
