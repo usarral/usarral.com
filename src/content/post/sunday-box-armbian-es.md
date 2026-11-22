@@ -40,7 +40,13 @@ Lo primero fue abrirla y mirar la placa. Lo que se lee en los chips y la serigra
 
 Por dentro es una **TV box Android genérica** con un sistema de Sunday encima. El sistema es Android 9 (build `PQ2A`, "SundayBoxFamilies"). Esto es una buena noticia: el RK3318 tiene comunidad, y hay [Armbian para estas cajas](https://forum.armbian.com/topic/26978-csc-armbian-for-rk3318rk3328-tv-box-boards).
 
-> ✏️ **FOTO PENDIENTE:** foto de la placa con los chips y los 4 pads señalados (la enviará Carlos).
+![Cara superior de la placa RK3328_8D4_V1.1 con el SoC Rockchip RK3318, el módulo WiFi HK6334Q, la eMMC Samsung y los 4 pads de depuración junto a la microSD](../../assets/blog/sunday-box-armbian/sunday-box-board-top.jpg)
+
+La cara superior: el SoC RK3318, la eMMC Samsung, el módulo WiFi `HK6334Q` (con su cable de antena negro) y, junto al lector de microSD, los 4 pads de depuración.
+
+![Cara inferior de la placa, con los chips de RAM y la etiqueta QC2 2+16](../../assets/blog/sunday-box-armbian/sunday-box-board-bottom.jpg)
+
+La cara inferior, con los chips de RAM y la etiqueta "QC2 2+16".
 
 ## ¿Está muerta la nube?
 
