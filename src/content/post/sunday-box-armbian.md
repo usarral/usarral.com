@@ -1,9 +1,10 @@
 ---
 title: "Sunday Box: from dead box to photo frame"
 description: I won a Sunday Box at auction whose app no longer pairs. Here's what I tried to revive it (ADB, DNS spoofing, maskrom, a UART with an ESP32…), what failed, how it ended up running Armbian, and how I turned it into tvcast, an offline photo frame.
-publishDate: 2026-11-22
-draft: true
+publishDate: 2026-11-24
+draft: false
 unlisted: true
+listedAt: 2026-11-24T08:00:00+01:00
 pinned: false
 tags:
   - homelab
