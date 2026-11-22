@@ -208,6 +208,8 @@ La idea:
 - La tele muestra un **código QR**. Lo escaneas con el móvil, te conectas a la WiFi de la caja y se abre una web para **subir fotos**.
 - Las fotos salen en la tele como pase de diapositivas.
 
+![La web de tvcast en el móvil: botón para elegir fotos, controles de pase y las fotos enviadas](../../assets/blog/sunday-box-armbian/tvcast-phone-upload-page.png)
+
 Por dentro es sencillo: un **binario de Go estático para arm64**, que corre como usuario de sistema bajo **systemd** y escucha en el puerto 80 gracias a `CAP_NET_BIND_SERVICE` (sin ser root). Las fotos las pinta **mpv directamente por DRM/KMS** a 1920×1080, sin X ni gestor de ventanas. La primera prueba, todavía por la WiFi de casa, recibió fotos a la primera.
 
 ### El hallazgo: WPA2 que nunca arranca
@@ -255,6 +257,8 @@ La primera versión era una imagen cruda fija de 2560×1440 en BGRX, justo el mo
 ### Un panel de administración oculto
 
 Los atajos sueltos de la tabla de arriba empezaban a ser demasiados, así que los sustituye un **panel de administración oculto**. Se abre con Ctrl+Alt+A (y, cuando el mando funcione, con una combinación de botones). Enseña el estado de la caja, el QR, la red y los logs, y deja borrar fotos, volver a emparejar el mando, cambiar el idioma, reiniciar o abrir la consola. Cada acción destructiva pide confirmación (No/Sí), y las que necesitan root van por systemd y polkit, sin `sudo`.
+
+![Panel de administración de tvcast en la tele, con el estado de la caja y las opciones de red, registros, fotos y sistema](../../assets/blog/sunday-box-armbian/tvcast-admin-menu.png)
 
 ### Lo que queda: el mando
 
