@@ -328,7 +328,7 @@ Lo curioso es que Linux no crea ningún `/dev/input`: el mando imita un teclado 
 
 Para tvcast hice un servicio aparte, `tvcast-remote`, en Go y hablando con BlueZ por D-Bus (bleak necesita ver al mando anunciándose para conectar, y eso estorba al reconectar). Llama a la API HTTP de tvcast en loopback, sin uinput, y se reconecta solo en unos 2 s. El botón de apagado lo dejé sin mapear a propósito: una pulsación accidental dejaría a la familia con un login en la tele.
 
-Primero lo validé **en la torre**, con un adaptador USB, y después **en la caja**, también con su chip Bluetooth interno. Ahí me costó un buen rato un detalle: BlueZ necesita un *agente* de `bluetoothctl` en la misma sesión que hace el emparejamiento; sin él, el `pair` termina en `Authentication Failed 0x05`.
+Primero lo validé **en la torre**, con un adaptador USB. Después probé ese mismo adaptador, de forma provisional, **en la caja**: en el puerto OTG (dwc2, *full-speed*) el escaneo BLE fallaba con timeouts y error `-71`, y en el USB azul (xHCI) funcionó. Allí descubrí un detalle que me costó un buen rato: BlueZ necesita un *agente* de `bluetoothctl` en la misma sesión que hace el emparejamiento; sin él, el `pair` termina en `Authentication Failed 0x05`. Con el agente, el mando funcionó en la caja. Devolví el adaptador a la torre y repetí la prueba con el chip Bluetooth interno de la caja, que también funcionó.
 
 ### Cuando el Bluetooth interno cuelga la caja (en curso)
 
