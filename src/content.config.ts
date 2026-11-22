@@ -35,6 +35,8 @@ const post = defineCollection({
 				.optional()
 				.transform((str) => (str ? new Date(str) : undefined)),
 			pinned: z.boolean().default(false),
+			/** Published and reachable by URL, but hidden from listings, RSS, tags, search and sitemap, and marked noindex. */
+			unlisted: z.boolean().default(false),
 			lang: z.enum(["en", "es"]).default("en"),
 		}),
 });

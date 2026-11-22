@@ -20,6 +20,18 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 
 // https://astro.build/config
+/** Paths (e.g. `/es/posts/my-post/`) of posts with `unlisted: true`, to keep them out of the sitemap. */
+const unlistedPostPaths = fs
+	.readdirSync("./src/content/post")
+	.filter((file) => /\.mdx?$/.test(file))
+	.flatMap((file) => {
+		const source = fs.readFileSync(`./src/content/post/${file}`, "utf8");
+		const frontmatter = source.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? "";
+		if (!/^unlisted:\s*true\s*$/m.test(frontmatter)) return [];
+		const lang = frontmatter.match(/^lang:\s*(\w+)/m)?.[1] ?? "en";
+		return [`/${lang}/posts/${file.replace(/\.mdx?$/, "")}/`];
+	});
+
 export default defineConfig({
 	site: siteConfig.url,
 	i18n: {
@@ -34,6 +46,7 @@ export default defineConfig({
 		expressiveCode(expressiveCodeOptions),
 		icon(),
 		sitemap({
+			filter: (page) => !unlistedPostPaths.some((path) => page.includes(path)),
 			i18n: {
 				defaultLocale: "en",
 				locales: {

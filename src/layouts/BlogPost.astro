@@ -19,7 +19,7 @@ interface Props {
 
 const { post, locale = defaultLocale, alternateUrls } = Astro.props;
 const t = useTranslations(locale);
-const { ogImage, title, description, updatedDate, publishDate } = post.data;
+const { ogImage, title, description, updatedDate, publishDate, unlisted } = post.data;
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings, remarkPluginFrontmatter } = await render(post);
@@ -30,6 +30,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 	meta={{
 		articleDate,
 		description,
+		noindex: unlisted,
 		ogImage: socialImage,
 		title,
 	}}
@@ -37,7 +38,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 	{...(alternateUrls && { alternateUrls })}
 >
 	<BlogSchema post={post} socialImageURL={new URL(socialImage, Astro.site).href} />
-	<article class="grow break-words" data-pagefind-body>
+	<article class="grow break-words" {...(!unlisted && { "data-pagefind-body": true })}>
 		<Breadcrumbs postTitle={title} locale={locale} />
 		<div id="blog-hero" class="mb-12">
 			<Masthead content={post} readingTime={readingTime} locale={locale} />
