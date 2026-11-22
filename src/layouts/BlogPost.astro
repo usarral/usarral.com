@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/blog/Breadcrumbs.astro";
 import Giscus from "@/components/blog/Giscus.astro";
 import Masthead from "@/components/blog/Masthead.astro";
 import TOC from "@/components/blog/TOC.astro";
+import { isUnlisted } from "@/data/post";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { useTranslations } from "@/i18n/utils";
 
@@ -20,6 +21,7 @@ interface Props {
 const { post, locale = defaultLocale, alternateUrls } = Astro.props;
 const t = useTranslations(locale);
 const { ogImage, title, description, updatedDate, publishDate } = post.data;
+const unlisted = isUnlisted(post.data);
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings, remarkPluginFrontmatter } = await render(post);
@@ -30,6 +32,9 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 	meta={{
 		articleDate,
 		description,
+		// noindex only for posts hidden for good: a post with `listedAt` is hidden for a day or two and
+		// crawlers must be able to find it once it is listed.
+		noindex: unlisted && !post.data.listedAt,
 		ogImage: socialImage,
 		title,
 	}}
@@ -37,7 +42,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 	{...(alternateUrls && { alternateUrls })}
 >
 	<BlogSchema post={post} socialImageURL={new URL(socialImage, Astro.site).href} />
-	<article class="grow break-words" data-pagefind-body>
+	<article class="grow break-words" {...(!unlisted && { "data-pagefind-body": true })}>
 		<Breadcrumbs postTitle={title} locale={locale} />
 		<div id="blog-hero" class="mb-12">
 			<Masthead content={post} readingTime={readingTime} locale={locale} />
