@@ -4,7 +4,7 @@ import type { Locale } from "@/i18n/config";
 /** filter out draft posts and future-dated posts */
 export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
 	return await getCollection("post", ({ data }) => {
-		if (data.draft && !import.meta.env.DEV) return false;
+		if (data.draft) return false;
 		return data.publishDate <= new Date();
 	});
 }
